@@ -1,0 +1,26 @@
+{
+  "name": "wrapping-letters",
+  "version": "0.1.0",
+  "description": "WRAPPING LETTERS IS A JAVASCRIPT LIBRARY THAT SIMPLIFIES THE JOB OF WRAPPING LETTERS IN HTML TAGS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Carlos-And-Ponce/wrapping-letters.git"
+  },
+  "keywords": [
+    "wrapping-letters",
+    "letters",
+    "wrapping",
+    "react",
+    "css"
+  ],
+  "author": "Carlos Ponce",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Carlos-And-Ponce/wrapping-letters/issues"
+  },
+  "homepage": "https://github.com/Carlos-And-Ponce/wrapping-letters#readme"
+}
