@@ -1,6 +1,6 @@
 {
   "name": "wrapping-letters-react",
-  "version": "0.1.6",
+  "version": "1.0.1",
   "description": "WRAPPING LETTERS IS A JAVASCRIPT LIBRARY THAT SIMPLIFIES THE JOB OF WRAPPING LETTERS IN HTML TAGS",
   "main": "index.js",
   "scripts": {
