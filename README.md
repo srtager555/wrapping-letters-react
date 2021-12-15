@@ -1,3 +1,6 @@
+# wrapping-letters
+
+WRAPPING LETTERS IS A REACT LIBRARY(come soon for JS) THAT SIMPLIFIES THE JOB OF WRAPPING LETTERS IN HTML TAGS
 ## How to use
 
 Wrapping letters is so easy to use!:
