@@ -1,12 +1,11 @@
 {
   "name": "wrapping-letters-react",
-  "version": "0.1.3",
+  "version": "0.1.6",
   "description": "WRAPPING LETTERS IS A JAVASCRIPT LIBRARY THAT SIMPLIFIES THE JOB OF WRAPPING LETTERS IN HTML TAGS",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Carlos-And-Ponce/wrapping-letters.git"
@@ -25,7 +24,6 @@
   },
   "homepage": "https://github.com/Carlos-And-Ponce/wrapping-letters#readme",
   "dependencies": {
-    "@babel/preset-react": "^7.16.0",
     "react": "^17.0.2"
   }
 }

@@ -1,16 +1,16 @@
-import React from "react";
+var React = require('react');
 
-export function useWrappingLetters(word) {
+function useWrappingLetters(word) {
   if (Object.prototype.toString.call(word) !== "[object String]") {
     throw new Error("Word must be a string");
   }
   var a = [...word];
 
   var wrapLetters = a.map(function (letter, index) {
-    <span key={index + " " + letter}>{letter}</span>;
+    React.createElement('span', { key: index }, letter);
   });
 
   return wrapLetters;
 }
 
-
+module.exports = useWrappingLetters;
