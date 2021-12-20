@@ -83,6 +83,9 @@ function errorFilterSpecialClass(wordOptions) {
 
 // ====== select special class to add ======
 function selectSpecialClass(wordOptions, text, ClassToAdd) {
+  if(Object.prototype.toString.call(wordOptions[0]) !== "[object Object]"){
+    throw new Error("wordOptions must be an object");
+  }
   let searchWordValue;
   let searchWordValueLength;
   let especialClass;
@@ -146,7 +149,18 @@ module.exports = function WrappingLetters({
       Object.keys(wordOptions[0]).length === 1 &&
       Object.keys(wordOptions[0])[0] === "ClassToAdd"
     ) {
+      if (
+        Object.prototype.toString.call(wordOptions[0]["ClassToAdd"]) !==
+        "[object String]"
+      ) {
+        throw new Error("ClassToAdd must be a string");
+      }
       return WrappLetter({}, text, wordOptions[0]["ClassToAdd"]);
+    } else if (
+      Object.keys(wordOptions[0]).length === 1 &&
+      Object.keys(wordOptions[0])[0] === "SelectClass"
+    ) {
+      return selectSpecialClass(wordOptions, text, "");
     } else if (Object.keys(wordOptions[0]).length === 2) {
       if (
         Object.keys(wordOptions[0]) !== ["ClassToAdd", "SelectClass"] ||
