@@ -11,6 +11,10 @@ WRAPPING LETTERS IS A REACT LIBRARY(come soon for JS) THAT SIMPLIFIES THE JOB OF
 - Now you can add a default class to <span>!
 
 - Now you can set a specific class to a specific word or phrase!
+
+1.1.1 (fixed errors)
+
+- ✅ "SelectClass" not work only (Fixed) 
 ## How to use
 
 Wrapping letters is so easy to use!:
@@ -31,13 +35,25 @@ export default App;
 Wrapping Letters is a component for react with the goal of to simplify the job to wrap letters,
 call the component and that's ready to use.  its has a default word is: "Hello world!!! <3".
 
+The component ```` <WrappingLetters /> ```` always returns each letter of the word or phrase within a ```<span />``` each letter.
+
+  ```!IMPORTANT```
+The component only returns the single letters, they are not inside any extra tag.
+```
+  <span>H</span>
+  <span>e</span>
+  <span>l</span>
+  <span>l</span>
+  <span>...</span>
+```
+
 If you want modifies the word, call the prop "word", this prop only accept strings
 
 ```
 <WrappingLetters word="I'm the new word" />
 ```
 
-Now you can add a special options to the word, is so easy:
+Now you can add a special options to the word, is so easy!:
 
 ```
 <WrappingLetters 
