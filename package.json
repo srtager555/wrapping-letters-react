@@ -2,9 +2,14 @@
   "name": "wrapping-letters-react",
   "version": "1.1.1",
   "description": "WRAPPING LETTERS IS A JAVASCRIPT LIBRARY THAT SIMPLIFIES THE JOB OF WRAPPING LETTERS IN HTML TAGS",
-  "main": "index.js",
+  "files": [
+    "lib/**/*.js"
+  ],
+  "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --watch",
+    "build": "babel src -d lib",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -31,5 +36,28 @@
   "homepage": "https://github.com/Carlos-And-Ponce/wrapping-letters#readme",
   "dependencies": {
     "react": "^17.0.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "@babel/preset-react": "^7.16.5",
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^12.1.2",
+    "jest": "^27.4.5",
+    "jest-cli": "^27.4.5",
+    "jsdom": "^19.0.0"
+  },
+  "babel": {
+    "presets": [
+      "@babel/env",
+      "@babel/react"
+    ]
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": [
+      "<rootDir>/test/setupTests.js"
+    ]
   }
 }
