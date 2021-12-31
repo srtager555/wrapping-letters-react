@@ -8,13 +8,26 @@ WRAPPING LETTERS IS A REACT LIBRARY(come soon for JS) THAT SIMPLIFIES THE JOB OF
 
 1.1.0 is now, the following functions have been implemented
 
-- Now you can add a default class to <span>!
+- Now you can add a default class to ```<span />```!
 
 - Now you can set a specific class to a specific word or phrase!
 
 1.1.1 (fixed errors)
 
 - ✅ "SelectClass" not work only (Fixed) 
+
+1.1.2 (fixed errors)
+
+- ✅ After of the 1.1.2, wordOptions !== Array eject a error not captured, resolve. 
+
+1.2.0(future version)
+
+- Optimization of code
+
+- CSS variables will be added to the ```<span />``` for more complex animations
+
+- And a better readme
+
 ## How to use
 
 Wrapping letters is so easy to use!:

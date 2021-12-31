@@ -123,14 +123,14 @@ function selectSpecialClass(wordOptions, text, ClassToAdd) {
 module.exports = function WrappingLetters({
   word = "Hello world !!! <3",
   wordOptions = [],
-}) {
+}) {  
   if (Object.prototype.toString.call(word) !== "[object String]") {
     throw new Error("Word must be a string");
   }
   if (word === "") {
     throw new Error("Word cannot be empty");
   }
-
+  
   let text = [...word];
 
   var wrapLetters = text.map(function (letter, index) {
@@ -139,9 +139,11 @@ module.exports = function WrappingLetters({
 
   if (
     wordOptions.length > 0 &&
-    Object.prototype.toString.call(wordOptions) === "[object Array]"
+    Object.prototype.toString.call(wordOptions) !== "[object Array]"
   ) {
-    if (wordOptions.length > 1) {
+    throw new Error("wordOptions must be an array");
+  } else {
+    if (wordOptions.length > 1 && wordOptions.length === 0) {
       throw new Error("wordOptions must be a single object");
     }
 
