@@ -51,19 +51,26 @@ export default function WrappingLetters({
 
       words = word.split(/\s+/)
       .map((word, index, arr) => {
-        if(spaceBetweenWord){
-          if(index !== 0) {
-            word = " " + word;
-          }
-        } else {
-         if(index !== arr.length - 1) {
-            word = word + " ";
-          }
-        }
-
-        if (word.indexOf(wordToSearch) !== -1) {
+        const start = word.indexOf(wordToSearch);
+        const chunkSpace = (index !== arr.length - 1  ? " " : "")
+        if(!spaceBetweenWord && start !== -1) {
+          // Agrega un espacio al inicio y divide la palabra a partir de la
+          // palabra a buscar
           return [
-            spaceBetweenWord ? " " + word.trim() + " " : word,
+            word.slice(0, start),
+            word.slice(start, start + wordToSearch.length),
+            word.slice(start + wordToSearch.length) + chunkSpace
+          ];
+        }
+        // Simplemente retorna la palabra con un espacio al final, si no es él último elemento
+        return word + chunkSpace;
+      })
+      //Esto elimina los arrays aninados, y sólo debería quedar un array
+      .flat()
+      .map((word) => {
+        if (word.trim() == wordToSearch) {
+          return [
+            word,
             { className: [ClassToAdd || "", classToAdd || ""].join(" ") },
           ];
         }

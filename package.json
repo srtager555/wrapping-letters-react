@@ -9,7 +9,8 @@
   "scripts": {
     "test": "jest --watch",
     "build": "babel src -d lib",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "test:renderer": "npx babel-node test-renderer/server.js"
   },
   "repository": {
     "type": "git",
@@ -40,13 +41,19 @@
   "devDependencies": {
     "@babel/cli": "^7.16.0",
     "@babel/core": "^7.16.5",
+    "@babel/node": "^7.16.7",
     "@babel/preset-env": "^7.16.5",
     "@babel/preset-react": "^7.16.5",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
+    "babel-loader": "^8.2.3",
     "jest": "^27.4.5",
     "jest-cli": "^27.4.5",
-    "jsdom": "^19.0.0"
+    "jsdom": "^19.0.0",
+    "react-dom": "^17.0.2",
+    "webpack": "^5.65.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.7.2"
   },
   "babel": {
     "presets": [
