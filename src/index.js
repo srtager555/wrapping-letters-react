@@ -5,7 +5,7 @@ function WrappLetter(
   text,
   ClassToAdd
 ) {
-  var wrapLetters = text.map((letter, index) => {
+  var wrappedLetters = text.map((letter, index) => {
     if (searchWordValueLength !== 0 && letter === searchWordValue[0]) {
       if (
         index + searchWordValueLength <= text.length &&
@@ -41,39 +41,28 @@ function WrappLetter(
     }
   });
 
-  return wrapLetters;
+  return wrappedLetters;
 }
 
-function errorFilterSpecialClass(wordOptions) {
-  const searchWord = Object.keys(wordOptions[0]["SelectClass"]).filter(
-    (key) => key === "wordToSearch"
-  );
-  const searchWordClass = Object.keys(wordOptions[0]["SelectClass"]).filter(
-    (key) => key === "classToAdd"
-  );
-  const searchSBW = Object.keys(wordOptions[0]["SelectClass"]).filter(
-    (key) => key === "spaceBetweenWord"
-  );
+function errorFilterSpecialClass(SelectClass) {
+  const SelectClassKeys = Object.keys(SelectClass);
 
-  if (
-    searchWord.length === 0 ||
-    searchWordClass.length === 0 ||
-    searchSBW.length === 0
-  ) {
+  const searchWord = SelectClassKeys.some((key) => key === "wordToSearch");
+  const searchWordClass = SelectClassKeys.some((key) => key === "classToAdd");
+  const searchSBW = SelectClassKeys.some((key) => key === "spaceBetweenWord");
+
+  if (!searchWord && !searchWordClass && !searchSBW) {
     throw new Error(
       "SelectClass must have 3 keys : wordToSearch, spaceBetweenWord and classToAdd"
     );
   }
 
   if (
-    Object.prototype.toString.call(
-      wordOptions[0]["SelectClass"].wordToSearch
-    ) !== "[object String]" ||
-    Object.prototype.toString.call(
-      wordOptions[0]["SelectClass"].spaceBetweenWord
-    ) !== "[object Boolean]" ||
-    Object.prototype.toString.call(wordOptions[0]["SelectClass"].classToAdd) !==
-      "[object String]"
+    Object.prototype.toString.call(SelectClass.wordToSearch) !==
+      "[object String]" ||
+    Object.prototype.toString.call(SelectClass.spaceBetweenWord) !==
+      "[object Boolean]" ||
+    Object.prototype.toString.call(SelectClass.classToAdd) !== "[object String]"
   ) {
     throw new Error(
       "wordToSearch and classToAdd must be a string, spaceBetweenWord must be a boolean"
@@ -82,26 +71,27 @@ function errorFilterSpecialClass(wordOptions) {
 }
 
 // ====== select special class to add ======
-function selectSpecialClass(wordOptions, text, ClassToAdd) {
-  if (Object.prototype.toString.call(wordOptions[0]) !== "[object Object]") {
-    throw new Error("wordOptions must be an object");
-  }
-  let searchWordValue;
-  let searchWordValueLength;
-  let especialClass;
+function selectSpecialClass(SelectClass, text, ClassToAdd) {
+  if (Object.keys(SelectClass).length !== 3) {
+    throw new Error(
+      "SelectClass must have 3 keys : wordToSearch, spaceBetween and classToAdd"
+    );
+  } else {
+    let searchWordValue;
+    let searchWordValueLength;
+    let especialClass;
 
-  if (Object.keys(wordOptions[0]["SelectClass"]).length === 3) {
-    errorFilterSpecialClass(wordOptions);
-    let searchWordValue = [...wordOptions[0]["SelectClass"].wordToSearch];
+    errorFilterSpecialClass(SelectClass);
+    searchWordValue = [...SelectClass.wordToSearch];
 
-    if (wordOptions[0]["SelectClass"].spaceBetweenWord === true) {
+    if (SelectClass.spaceBetweenWord === true) {
       searchWordValue.unshift(" ");
       searchWordValue.push(" ");
       text.push(" ");
     }
 
-    let searchWordValueLength = searchWordValue.length;
-    let especialClass = wordOptions[0]["SelectClass"].classToAdd;
+    searchWordValueLength = searchWordValue.length;
+    especialClass = SelectClass.classToAdd;
 
     return WrappLetter(
       {
@@ -111,10 +101,6 @@ function selectSpecialClass(wordOptions, text, ClassToAdd) {
       },
       text,
       ClassToAdd
-    );
-  } else {
-    throw new Error(
-      "SelectClass must have 3 keys : wordToSearch, spaceBetween and classToAdd"
     );
   }
 }
@@ -137,17 +123,24 @@ export default function WrappingLetters({
 
   let text = [...word];
 
-  var wrapLetters = text.map(function (letter, index) {
+  var wrappedLetters = text.map(function (letter, index) {
     return React.createElement("span", { key: `letter ${index}` }, letter);
   });
 
   if (isIts(wordOptions) !== "[object Array]") {
     throw new Error("wordOptions must be an array");
   } else if (wordOptions.length > 0) {
-    let wordOptionsKeys = Object.keys(wordOptions[0]);
+    if (isIts(wordOptions[0]) !== "[object Object]") {
+      throw new Error(
+        "inside the array of wordOptions there must be an object"
+      );
+    }
 
-    const verifyWordOptionsKeys = (value) => {
-      if (wordOptionsKeys.length === 1 && wordOptionsKeys.includes(value))
+    let wordOptionsKeys = Object.keys(wordOptions[0]);
+    let { ClassToAdd, SelectClass } = wordOptions[0];
+
+    const verifyWordOptionsKeys = (value, valueNb = 1) => {
+      if (wordOptionsKeys.length === valueNb && wordOptionsKeys.includes(value))
         return true;
       else return false;
     };
@@ -157,38 +150,31 @@ export default function WrappingLetters({
     }
 
     if (verifyWordOptionsKeys("ClassToAdd")) {
-      if (
-        isIts(wordOptions[0]["ClassToAdd"]) !==
-        "[object String]"
-      ) {
+      if (isIts(ClassToAdd) !== "[object String]") {
         throw new Error("ClassToAdd must be a string");
       }
-      return WrappLetter({}, text, wordOptions[0]["ClassToAdd"]);
+      return WrappLetter({}, text, ClassToAdd);
     }
 
     if (verifyWordOptionsKeys("SelectClass")) {
-      return selectSpecialClass(wordOptions, text, "");
+      return selectSpecialClass(SelectClass, text, "");
     }
 
     if (wordOptionsKeys.length === 2) {
       if (
-        wordOptionsKeys !== ["ClassToAdd", "SelectClass"] ||
-        wordOptionsKeys !== ["SelectClass", "ClassToAdd"]
+        verifyWordOptionsKeys("ClassToAdd", 2) &&
+        verifyWordOptionsKeys("SelectClass", 2)
       ) {
-        return selectSpecialClass(
-          wordOptions,
-          text,
-          wordOptions[0]["ClassToAdd"]
-        );
+        return selectSpecialClass(SelectClass, text, ClassToAdd);
       }
     }
 
     // ---- warning of empty wordOpting---- //
-    if (Object.keys(wordOptions[0]["SelectClass"]).length === 0) {
-      console.warn("wordOptions is empty, return a simple wrapp of letters");
-      // ---- wordOptions, normal wrapp ---- //
-      return wrapLetters;
-    }
+    if (wordOptionsKeys.length === 0) {
+      console.warn(
+        '"wordOptions" is empty, returning a simple wrapper of letters'
+      );
+    } // ---- Leave the process, start normal wrapp ---- //
   }
-  return wrapLetters;
+  return wrappedLetters;
 }
