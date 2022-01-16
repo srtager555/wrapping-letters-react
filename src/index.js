@@ -1,4 +1,4 @@
-const React = require("react");
+import React from "react";
 
 function WrappLetter(
   { searchWordValue, searchWordValueLength = 0, especialClass },
@@ -83,7 +83,7 @@ function errorFilterSpecialClass(wordOptions) {
 
 // ====== select special class to add ======
 function selectSpecialClass(wordOptions, text, ClassToAdd) {
-  if(Object.prototype.toString.call(wordOptions[0]) !== "[object Object]"){
+  if (Object.prototype.toString.call(wordOptions[0]) !== "[object Object]") {
     throw new Error("wordOptions must be an object");
   }
   let searchWordValue;
@@ -120,53 +120,60 @@ function selectSpecialClass(wordOptions, text, ClassToAdd) {
 }
 // ====== select special class to add ======
 
-module.exports = function WrappingLetters({
+export default function WrappingLetters({
   word = "Hello world !!! <3",
   wordOptions = [],
-}) {  
-  if (Object.prototype.toString.call(word) !== "[object String]") {
+}) {
+  const isIts = (it) => {
+    return Object.prototype.toString.call(it);
+  };
+
+  if (isIts(word) !== "[object String]") {
     throw new Error("Word must be a string");
   }
   if (word === "") {
     throw new Error("Word cannot be empty");
   }
-  
+
   let text = [...word];
 
   var wrapLetters = text.map(function (letter, index) {
     return React.createElement("span", { key: `letter ${index}` }, letter);
   });
 
-  if (
-    wordOptions.length > 0 &&
-    Object.prototype.toString.call(wordOptions) !== "[object Array]"
-  ) {
+  if (isIts(wordOptions) !== "[object Array]") {
     throw new Error("wordOptions must be an array");
-  } else {
-    if (wordOptions.length > 1 && wordOptions.length === 0) {
+  } else if (wordOptions.length > 0) {
+    let wordOptionsKeys = Object.keys(wordOptions[0]);
+
+    const verifyWordOptionsKeys = (value) => {
+      if (wordOptionsKeys.length === 1 && wordOptionsKeys.includes(value))
+        return true;
+      else return false;
+    };
+
+    if (wordOptions.length > 1) {
       throw new Error("wordOptions must be a single object");
     }
 
-    if (
-      Object.keys(wordOptions[0]).length === 1 &&
-      Object.keys(wordOptions[0])[0] === "ClassToAdd"
-    ) {
+    if (verifyWordOptionsKeys("ClassToAdd")) {
       if (
-        Object.prototype.toString.call(wordOptions[0]["ClassToAdd"]) !==
+        isIts(wordOptions[0]["ClassToAdd"]) !==
         "[object String]"
       ) {
         throw new Error("ClassToAdd must be a string");
       }
       return WrappLetter({}, text, wordOptions[0]["ClassToAdd"]);
-    } else if (
-      Object.keys(wordOptions[0]).length === 1 &&
-      Object.keys(wordOptions[0])[0] === "SelectClass"
-    ) {
+    }
+
+    if (verifyWordOptionsKeys("SelectClass")) {
       return selectSpecialClass(wordOptions, text, "");
-    } else if (Object.keys(wordOptions[0]).length === 2) {
+    }
+
+    if (wordOptionsKeys.length === 2) {
       if (
-        Object.keys(wordOptions[0]) !== ["ClassToAdd", "SelectClass"] ||
-        Object.keys(wordOptions[0]) !== ["SelectClass", "ClassToAdd"]
+        wordOptionsKeys !== ["ClassToAdd", "SelectClass"] ||
+        wordOptionsKeys !== ["SelectClass", "ClassToAdd"]
       ) {
         return selectSpecialClass(
           wordOptions,
@@ -174,11 +181,6 @@ module.exports = function WrappingLetters({
           wordOptions[0]["ClassToAdd"]
         );
       }
-    } else if (
-      Object.prototype.toString.call(wordOptions) !== "[object Array]"
-    ) {
-      // ---- wordOption only accept array ---- //
-      throw new Error("wordOptions must be a array");
     }
 
     // ---- warning of empty wordOpting---- //
