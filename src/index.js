@@ -6,37 +6,31 @@ function WrappLetter(
   ClassToAdd
 ) {
   var wrappedLetters = text.map((letter, index) => {
-    if (searchWordValueLength !== 0 && letter === searchWordValue[0]) {
-      if (
-        index + searchWordValueLength <= text.length &&
-        text.slice(index, index + searchWordValueLength).join("") ===
-          searchWordValue.join("")
-      ) {
-        const newText = text.slice(index, index + searchWordValueLength);
-        var wl = newText.map((letter, index) => {
-          return React.createElement(
-            "span",
-            {
-              key: `letter ${index}`,
-              className: `${ClassToAdd} ${especialClass}`,
-            },
-            letter
-          );
-        });
-        text.splice(index, searchWordValueLength - 1);
-        return wl;
-      } else {
-        return React.createElement(
-          "span",
-          { key: `letter ${index}`, className: ClassToAdd },
-          letter
+    if (
+      searchWordValue.length > 0 &&
+      letter === searchWordValue[0] &&
+      index + searchWordValueLength <= text.length &&
+      text.slice(index, index + searchWordValueLength).join("") ===
+        searchWordValue.join("")
+    ) {
+      const newText = text.slice(index, index + searchWordValueLength);
+      var wl = newText.map((letter, index) => {
+        return (
+          <span
+            key={`letter ${index}`}
+            className={`${ClassToAdd} ${especialClass}`}
+          >
+            {letter}
+          </span>
         );
-      }
+      });
+      text.splice(index, searchWordValueLength - 1);
+      return wl;
     } else {
-      return React.createElement(
-        "span",
-        { key: `letter ${index}`, className: ClassToAdd },
-        letter
+      return (
+        <span key={`letter ${index}`} className={ClassToAdd}>
+          {letter}
+        </span>
       );
     }
   });
