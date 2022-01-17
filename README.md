@@ -12,17 +12,17 @@ WRAPPING LETTERS IS A REACT LIBRARY(come soon for JS) THAT SIMPLIFIES THE JOB OF
 
 - Now you can set a specific class to a specific word or phrase!
 
-1.1.1 (fixed errors)
 
-- ✅ "SelectClass" not work only (Fixed) 
 
 1.1.2 (fixed errors)
 
 - ✅ After of the 1.1.2, wordOptions !== Array eject a error not captured, resolve. 
 
-1.2.0(future version)
+1.1.3 (optimization break)
 
-- Optimization of code
+- ❕ the code is smaller and more readable than before to implement future versions
+
+1.2.0(future version)
 
 - CSS variables will be added to the ```<span />``` for more complex animations
 
