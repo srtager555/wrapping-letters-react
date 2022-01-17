@@ -3,7 +3,8 @@ import React from "react";
 function WrappLetter(
   { searchWordValue, searchWordValueLength = 0, especialClass },
   text,
-  ClassToAdd
+  ClassToAdd,
+  Structure
 ) {
   var wrappedLetters = text.map((letter, index) => {
     if (
@@ -14,23 +15,25 @@ function WrappLetter(
         searchWordValue.join("")
     ) {
       const newText = text.slice(index, index + searchWordValueLength);
-      var wl = newText.map((letter, index) => {
+
+      var wl = newText.map((letter) => {
         return (
-          <span
-            key={`letter ${index}`}
-            className={`${ClassToAdd} ${especialClass}`}
-          >
-            {letter}
-          </span>
+          <Structure
+            letter={letter}
+            className={[ClassToAdd, especialClass].join(" ")}
+            key={`${letter} ${index}-${Math.random()}`}
+          />
         );
       });
       text.splice(index, searchWordValueLength - 1);
       return wl;
     } else {
       return (
-        <span key={`letter ${index}`} className={ClassToAdd}>
-          {letter}
-        </span>
+        <Structure
+          letter={letter}
+          className={ClassToAdd}
+          key={`${letter} ${index}-${Math.random()}`}
+        />
       );
     }
   });
@@ -65,7 +68,7 @@ function errorFilterSpecialClass(SelectClass) {
 }
 
 // ====== select special class to add ======
-function selectSpecialClass(SelectClass, text, ClassToAdd) {
+function selectSpecialClass(SelectClass, text, ClassToAdd, structure) {
   if (Object.keys(SelectClass).length !== 3) {
     throw new Error(
       "SelectClass must have 3 keys : wordToSearch, spaceBetween and classToAdd"
@@ -94,7 +97,8 @@ function selectSpecialClass(SelectClass, text, ClassToAdd) {
         especialClass,
       },
       text,
-      ClassToAdd
+      ClassToAdd,
+      structure
     );
   }
 }
@@ -103,6 +107,9 @@ function selectSpecialClass(SelectClass, text, ClassToAdd) {
 export default function WrappingLetters({
   word = "Hello world !!! <3",
   wordOptions = [],
+  structure = ({ letter, ...props }) => {
+    return <span {...props}>{letter}</span>;
+  }
 }) {
   const isIts = (it) => {
     return Object.prototype.toString.call(it);
@@ -147,11 +154,11 @@ export default function WrappingLetters({
       if (isIts(ClassToAdd) !== "[object String]") {
         throw new Error("ClassToAdd must be a string");
       }
-      return WrappLetter({}, text, ClassToAdd);
+      return WrappLetter({}, text, ClassToAdd, structure);
     }
 
     if (verifyWordOptionsKeys("SelectClass")) {
-      return selectSpecialClass(SelectClass, text, "");
+      return selectSpecialClass(SelectClass, text, "", structure);
     }
 
     if (wordOptionsKeys.length === 2) {
@@ -159,7 +166,7 @@ export default function WrappingLetters({
         verifyWordOptionsKeys("ClassToAdd", 2) &&
         verifyWordOptionsKeys("SelectClass", 2)
       ) {
-        return selectSpecialClass(SelectClass, text, ClassToAdd);
+        return selectSpecialClass(SelectClass, text, ClassToAdd, structure);
       }
     }
 
