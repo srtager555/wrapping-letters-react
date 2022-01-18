@@ -121,8 +121,12 @@ export default function WrappingLetters({
   if (word === "") {
     throw new Error("Word cannot be empty");
   }
-
+  
   let text = [...word];
+  
+  if (isIts(structure) !== "[object Function]") {
+    throw new Error("Structure must be a function(React Component)");
+  }
 
   var wrappedLetters = text.map(function (letter, index) {
     return React.createElement("span", { key: `letter ${index}` }, letter);
