@@ -5,7 +5,7 @@ SIMPLIFIES THE JOB OF WRAPPING LETTERS IN HTML TAGS
 
 ## New upgrades
 
-1.2.0 IS NOW !!!
+1.3.0 IS NOW !!!
 
 - The new prop of Wrapping-letters is here ```structure={<React component />}```!!!
 
