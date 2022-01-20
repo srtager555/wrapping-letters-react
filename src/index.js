@@ -1,7 +1,11 @@
 import React from "react";
 
 function WrappLetter({
-   SelectClass = { searchWordValue, searchWordValueLength: 0, specialClass },
+   SelectClass = {
+      searchWordValue: 0,
+      searchWordValueLength: 0,
+      specialClass: "",
+   },
    text,
    ClassToAdd,
    Structure,
