@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 
 module.exports = {
-   entry: "./dev/index.js",
+   entry: "./dev/src/index.js",
    plugins: [
       new HtmlWebpackPlugin({ template: "./dev/public/index.html" }),
       new MiniCssExtractPlugin(),
@@ -23,7 +23,7 @@ module.exports = {
             use: {
                loader: "babel-loader",
                options: {
-                  presets: ["@babel/preset-env", "babel/preset-react"],
+                  presets: ["@babel/preset-env", "@babel/preset-react"],
                },
             },
          },
