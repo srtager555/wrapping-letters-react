@@ -1,5 +1,6 @@
 import WrappingLetters from "../../src";
 import React from "react";
+import ReactDOM from "react-dom";
 
 function App() {
    return (
@@ -8,11 +9,11 @@ function App() {
             word="Hello world !!! <3"
             wordOptions={[
                {
-                  classToAdd: "special-class",
+                  ClassToAdd: "class",
                   SelectClass: {
                      wordToSearch: "Hello",
-                     spaceBetweenWord: true,
                      classToAdd: "special-class",
+                     spaceBetweenWord: false,
                   },
                },
             ]}
@@ -25,3 +26,5 @@ function App() {
       </div>
    );
 }
+
+ReactDOM.render(<App />, document.getElementById("root"));
