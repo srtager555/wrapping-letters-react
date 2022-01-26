@@ -2,14 +2,18 @@ import WrappingLetters from "../../src";
 import React from "react";
 import ReactDOM from "react-dom";
 
+import "./index.css";
+
 function devStructure({ letter, cssClass, ...props }) {
-   const styles = {
-      display: "block",
-   }
    return (
-      <span style={styles} className={cssClass} {...props}>
-         {`LETTER: ${letter}, CLASS: ${cssClass}`} 
-      </span>
+      <div className="container" {...props}>
+         <span>
+            {`LETTER: ${letter}, `}
+         </span>
+         <span>
+            {`CLASS: ${cssClass}`}
+         </span>
+      </div>
    );
 }
 
