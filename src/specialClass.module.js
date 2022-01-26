@@ -51,6 +51,9 @@ function errorFilterSpecialClass(SelectClass) {
           searchWordValue.unshift(" ");
           searchWordValue.push(" ");
           text.push(" ");
+
+          // temporary solution
+          text.unshift(" ");
        }
  
        searchWordValueLength = searchWordValue.length;
