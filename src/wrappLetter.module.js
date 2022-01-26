@@ -55,22 +55,12 @@ export function WrappLetter({
          ]];
       }
    }).flat();
-   
    console.log(arrElements);
 
-   // arrElements.forEach(function (wrappElement, index) {
-   //    if(wrappElement.length !== 3) {
-   //       return wrappElement.forEach(w => {
-   //          return [ 
-   //             w[0],
-   //             w[1],
-   //             w[2],
-   //          ];
-   //       })
-   //    }
-   // });
-
-   console.log(arrElements);
+   if(arrElements[0][0] === " " && arrElements[arrElements.length - 1][0] === " ") {
+      arrElements.pop();
+      arrElements.shift();
+   }
 
    var wrappedLetters = arrElements.map(function (wrappElement, index) {
       return (
