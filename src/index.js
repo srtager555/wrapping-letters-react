@@ -39,7 +39,11 @@ export default function WrappingLetters({
    let text = [...word];
 
    var wrappedLetters = text.map(function (letter, index) {
-      return React.createElement("span", { key: `letter ${index}` }, letter);
+      return <Structure
+         letter={letter}
+         key={`${letter} ${index}-${Math.random()}`}
+       />
+      // return React.createElement("span", { key: `letter ${index}` }, letter);
    });
 
    if (isIts(wordOptions) !== "[object Array]") {

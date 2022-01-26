@@ -25,11 +25,11 @@ function App() {
             wordOptions={[
                {
                   // ClassToAdd: "class",
-                  SelectClass: {
-                     wordToSearch: "Hello",
-                     classToAdd: "special-class",
-                     spaceBetweenWord: true,
-                  },
+                  // SelectClass: {
+                  //    wordToSearch: "Hello",
+                  //    classToAdd: "special-class",
+                  //    spaceBetweenWord: true,
+                  // },
                },
             ]}
             structure={devStructure}
