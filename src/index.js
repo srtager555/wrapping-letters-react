@@ -39,7 +39,13 @@ export default function WrappingLetters({
    let text = [...word];
 
    var wrappedLetters = text.map(function (letter, index) {
-      return React.createElement("span", { key: `letter ${index}` }, letter);
+      return (
+         <Structure
+            letter={letter}
+            key={`${letter} ${index}-${Math.random()}`}
+         />
+      );
+      // return React.createElement("span", { key: `letter ${index}` }, letter);
    });
 
    if (isIts(wordOptions) !== "[object Array]") {
@@ -105,9 +111,13 @@ export default function WrappingLetters({
 
       // ---- warning of empty wordOpting---- //
       if (wordOptionsKeys.length === 0) {
-         console.warn(
-            '"wordOptions" is empty, returning a simple wrapper of letters'
-         );
+         Structure !== baseStructure
+            ? console.warn(
+                 '"wordOptions" is empty, returning a simple wrapper with structure'
+              )
+            : console.warn(
+                 '"wordOptions" is empty, returning a simple wrapper of letters'
+              );
       } // ---- Leave the process, start normal wrapp ---- //
    }
    return wrappedLetters;
