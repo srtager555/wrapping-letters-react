@@ -4,6 +4,8 @@ import { WrappLetter } from "./wrappLetter.module";
 
 import { selectSpecialClass } from "./specialClass.module";
 
+// perWord is a new attribute, its value is a boolean, if true, the every word will be wrapped in a span
+
 export default function WrappingLetters({
    word = "Hello world !!! <3",
    wordOptions = [],
