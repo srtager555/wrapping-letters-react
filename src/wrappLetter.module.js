@@ -25,7 +25,7 @@ export function WrappLetter({
       ) {
          const newText = text.slice(index, index + searchWordValueLength);
 
-         var wl = newText.map((wrappElement) => {
+         var wl = newText.map((wrappElement, index) => {
             return [
                // letter or word
                wrappElement,
@@ -43,7 +43,7 @@ export function WrappLetter({
          text.splice(index, searchWordValueLength - 1);
          return wl;
       } else {
-         return [
+         return [[
             // letter or word
             wrappElement,
 
@@ -52,18 +52,32 @@ export function WrappLetter({
 
             // Key
             `${wrappElement} ${index}-${Math.random()}`,
-         ];
+         ]];
       }
-   });
+   }).flat();
+   
+   console.log(arrElements);
 
+   // arrElements.forEach(function (wrappElement, index) {
+   //    if(wrappElement.length !== 3) {
+   //       return wrappElement.forEach(w => {
+   //          return [ 
+   //             w[0],
+   //             w[1],
+   //             w[2],
+   //          ];
+   //       })
+   //    }
+   // });
+
+   console.log(arrElements);
 
    var wrappedLetters = arrElements.map(function (wrappElement, index) {
-      
       return (
          <Structure 
             letter={wrappElement[0]}
             cssClass={wrappElement[1]}
-            key={wrappElement[2]}
+            key={wrappElement[2] || wrappElement[3]}
          />
       )
 
