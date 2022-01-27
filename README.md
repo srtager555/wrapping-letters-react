@@ -9,6 +9,13 @@ SIMPLIFIES THE JOB OF WRAPPING LETTERS IN HTML TAGS
 
 - The new prop of Wrapping-letters is here ```structure={<React component />}```!!!
 
+## Version lasted (1.3.1)
+- The code is optimized for future wordOptions attributes
+
+- ✅ Errors in the syntax that do not deliver the expected product have been corrected
+
+- ✅ has been corrected a error in the Key(The not is unique)
+
 ## How to use
 
 Wrapping letters is so easy to use!:
@@ -187,7 +194,9 @@ The list of element to send a the component for now is small:
 
 - ```cssClass``` is the special css class
 
-- ```key``` is the key :3
+```!IMPORTANT``` The elements under this line, cannot be assigned for their key name, only can be used with the deconstruction
+
+- ```key``` is the key :3 ("{wrappedElement}"-{indexNumber})
 
 
 ```!IMPORTANT```
