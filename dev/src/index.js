@@ -4,19 +4,15 @@ import ReactDOM from "react-dom";
 
 import "./index.css";
 
-function devStructure({ letter, cssClass, keyIndex}) {
+function devStructure({ letter, cssClass, keyElement }) {
    return (
-      <div className="container">
-         <span>
-            {`LETTER: ${letter}, `}
-         </span>
-         <span>
-            {`CLASS: ${cssClass}`}
-         </span>
-         <span>
-            {`KEY: ${keyIndex}`}
-         </span>
-      </div>
+      <>
+         <div className="container">
+            <span>{`LETTER: ${letter}, `}</span>
+            <span>{`CLASS: ${cssClass}`}</span>
+            <span>{`KEY: ${keyElement}`}</span>
+         </div>
+      </>
    );
 }
 

@@ -67,7 +67,7 @@ export function WrappLetter({
          <Structure 
             letter={wrappElement[0]}
             cssClass={wrappElement[1]}
-            keyIndex={wrappElement[2]}
+            keyElement={wrappElement[2]}
          />
       )
    });
