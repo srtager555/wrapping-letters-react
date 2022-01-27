@@ -38,7 +38,7 @@ export function WrappLetter({
                ,
 
                // Key
-               `${wrappElement} ${index}-${Math.random()}`,
+               `"${wrappElement}"-${index}`,
             ];
          });
          text.splice(index, spaceBetweenWord? searchWordValueLength - 2 : searchWordValueLength - 1);
@@ -52,7 +52,7 @@ export function WrappLetter({
             !specialStructure ? ClassToAdd : "",
 
             // Key
-            `${wrappElement} ${index}-${Math.random()}`,
+            `"${wrappElement}"-${index}`,
          ]];
       }
    }).flat();
@@ -67,7 +67,7 @@ export function WrappLetter({
          <Structure 
             letter={wrappElement[0]}
             cssClass={wrappElement[1]}
-            keyElement={wrappElement[2]}
+            key={`element: "${ wrappElement[0]}"-${index}`}
          />
       )
    });

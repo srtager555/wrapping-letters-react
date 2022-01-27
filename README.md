@@ -194,7 +194,9 @@ The list of element to send a the component for now is small:
 
 - ```cssClass``` is the special css class
 
-- ```keyElement``` is the key :3
+```!IMPORTANT``` The elements under this line, cannot be assigned for their key name, only can be used with the deconstruction
+
+- ```key``` is the key :3 ("{wrappedElement}"-{indexNumber})
 
 
 ```!IMPORTANT```
