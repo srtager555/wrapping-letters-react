@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 
 import "./index.css";
 
-function devStructure({ letter, cssClass, key}) {
+function devStructure({ letter, cssClass, keyIndex}) {
    return (
       <div className="container">
          <span>
@@ -14,7 +14,7 @@ function devStructure({ letter, cssClass, key}) {
             {`CLASS: ${cssClass}`}
          </span>
          <span>
-            {`KEY: ${key}`}
+            {`KEY: ${keyIndex}`}
          </span>
       </div>
    );
@@ -31,7 +31,7 @@ function App() {
                   SelectClass: {
                      wordToSearch: "Hello",
                      classToAdd: "special-class",
-                     spaceBetweenWord: false,
+                     spaceBetweenWord: true,
                   },
                },
             ]}

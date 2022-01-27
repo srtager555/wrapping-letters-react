@@ -56,8 +56,6 @@ export function WrappLetter({
          ]];
       }
    }).flat();
-   console.log(arrElements);
-   console.log(arrElements[6][2]);
 
    if(arrElements[0][0] === " " && arrElements[arrElements.length - 1][0] === " ") {
       arrElements.pop();
@@ -69,58 +67,10 @@ export function WrappLetter({
          <Structure 
             letter={wrappElement[0]}
             cssClass={wrappElement[1]}
-            key={wrappElement[2] || wrappElement[3]}
+            keyIndex={wrappElement[2] || wrappElement[3]}
          />
       )
-
-      // github copilot
-
-      // return React.createElement(
-      //    "span",
-      //    { key: `letter ${index}` },
-      //    wrappElement[0],
-      //    React.createElement("span", {
-      //       className: `${wrappElement[1]}`,
-      //       key: `${wrappElement[2]}`,
-      //    })
-      // );
    });
-
-   //  var wrappedLetters = text.map((letter, index) => {
-   //     if (
-   //        searchWordValue.length > 0 &&
-   //        letter === searchWordValue[0] &&
-   //        index + searchWordValueLength <= text.length &&
-   //        text.slice(index, index + searchWordValueLength).join("") ===
-   //           searchWordValue.join("")
-   //     ) {
-   //        const newText = text.slice(index, index + searchWordValueLength);
-
-   //        var wl = newText.map((letter) => {
-   //           return (
-   //              <Structure
-   //                 letter={letter}
-   //                 cssClass={
-   //                    !specialStructure
-   //                       ? [ClassToAdd, specialClass].join(" ")
-   //                       : specialClass
-   //                 }
-   //                 key={`${letter} ${index}-${Math.random()}`}
-   //              />
-   //           );
-   //        });
-   //        text.splice(index, searchWordValueLength - 1);
-   //        return wl;
-   //     } else {
-   //        return (
-   //           <Structure
-   //              letter={letter}
-   //              cssClass={!specialStructure ? ClassToAdd : ""}
-   //              key={`${letter} ${index}-${Math.random()}`}
-   //           />
-   //        );
-   //     }
-   //  });
 
    return wrappedLetters;
 }
