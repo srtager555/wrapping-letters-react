@@ -34,7 +34,7 @@ export function WrappLetter({
                // cssClass
                !specialStructure
                   ? [ClassToAdd, specialClass].join(" ")
-                  : specialClass,
+                  : specialClass
                ,
 
                // Key
@@ -67,7 +67,7 @@ export function WrappLetter({
          <Structure 
             letter={wrappElement[0]}
             cssClass={wrappElement[1]}
-            keyIndex={wrappElement[2] || wrappElement[3]}
+            keyIndex={wrappElement[2]}
          />
       )
    });
