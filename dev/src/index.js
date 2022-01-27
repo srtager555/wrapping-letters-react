@@ -31,7 +31,7 @@ function App() {
                   SelectClass: {
                      wordToSearch: "Hello",
                      classToAdd: "special-class",
-                     spaceBetweenWord: true,
+                     spaceBetweenWord: false,
                   },
                },
             ]}

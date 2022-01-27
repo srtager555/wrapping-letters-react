@@ -64,6 +64,7 @@ function errorFilterSpecialClass(SelectClass) {
              searchWordValue,
              searchWordValueLength,
              specialClass,
+             spaceBetweenWord: SelectClass.spaceBetweenWord,
           },
           text,
           ClassToAdd,

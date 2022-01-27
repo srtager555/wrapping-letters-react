@@ -7,13 +7,14 @@ export function WrappLetter({
       searchWordValue: 0,
       searchWordValueLength: 0,
       specialClass: "",
+      spaceBetweenWord: false,
    },
    text,
    ClassToAdd,
    Structure,
    specialStructure = false,
 }) {
-   let { searchWordValue, searchWordValueLength, specialClass } = SelectClass;
+   let { searchWordValue, searchWordValueLength, specialClass, spaceBetweenWord} = SelectClass;
 
    var arrElements = text.map(function (wrappElement, index) {
       if (
@@ -23,7 +24,7 @@ export function WrappLetter({
          text.slice(index, index + searchWordValueLength).join("") ===
             searchWordValue.join("")
       ) {
-         const newText = text.slice(index, index + searchWordValueLength);
+         const newText = text.slice(index, spaceBetweenWord? index + searchWordValueLength - 1 : index + searchWordValueLength);
 
          var wl = newText.map((wrappElement, index) => {
             return [
@@ -40,7 +41,7 @@ export function WrappLetter({
                `${wrappElement} ${index}-${Math.random()}`,
             ];
          });
-         text.splice(index, searchWordValueLength - 1);
+         text.splice(index, spaceBetweenWord? searchWordValueLength - 2 : searchWordValueLength - 1);
          return wl;
       } else {
          return [[
@@ -56,6 +57,7 @@ export function WrappLetter({
       }
    }).flat();
    console.log(arrElements);
+   console.log(arrElements[6][2]);
 
    if(arrElements[0][0] === " " && arrElements[arrElements.length - 1][0] === " ") {
       arrElements.pop();
