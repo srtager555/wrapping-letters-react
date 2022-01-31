@@ -183,8 +183,12 @@ function ReactComponent({letter, cssClass, ...props}) {
     )
 } 
 ```
+
 Being able to make a personalized structure opens a new sea of ​​
 possibilities for the use of Wrapping-letters
+
+```!IMPORTANT:```
+It is suggested to put out css Class of the descontruction, if anyways not used, for evit syntax errors.
 
 #
 
