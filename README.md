@@ -16,6 +16,8 @@ SIMPLIFIES THE JOB OF WRAPPING LETTERS IN HTML TAGS
 
 - ✅ has been corrected a error in the Key(The not is unique)
 
+- (1.3.3) error solved when use nextjs
+
 ## How to use
 
 Wrapping letters is so easy to use!:
