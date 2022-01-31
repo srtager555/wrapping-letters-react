@@ -16,6 +16,8 @@ SIMPLIFIES THE JOB OF WRAPPING LETTERS IN HTML TAGS
 
 - ✅ has been corrected a error in the Key(The not is unique)
 
+- (1.3.3) error solved when use nextjs
+
 ## How to use
 
 Wrapping letters is so easy to use!:
@@ -183,8 +185,12 @@ function ReactComponent({letter, cssClass, ...props}) {
     )
 } 
 ```
+
 Being able to make a personalized structure opens a new sea of ​​
 possibilities for the use of Wrapping-letters
+
+```!IMPORTANT:```
+It is suggested to put out css Class of the descontruction, if anyways not used, for evit syntax errors.
 
 #
 
