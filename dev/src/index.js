@@ -32,7 +32,7 @@ function App() {
                   PerWord: true,
                },
             ]}
-            structure={devStructure}
+            // structure={devStructure}
          />
       </div>
    );
