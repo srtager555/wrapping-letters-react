@@ -36,16 +36,24 @@ export default function WrappingLetters({
       throw new Error("Structure must be a function(React Component)");
    }
 
-   let text = [...word];
+   let text = (wordOptions[0].PerWord ? word.split(" ") : [...word])
+   console.log(text);
 
    var wrappedLetters = text.map(function (letter, index) {
+      var a;
+      if(wordOptions[0].PerWord) {
+         if(index != text.length - 1) {
+            a = letter + " ";  
+         } else {
+            a = letter;
+         }
+      }
       return (
          <Structure
-            letter={letter}
+            letter={a}
             key={`${letter} ${index}-${Math.random()}`}
          />
       );
-      // return React.createElement("span", { key: `letter ${index}` }, letter);
    });
 
    if (isIts(wordOptions) !== "[object Array]") {
@@ -95,6 +103,16 @@ export default function WrappingLetters({
             specialStructure,
          });
       }
+
+      // if (verifyWordOptionsKeys("PerWord")) {
+      //    return WrappLetter({
+      //       SelectClass: {},
+      //       text,
+      //       ClassToAdd,
+      //       Structure,
+      //       specialStructure,
+      //    });
+      // }
 
       if (
          verifyWordOptionsKeys("ClassToAdd", 2) &&
