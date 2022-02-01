@@ -66,7 +66,7 @@ export default function WrappingLetters({
       }
 
       let wordOptionsKeys = Object.keys(wordOptions[0]);
-      let { ClassToAdd, SelectClass } = wordOptions[0];
+      let { ClassToAdd, SelectClass, PerWord } = wordOptions[0];
 
       const verifyWordOptionsKeys = (value, valueNb = 1) => {
          if (
@@ -81,6 +81,31 @@ export default function WrappingLetters({
          throw new Error("wordOptions must be a single object");
       }
 
+      // const arr = ['a', 'b', 'c'] 
+
+      // const isBelowThreshold = (currentValue) => arr.includes(currentValue);
+
+      // const array1 = ['a','c'];
+
+      // console.log(array1.every(isBelowThreshold));
+
+      const wl_props = ['ClassToAdd', 'SelectClass', 'PerWord'];
+      const containThisProps = (value) => wl_props.includes(value);
+      const container  = wordOptionsKeys.every(containThisProps);
+      
+      if(!container) {
+         throw new Error("wordOptions must contain the following properties: ClassToAdd, SelectClass, PerWord");
+      }
+      
+
+      if (isIts(ClassToAdd) !== "[object String]") {
+         throw new Error("ClassToAdd must be a string");
+      } else if (isIts(PerWord) !== "[object Boolean]") {
+         throw new Error("PreWord must be a boolean");
+      }
+
+      
+
       if (verifyWordOptionsKeys("ClassToAdd")) {
          if (isIts(ClassToAdd) !== "[object String]") {
             throw new Error("ClassToAdd must be a string");
@@ -91,6 +116,7 @@ export default function WrappingLetters({
             ClassToAdd,
             Structure,
             specialStructure,
+            perWord: wordOptions[0].PerWord || false,
          });
       }
 
@@ -103,16 +129,6 @@ export default function WrappingLetters({
             specialStructure,
          });
       }
-
-      // if (verifyWordOptionsKeys("PerWord")) {
-      //    return WrappLetter({
-      //       SelectClass: {},
-      //       text,
-      //       ClassToAdd,
-      //       Structure,
-      //       specialStructure,
-      //    });
-      // }
 
       if (
          verifyWordOptionsKeys("ClassToAdd", 2) &&

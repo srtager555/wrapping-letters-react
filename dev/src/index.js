@@ -23,12 +23,12 @@ function App() {
             word="Hello world !!! <3"
             wordOptions={[
                {
-                  // ClassToAdd: "class",
-                  // SelectClass: {
-                  //    wordToSearch: "Hello",
-                  //    classToAdd: "special-class",
-                  //    spaceBetweenWord: true,
-                  // },
+                  ClassToAdd: "class",
+                  SelectClass: {
+                     wordToSearch: "Hello",
+                     classToAdd: "special-class",
+                     spaceBetweenWord: true,
+                  },
                   PerWord: true,
                },
             ]}
