@@ -13,6 +13,7 @@ export function WrappLetter({
    ClassToAdd,
    Structure,
    specialStructure = false,
+   perWord = false,
 }) {
    let { searchWordValue, searchWordValueLength, specialClass, spaceBetweenWord} = SelectClass;
 

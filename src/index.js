@@ -96,7 +96,7 @@ export default function WrappingLetters({
       if(!container) {
          throw new Error("wordOptions must contain the following properties: ClassToAdd, SelectClass, PerWord");
       }
-      
+
 
       if (isIts(ClassToAdd) !== "[object String]") {
          throw new Error("ClassToAdd must be a string");
@@ -104,55 +104,69 @@ export default function WrappingLetters({
          throw new Error("PreWord must be a boolean");
       }
 
-      
+      const wrappProps = {
+         SelectClass: SelectClass || {},
+         ClassToAdd: ClassToAdd || "",
+         perWord: wordOptions[0].PerWord || false,
+         text,
+         Structure,
+         specialStructure,
+      }
 
-      if (verifyWordOptionsKeys("ClassToAdd")) {
-         if (isIts(ClassToAdd) !== "[object String]") {
-            throw new Error("ClassToAdd must be a string");
+      if(wordOptionsKeys.includes('SelectClass')) {
+         if (isIts(SelectClass) !== "[object Object]") {
+            throw new Error("SelectClass must be an object");
          }
-         return WrappLetter({
-            SelectClass: {},
-            text,
-            ClassToAdd,
-            Structure,
-            specialStructure,
-            perWord: wordOptions[0].PerWord || false,
-         });
+         return selectSpecialClass(wrappProps);
+      } else {
+         return WrappLetter(wrappProps);
       }
+      // if (verifyWordOptionsKeys("ClassToAdd")) {
+      //    if (isIts(ClassToAdd) !== "[object String]") {
+      //       throw new Error("ClassToAdd must be a string");
+      //    }
+      //    return WrappLetter({
+      //       SelectClass: {},
+      //       text,
+      //       ClassToAdd,
+      //       Structure,
+      //       specialStructure,
+      //       perWord: wordOptions[0].PerWord || false,
+      //    });
+      // }
 
-      if (verifyWordOptionsKeys("SelectClass")) {
-         return selectSpecialClass({
-            SelectClass,
-            text,
-            ClassToAdd: "",
-            Structure,
-            specialStructure,
-         });
-      }
+      // if (verifyWordOptionsKeys("SelectClass")) {
+      //    return selectSpecialClass({
+      //       SelectClass,
+      //       text,
+      //       ClassToAdd: "",
+      //       Structure,
+      //       specialStructure,
+      //    });
+      // }
 
-      if (
-         verifyWordOptionsKeys("ClassToAdd", 2) &&
-         verifyWordOptionsKeys("SelectClass", 2)
-      ) {
-         return selectSpecialClass({
-            SelectClass,
-            text,
-            ClassToAdd,
-            Structure,
-            specialStructure,
-         });
-      }
-
-      // ---- warning of empty wordOpting---- //
-      if (wordOptionsKeys.length === 0) {
-         Structure !== baseStructure
-            ? console.warn(
-                 '"wordOptions" is empty, returning a simple wrapper with structure'
-              )
-            : console.warn(
-                 '"wordOptions" is empty, returning a simple wrapper of letters'
-              );
-      } // ---- Leave the process, start normal wrapp ---- //
+      // if (
+      //    verifyWordOptionsKeys("ClassToAdd", 2) &&
+      //    verifyWordOptionsKeys("SelectClass", 2)
+      // ) {
+      //    return selectSpecialClass({
+      //       SelectClass,
+      //       text,
+      //       ClassToAdd,
+      //       Structure,
+      //       specialStructure,
+      //    });
+      // }
    }
+   // ---- warning of empty wordOpting---- //
+   if (wordOptionsKeys.length === 0) {
+      Structure !== baseStructure
+         ? console.warn(
+              '"wordOptions" is empty, returning a simple wrapper with structure'
+           )
+         : console.warn(
+              '"wordOptions" is empty, returning a simple wrapper of letters'
+           );
+   } // ---- Leave the process, start normal wrapp ---- //
    return wrappedLetters;
 }

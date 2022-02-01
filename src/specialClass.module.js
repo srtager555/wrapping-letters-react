@@ -34,6 +34,7 @@ function errorFilterSpecialClass(SelectClass) {
     ClassToAdd,
     Structure,
     specialStructure,
+    perWord,
  }) {
     if (Object.keys(SelectClass).length !== 3) {
        throw new Error(
@@ -70,6 +71,7 @@ function errorFilterSpecialClass(SelectClass) {
           ClassToAdd,
           Structure,
           specialStructure,
+          perWord,
        });
     }
  }
