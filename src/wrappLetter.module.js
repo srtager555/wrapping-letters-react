@@ -16,28 +16,21 @@ export function WrappLetter({
    perWord = false,
 }) {
    let { searchWordValue, searchWordValueLength, specialClass, spaceBetweenWord } = SelectClass;
-   console.log(searchWordValue);
+   console.log(SelectClass);
 
    var arrElements = text.map(function (wrappElement, index) {
-      console.log(wrappElement);
-      wrappElement = [...wrappElement];
-      console.log(wrappElement);
       if (
-         //    perWord &&
-         //    !spaceBetweenWord &&
-         //    wrappElement === searchWordValue.join("")
          searchWordValue.length > 0 &&
          wrappElement[0] === searchWordValue[0] &&
          index + searchWordValueLength <= text.length &&
          text.slice(index, index + searchWordValueLength).join("") ===
          searchWordValue.join("")
       ) {
-         if (perWord) {
-            console.log("test")
-            console.log(wrappElement.join(""));
+         console.log("test1")
+         const newText = text.slice(index, spaceBetweenWord ? index + searchWordValueLength - 1 : index + searchWordValueLength);
 
-            wrappElement = wrappElement.join("")
-            return [[
+         var wl = newText.map((wrappElement, index) => {
+            return [
                // letter or word
                wrappElement,
 
@@ -49,34 +42,12 @@ export function WrappLetter({
 
                // Key
                `"${wrappElement}"-${index}`,
-            ]];
-         } else {
-            console.log("test1")
-            const newText = text.slice(index, spaceBetweenWord ? index + searchWordValueLength - 1 : index + searchWordValueLength);
+            ];
+         });
+         text.splice(index, spaceBetweenWord ? searchWordValueLength - 2 : searchWordValueLength - 1);
 
-            var wl = newText.map((wrappElement, index) => {
-               return [
-                  // letter or word
-                  wrappElement,
-
-                  // cssClass
-                  !specialStructure
-                     ? [ClassToAdd, specialClass].join(" ")
-                     : specialClass
-                  ,
-
-                  // Key
-                  `"${wrappElement}"-${index}`,
-               ];
-            });
-
-            text.splice(index, spaceBetweenWord ? searchWordValueLength - 2 : searchWordValueLength - 1);
-
-            return wl;
-         }
-
+         return wl;
       } else {
-         wrappElement = wrappElement.join("")
          return [[
             // letter or word
             wrappElement,
