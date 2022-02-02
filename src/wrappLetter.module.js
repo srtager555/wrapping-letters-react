@@ -20,6 +20,7 @@ export function WrappLetter({
 
    var arrElements = text.map(function (wrappElement, index) {
       if (
+         !perWord &&
          searchWordValue.length > 0 &&
          wrappElement[0] === searchWordValue[0] &&
          index + searchWordValueLength <= text.length &&
@@ -47,6 +48,19 @@ export function WrappLetter({
          text.splice(index, spaceBetweenWord ? searchWordValueLength - 2 : searchWordValueLength - 1);
 
          return wl;
+      } else if (perWord && wrappElement === searchWordValue.join("")) {
+         return [[
+            // letter or word
+            wrappElement,
+
+            // cssClass
+            !specialStructure
+               ? [ClassToAdd, specialClass].join(" ")
+               : specialClass
+            ,
+            // Key
+            `"${wrappElement}"-${index}`,
+         ]];
       } else {
          return [[
             // letter or word
