@@ -18,23 +18,21 @@ function devStructure({ letter, cssClass, ...prop }) {
 
 function App() {
    return (
-      <div className="App">
-         <WrappingLetters
-            word="Hello world !!! <3"
-            wordOptions={[
-               {
-                  ClassToAdd: "class",
-                  SelectClass: {
-                     wordToSearch: "Hello",
-                     classToAdd: "special-class",
-                     spaceBetweenWord: true,
-                  },
-                  PerWord: true,
+      <WrappingLetters
+         word="Hello world !!! <3"
+         wordOptions={[
+            {
+               ClassToAdd: "class",
+               SelectClass: {
+                  wordToSearch: "Hello",
+                  classToAdd: "special-class",
+                  spaceBetweenWord: false,
                },
-            ]}
-            // structure={devStructure}
-         />
-      </div>
+               PerWord: true,
+            },
+         ]}
+      // structure={devStructure}
+      />
    );
 }
 

@@ -48,12 +48,11 @@ function errorFilterSpecialClass(SelectClass) {
        errorFilterSpecialClass(SelectClass);
        searchWordValue = [...SelectClass.wordToSearch];
  
-       if (SelectClass.spaceBetweenWord === true) {
+       if (SelectClass.spaceBetweenWord === true && perWord === false) {
           searchWordValue.unshift(" ");
           searchWordValue.push(" ");
           text.push(" ");
 
-          // temporary solution
           text.unshift(" ");
        }
  
