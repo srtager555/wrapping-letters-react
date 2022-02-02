@@ -81,14 +81,6 @@ export default function WrappingLetters({
          throw new Error("wordOptions must be a single object");
       }
 
-      // const arr = ['a', 'b', 'c'] 
-
-      // const isBelowThreshold = (currentValue) => arr.includes(currentValue);
-
-      // const array1 = ['a','c'];
-
-      // console.log(array1.every(isBelowThreshold));
-
       const wl_props = ['ClassToAdd', 'SelectClass', 'PerWord'];
       const containThisProps = (value) => wl_props.includes(value);
       const container  = wordOptionsKeys.every(containThisProps);
@@ -121,42 +113,6 @@ export default function WrappingLetters({
       } else {
          return WrappLetter(wrappProps);
       }
-      // if (verifyWordOptionsKeys("ClassToAdd")) {
-      //    if (isIts(ClassToAdd) !== "[object String]") {
-      //       throw new Error("ClassToAdd must be a string");
-      //    }
-      //    return WrappLetter({
-      //       SelectClass: {},
-      //       text,
-      //       ClassToAdd,
-      //       Structure,
-      //       specialStructure,
-      //       perWord: wordOptions[0].PerWord || false,
-      //    });
-      // }
-
-      // if (verifyWordOptionsKeys("SelectClass")) {
-      //    return selectSpecialClass({
-      //       SelectClass,
-      //       text,
-      //       ClassToAdd: "",
-      //       Structure,
-      //       specialStructure,
-      //    });
-      // }
-
-      // if (
-      //    verifyWordOptionsKeys("ClassToAdd", 2) &&
-      //    verifyWordOptionsKeys("SelectClass", 2)
-      // ) {
-      //    return selectSpecialClass({
-      //       SelectClass,
-      //       text,
-      //       ClassToAdd,
-      //       Structure,
-      //       specialStructure,
-      //    });
-      // }
    }
    // ---- warning of empty wordOpting---- //
    if (wordOptionsKeys.length === 0) {
