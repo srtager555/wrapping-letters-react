@@ -28,7 +28,7 @@ function App() {
                   classToAdd: "special-class",
                   spaceBetweenWord: false,
                },
-               PerWord: true,
+               PerWord: false,
             },
          ]}
       // structure={devStructure}

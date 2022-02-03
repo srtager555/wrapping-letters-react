@@ -16,7 +16,6 @@ export function WrappLetter({
    perWord = false,
 }) {
    let { searchWordValue, searchWordValueLength, specialClass, spaceBetweenWord } = SelectClass;
-   console.log(SelectClass);
 
    var arrElements = text.map(function (wrappElement, index) {
       if (
@@ -48,26 +47,28 @@ export function WrappLetter({
          text.splice(index, spaceBetweenWord ? searchWordValueLength - 2 : searchWordValueLength - 1);
 
          return wl;
-      } else if (perWord && wrappElement === searchWordValue.join("")) {
-         return [[
-            // letter or word
-            wrappElement,
-
-            // cssClass
-            !specialStructure
-               ? [ClassToAdd, specialClass].join(" ")
-               : specialClass
-            ,
-            // Key
-            `${wrappElement}-${index}`,
-         ]];
       } else {
+         let cssClass = !specialStructure ? ClassToAdd : "";
+
+         if (perWord) {
+            if (index != text.length - 1) {
+               wrappElement = wrappElement + " ";
+            } else {
+               wrappElement = wrappElement;
+            }
+
+            if (wrappElement === searchWordValue.join("")) {
+               cssClass = !specialStructure
+                  ? [ClassToAdd, specialClass].join(" ")
+                  : specialClass
+            }
+         }
          return [[
             // letter or word
             wrappElement,
 
             // cssClass
-            !specialStructure ? ClassToAdd : "",
+            cssClass,
 
             // Key
             `${wrappElement}-${index}`,
@@ -79,10 +80,6 @@ export function WrappLetter({
       arrElements.pop();
       arrElements.shift();
    }
-
-   // tienes que hacer una funcion que tome el primer valor de cada arreglo 
-   // y le sume un espacio al final excepto al ultimo
-   console.log(arrElements);
 
    var wrappedLetters = arrElements.map(function (wrappElement, index) {
       return (
