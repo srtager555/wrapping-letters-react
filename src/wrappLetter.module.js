@@ -42,7 +42,7 @@ export function WrappLetter({
                ,
 
                // Key
-               `"${wrappElement}"-${index}`,
+               `${wrappElement}-${index}`,
             ];
          });
          text.splice(index, spaceBetweenWord ? searchWordValueLength - 2 : searchWordValueLength - 1);
@@ -59,7 +59,7 @@ export function WrappLetter({
                : specialClass
             ,
             // Key
-            `"${wrappElement}"-${index}`,
+            `${wrappElement}-${index}`,
          ]];
       } else {
          return [[
@@ -70,7 +70,7 @@ export function WrappLetter({
             !specialStructure ? ClassToAdd : "",
 
             // Key
-            `"${wrappElement}"-${index}`,
+            `${wrappElement}-${index}`,
          ]];
       }
    }).flat();
@@ -79,7 +79,11 @@ export function WrappLetter({
       arrElements.pop();
       arrElements.shift();
    }
+
+   // tienes que hacer una funcion que tome el primer valor de cada arreglo 
+   // y le sume un espacio al final excepto al ultimo
    console.log(arrElements);
+
    var wrappedLetters = arrElements.map(function (wrappElement, index) {
       return (
          <Structure
