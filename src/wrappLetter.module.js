@@ -26,7 +26,6 @@ export function WrappLetter({
          text.slice(index, index + searchWordValueLength).join("") ===
          searchWordValue.join("")
       ) {
-         console.log("test1")
          const newText = text.slice(index, spaceBetweenWord ? index + searchWordValueLength - 1 : index + searchWordValueLength);
 
          var wl = newText.map((wrappElement, index) => {
@@ -81,7 +80,7 @@ export function WrappLetter({
       arrElements.shift();
    }
 
-   var wrappedLetters = arrElements.map(function (wrappElement, index) {
+   var wrappedLetters = arrElements.map(function (wrappElement) {
       return (
          <Structure
             letter={wrappElement[0]}

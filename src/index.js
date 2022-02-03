@@ -36,8 +36,11 @@ export default function WrappingLetters({
       throw new Error("Structure must be a function(React Component)");
    }
 
+   if (isIts(wordOptions[0].PerWord) !== "[object Boolean]") {
+      throw new Error("PerWord must be a boolean");
+   }
+
    let text = (wordOptions[0].PerWord ? word.split(" ") : [...word])
-   console.log(text);
 
    var wrappedLetters = text.map(function (letter, index) {
       var a;
