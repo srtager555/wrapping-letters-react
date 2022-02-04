@@ -2,6 +2,13 @@ import { WrappLetter } from './wrappLetter.module';
 
 function errorFilterSpecialClass(SelectClass) {
     const SelectClassKeys = Object.keys(SelectClass);
+    const wl_props = ['ClassToAdd', 'SelectClass', 'PerWord'];
+    const containThisProps = (value) => wl_props.includes(value);
+    const container  = wordOptionsKeys.every(containThisProps);
+    
+    if(!container) {
+       throw new Error("wordOptions must contain the following properties: ClassToAdd, SelectClass, PerWord");
+    }
  
     const searchWord = SelectClassKeys.some((key) => key === "wordToSearch");
     const searchWordClass = SelectClassKeys.some((key) => key === "classToAdd");
@@ -25,7 +32,7 @@ function errorFilterSpecialClass(SelectClass) {
           "wordToSearch and classToAdd must be a string, spaceBetweenWord must be a boolean"
        );
     }
- }
+ }      
  
  // ====== select special class to add ======
  export function selectSpecialClass({

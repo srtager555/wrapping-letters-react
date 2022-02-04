@@ -19,16 +19,15 @@ function devStructure({ letter, cssClass, ...prop }) {
 function App() {
    return (
       <WrappingLetters
-         word="Hello world !!! <3"
+         word="Carlos is a good person, but Carlos is a bad person"
          wordOptions={[
             {
                ClassToAdd: "class",
                SelectClass: {
                   wordToSearch: "Hello",
                   classToAdd: "special-class",
-                  spaceBetweenWord: false,
                },
-               PerWord: false,
+               PerWord: true,
             },
          ]}
       // structure={devStructure}
