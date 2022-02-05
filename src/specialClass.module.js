@@ -18,9 +18,9 @@ function errorFilterSpecialClass(SelectClass, perWord) {
    if (perWord && searchSBW) {
       throw new Error("\"spaceBetweenWord\" is not allowed when perWord is true");
    }
-   
+
    const { wordToSearch, classToAdd, spaceBetweenWord } = SelectClass;
-   
+
    if (typeof wordToSearch != "string") {
       throw new Error("\"wordToSearch\" must be a string");
    }
@@ -41,42 +41,38 @@ export function selectSpecialClass({
    specialStructure,
    perWord,
 }) {
-   if (Object.keys(SelectClass).length !== 3 && false) {
-      throw new Error(
-         "SelectClass must have 3 keys : wordToSearch, spaceBetween and classToAdd"
-      );
-   } else {
-      let searchWordValue;
-      let searchWordValueLength;
-      let specialClass;
+   errorFilterSpecialClass(SelectClass, perWord);
 
-      errorFilterSpecialClass(SelectClass, perWord);
-      searchWordValue = [...SelectClass.wordToSearch];
+   let searchWordValue;
+   let searchWordValueLength;
+   let specialClass;
 
-      if (SelectClass.spaceBetweenWord === true && perWord === false) {
-         searchWordValue.unshift(" ");
-         searchWordValue.push(" ");
-         text.push(" ");
+   searchWordValue = [...SelectClass.wordToSearch];
 
-         text.unshift(" ");
-      }
+   if (SelectClass.spaceBetweenWord === true && perWord === false) {
+      searchWordValue.unshift(" ");
+      searchWordValue.push(" ");
+      text.push(" ");
 
-      searchWordValueLength = searchWordValue.length;
-      specialClass = SelectClass.classToAdd;
-
-      return WrappLetter({
-         SelectClass: {
-            searchWordValue,
-            searchWordValueLength,
-            specialClass,
-            spaceBetweenWord: SelectClass.spaceBetweenWord,
-         },
-         text,
-         ClassToAdd,
-         Structure,
-         specialStructure,
-         perWord,
-      });
+      text.unshift(" ");
    }
+
+   searchWordValueLength = searchWordValue.length;
+   specialClass = SelectClass.classToAdd;
+
+   return WrappLetter({
+      SelectClass: {
+         searchWordValue,
+         searchWordValueLength,
+         specialClass,
+         spaceBetweenWord: SelectClass.spaceBetweenWord,
+      },
+      text,
+      ClassToAdd,
+      Structure,
+      specialStructure,
+      perWord,
+   });
+
 }
  // ====== select special class to add ======

@@ -24,10 +24,10 @@ function App() {
             {
                ClassToAdd: "class",
                SelectClass: {
-                  wordToSearch: "Hello",
+                  wordToSearch: "Carlos is",
                   classToAdd: "special-class",
                },
-               PerWord: true,
+               PerWord: false,
             },
          ]}
       // structure={devStructure}
