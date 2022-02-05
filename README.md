@@ -13,6 +13,8 @@ SIMPLIFIES THE JOB OF WRAPPING LETTERS IN HTML TAGS
 
 - increased of optimizations.
 
+- 1.4.1 typing error in readme solved
+
 ## News
 
 - Are you have a idea for the library?, share the idea in github(in issue section)
@@ -165,7 +167,7 @@ Is very easy to use:
 the return is:
 
 ```
-    <span class="spacial-class">Carlos </span>
+    <span class="class special-class">Carlos </span>
     <span class="class">is </span>
     <span class="class">a </span>
     <span class="class">good </span>
