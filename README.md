@@ -5,18 +5,19 @@ SIMPLIFIES THE JOB OF WRAPPING LETTERS IN HTML TAGS
 
 ## New upgrades
 
-1.3.0 IS NOW !!!
+1.4.0 IS NOW !!!
 
-- The new prop of Wrapping-letters is here ```structure={<React component />}```!!!
+- The new prop of WordOptions is here ```wordOptions={ PerWord: boolean }```!!!
 
-## Version lasted (1.3.1)
-- The code is optimized for future wordOptions attributes
+- ```SpeaceBetweenWord``` is now a optional attribute.
 
-- ✅ Errors in the syntax that do not deliver the expected product have been corrected
+- increased of optimizations.
 
-- ✅ has been corrected a error in the Key(The not is unique)
+## News
 
-- (1.3.3) error solved when use nextjs
+- Are you have a idea for the library?, share the idea in github(in issue section)
+
+- I working now in the demo page from the wrapping-letters
 
 ## How to use
 
@@ -79,9 +80,10 @@ Now you can add a special options to the word, is so easy!:
 />
 ```
 
-```word Options``` is the new prop in 1.1.0, with this you can select
+```wordOptions``` is the new prop in 1.1.0, with this you can select
 a special class for a word or phrase, put a class for all letters or both
 
+#
 ## How to add a class for all letters
 ```
 wordOptions={[
@@ -99,7 +101,7 @@ Is so easy to use, call the attribute and places the class of your choice
 
 ```"ClassToAdd"``` only accept Strings.
 
-
+#
 ## How to add a special class for a word or phrase(or letters)
 
 ```
@@ -124,7 +126,7 @@ in the sentence, is so easy to use:
 
 - ```classToAdd: <String>``` is the class to add a the ```<span>```
 
-- ```spaceBetweenWord: <Boolean>``` is the a conditional for the search.
+- ```spaceBetweenWord: <Boolean>``` is the a conditional for the search (default is `false`).
   
   For example: ```wordToSearch: "ping"``` has the word ```"ping"``` 
   but the algorithm can search for a word within other words and also 
@@ -137,10 +139,50 @@ in the sentence, is so easy to use:
   ```spaceBetweenWord``` 
   is important for avoiding problems
 
+#
+## I want a wrapp to each word
+
+```PerWord``` is an attribute of ```wordOptions``` to wrap each word instead of wrapping each letter (default is false)
+
+Is very easy to use: 
+
+```
+    <WrappingLetters
+         word="Carlos is a good person, but Carlos is a bad person"
+         wordOptions={[
+            {
+               ClassToAdd: "class",
+               SelectClass: {
+                  wordToSearch: "Carlos",
+                  classToAdd: "special-class",
+               },
+               PerWord: true,
+            },
+         ]}
+    />
+```
+
+the return is:
+
+```
+    <span class="spacial-class">Carlos </span>
+    <span class="class">is </span>
+    <span class="class">a </span>
+    <span class="class">good </span>
+    <span class="class">person, </span>
+    //...
+```
+`!IMPORTANT`
+
+When ```PerWord``` is true, ```spaceBetweenWord``` always is disabled. ```wordToSearch``` 
+must be a single word, spaces break the search.
+
+THE CODE SEARCH EACH WORD BY THE SPACE HAS BETWEEN EACH WORD
+# 
 
 ## How to add a special ```structure```
 
-Sometimes a special structure is needed for the letters to be wrapped, 
+Sometimes a special structure is needed for the letters or words to be wrapped, 
 ```structure``` is the solution of this problem.
 
 Is so easy to use: 
@@ -190,7 +232,7 @@ Being able to make a personalized structure opens a new sea of ​​
 possibilities for the use of Wrapping-letters
 
 ```!IMPORTANT:```
-It is suggested to put out css Class of the descontruction, if anyways not used, for evit syntax errors.
+It is suggested to put out cssClass of the descontruction, if anyways not used, for evit syntax errors.
 
 #
 
@@ -202,13 +244,13 @@ The list of element to send a the component for now is small:
 
 ```!IMPORTANT``` The elements under this line, cannot be assigned for their key name, only can be used with the deconstruction
 
-- ```key``` is the key :3 ("{wrappedElement}"-{indexNumber})
+- ```key``` is the key :3 ({wrappedElement}-{indexNumber})
 
 
 ```!IMPORTANT```
 
 The ```classToAdd``` attribute of ```wordOptions```,
-not used when the ```structure``` is active, if you want a css class, 
+is disable when the ```structure``` is active, if you want a css class
 use ```className``` in the component.
 
 Thanks for you visit :v
