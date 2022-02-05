@@ -18,6 +18,7 @@ function devStructure({ letter, cssClass, ...prop }) {
 
 function App() {
    return (
+      <>
       <WrappingLetters
          word="Carlos is a good person, but Carlos is a bad person"
          wordOptions={[
@@ -30,8 +31,9 @@ function App() {
                PerWord: false,
             },
          ]}
-      // structure={devStructure}
+         structure={devStructure}
       />
+   </>
    );
 }
 

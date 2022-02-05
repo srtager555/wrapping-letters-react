@@ -38,9 +38,6 @@ export function WrappLetter({
                   ? [ClassToAdd, specialClass].join(" ")
                   : specialClass
                ,
-
-               // Key
-               `${wrappElement}-${index}`,
             ];
          });
          text.splice(index, spaceBetweenWord ? searchWordValueLength - 2 : searchWordValueLength - 1);
@@ -68,9 +65,6 @@ export function WrappLetter({
 
             // cssClass
             cssClass,
-
-            // Key
-            `${wrappElement}-${index}`,
          ]];
       }
    }).flat();
@@ -80,12 +74,12 @@ export function WrappLetter({
       arrElements.shift();
    }
 
-   var wrappedLetters = arrElements.map(function (wrappElement) {
+   var wrappedLetters = arrElements.map(function (wrappElement, index) {
       return (
          <Structure
             letter={wrappElement[0]}
             cssClass={wrappElement[1]}
-            key={wrappElement[2]}
+            key={`${wrappElement[0]}-${index}`}
          />
       )
    });
