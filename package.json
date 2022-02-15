@@ -10,7 +10,9 @@
     "babel:compile": "npx babel src --out-dir lib",
     "build": "npm run babel:compile",
     "dist": "webpack --config webpack.config.js",
-    "start": "webpack-dev-server --mode development --open"
+    "server": "webpack-dev-server --mode development --open",
+    "start:dist": "npm run build && npm run server",
+    "start": "npm run server"
   },
   "repository": {
     "type": "git",
