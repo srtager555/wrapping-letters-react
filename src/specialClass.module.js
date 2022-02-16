@@ -17,13 +17,10 @@ function errorFilterSpecialClass(SelectClass, perWord) {
       throw new Error("\"SelectClass\" must contain the following properties: wordToSearch, classToAdd. spaceBetweenWord is optional");
    }
 
-   var requiredProps = function requiredProps(value) {
-      return !sc_props.slice(0, 2).includes(value);
-   }
+   var wordToSearchSearch = SelectClassKeys.some((value) => value === 'wordToSearch');
+   var classToAddSearch = SelectClassKeys.some((value) => value === 'classToAdd');;
 
-   var requiredContain = SelectClassKeys.some(requiredProps);
-
-   if (!requiredContain) {
+   if (!wordToSearchSearch || !classToAddSearch) {
       throw new Error("\"SelectClass\" must be required the following properties: wordToSearch, classToAdd.");
    }
 
