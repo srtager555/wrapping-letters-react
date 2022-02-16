@@ -25,11 +25,11 @@ function App() {
          wordOptions={[
             {
                ClassToAdd: "class",
-               SelectClass: {
-                  wordToSearch: "Carlos is",
-                  classToAdd: "special-class",
+               // SelectClass: {
+                  // wordToSearch: "Carlos is",
+                  // classToAdd: "special-class",
                   // spaceBetweenWord: true,
-               },
+               // },
                PerWord: false,   
             },
          ]}
