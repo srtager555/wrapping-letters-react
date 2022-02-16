@@ -6,11 +6,22 @@ function errorFilterSpecialClass(SelectClass, perWord) {
    const sc_props = ['wordToSearch', 'classToAdd', 'spaceBetweenWord'];
 
    // required props 'wordToSearch', 'classToAdd'.
-   const containThisProps = (value) => sc_props.slice(0, 2).includes(value);
-   const contain = SelectClassKeys.every(containThisProps);
+
+   var containThisProps = function containThisProps(value) {
+      return sc_props.includes(value);
+   };
+
+   var contain = SelectClassKeys.every(containThisProps);
 
    if (!contain && !perWord) {
       throw new Error("\"SelectClass\" must contain the following properties: wordToSearch, classToAdd. spaceBetweenWord is optional");
+   }
+
+   var wordToSearchSearch = SelectClassKeys.some((value) => value === 'wordToSearch');
+   var classToAddSearch = SelectClassKeys.some((value) => value === 'classToAdd');;
+
+   if (!wordToSearchSearch || !classToAddSearch) {
+      throw new Error("\"SelectClass\" must be required the following properties: wordToSearch, classToAdd.");
    }
 
    const searchSBW = SelectClassKeys.some((key) => key === "spaceBetweenWord");

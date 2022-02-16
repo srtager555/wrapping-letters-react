@@ -1,4 +1,5 @@
 import WrappingLetters from "../../src";
+// import WrappingLetters from "../../lib";
 import React from "react";
 import ReactDOM from "react-dom";
 
@@ -27,11 +28,12 @@ function App() {
                SelectClass: {
                   wordToSearch: "Carlos is",
                   classToAdd: "special-class",
+                  // spaceBetweenWord: true,
                },
-               PerWord: false,
+               PerWord: false,   
             },
          ]}
-         structure={devStructure}
+         // structure={devStructure}
       />
    </>
    );
