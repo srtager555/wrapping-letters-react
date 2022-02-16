@@ -4,10 +4,10 @@ import React from "react";
 
 export function WrappLetter({
    SelectClass = {
-      searchWordValue: "",
-      searchWordValueLength: 0,
-      specialClass: "",
-      spaceBetweenWord: false,
+      searchWordValue,
+      searchWordValueLength,
+      specialClass,
+      spaceBetweenWord,
    },
    text,
    ClassToAdd,
@@ -15,7 +15,12 @@ export function WrappLetter({
    specialStructure = false,
    perWord = false,
 }) {
-   let { searchWordValue, searchWordValueLength, specialClass, spaceBetweenWord } = SelectClass;
+   let { 
+      searchWordValue = "", 
+      searchWordValueLength = 0, 
+      specialClass = "", 
+      spaceBetweenWord = false 
+   } = SelectClass;
 
    var arrElements = text.map(function (wrappElement, index) {
       if (
