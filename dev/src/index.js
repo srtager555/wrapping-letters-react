@@ -24,13 +24,13 @@ function App() {
          word="Carlos is a good person, but Carlos is a bad person"
          wordOptions={[
             {
-               ClassToAdd: "class",
-               // SelectClass: {
-                  // wordToSearch: "Carlos is",
-                  // classToAdd: "special-class",
+               // ClassToAdd: "class",
+               SelectClass: {
+                  wordToSearch: "Carlos is",
+                  classToAdd: "special-class",
                   // spaceBetweenWord: true,
-               // },
-               PerWord: false,   
+               },
+               // PerWord: true,   
             },
          ]}
          // structure={devStructure}
