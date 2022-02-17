@@ -4,8 +4,6 @@ import { WrappLetter } from "./wrappLetter.module";
 
 import { selectSpecialClass } from "./specialClass.module";
 
-// perWord is a new attribute, its value is a boolean, if true, the every word will be wrapped in a span
-
 export default function WrappingLetters({
    word = "Hello world !!! <3",
    wordOptions = [],
@@ -20,6 +18,8 @@ export default function WrappingLetters({
    }
    const Structure = structure || baseStructure;
    let specialStructure = Structure !== baseStructure ? true : false;
+
+   const { PerWord = false, ClassToAdd = new String(), SelectClass = {} } =  wordOptions[0]
 
    const isIts = (it) => {
       return Object.prototype.toString.call(it);
@@ -36,15 +36,15 @@ export default function WrappingLetters({
       throw new Error("Structure must be a function(React Component)");
    }
 
-   if (isIts(wordOptions[0].PerWord) !== "[object Boolean]") {
+   if (isIts(PerWord) !== "[object Boolean]") {
       throw new Error("PerWord must be a boolean");
    }
 
-   let text = (wordOptions[0].PerWord ? word.split(" ") : [...word])
+   let text = (PerWord ? word.split(" ") : [...word])
 
    var wrappedLetters = text.map(function (letter, index) {
       var a;
-      if(wordOptions[0].PerWord) {
+      if(PerWord) {
          if(index != text.length - 1) {
             a = letter + " ";  
          } else {
@@ -69,7 +69,6 @@ export default function WrappingLetters({
       }
 
       let wordOptionsKeys = Object.keys(wordOptions[0]);
-      let { ClassToAdd, SelectClass, PerWord } = wordOptions[0];
 
       const verifyWordOptionsKeys = (value, valueNb = 1) => {
          if (
@@ -92,17 +91,16 @@ export default function WrappingLetters({
          throw new Error("wordOptions must contain the following properties: ClassToAdd, SelectClass, PerWord");
       }
 
-
       if (isIts(ClassToAdd) !== "[object String]") {
          throw new Error("ClassToAdd must be a string");
       } else if (isIts(PerWord) !== "[object Boolean]") {
-         throw new Error("PreWord must be a boolean");
+         throw new Error("PerWord must be a boolean");
       }
 
       const wrappProps = {
-         SelectClass: SelectClass || {},
-         ClassToAdd: ClassToAdd || "",
-         perWord: wordOptions[0].PerWord || false,
+         SelectClass,
+         ClassToAdd,
+         perWord: PerWord,
          text,
          Structure,
          specialStructure,

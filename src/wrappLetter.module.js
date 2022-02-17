@@ -15,12 +15,13 @@ export function WrappLetter({
    specialStructure = false,
    perWord = false,
 }) {
-   let { 
-      searchWordValue = "", 
-      searchWordValueLength = 0, 
-      specialClass = "", 
-      spaceBetweenWord = false 
+   let {
+      searchWordValue = [],
+      searchWordValueLength = 0,
+      specialClass = new String(),
+      spaceBetweenWord = false
    } = SelectClass;
+
 
    var arrElements = text.map(function (wrappElement, index) {
       if (
@@ -57,7 +58,7 @@ export function WrappLetter({
             } else {
                wrappElement = wrappElement;
             }
-
+            
             if (wrappElement === searchWordValue.join("")) {
                cssClass = !specialStructure
                   ? [ClassToAdd, specialClass].join(" ")
