@@ -15,6 +15,8 @@ SIMPLIFIES THE JOB OF WRAPPING LETTERS IN HTML TAGS
 
 - 1.4.1 typing error in readme solved
 
+- 1.4.2 Errors of flexibility solved.
+
 ## News
 
 - Are you have a idea for the library?, share the idea in github(in issue section)
