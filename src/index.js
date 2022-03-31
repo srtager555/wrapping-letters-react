@@ -6,7 +6,7 @@ import { selectSpecialClass } from "./specialClass.module";
 
 export default function WrappingLetters({
    word = "Hello world !!! <3",
-   wordOptions = [],
+   wordOptions = [{}],
    structure,
 }) {
    function baseStructure({ letter, cssClass, ...props }) {
