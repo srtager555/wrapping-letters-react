@@ -21,18 +21,18 @@ function App() {
    return (
       <>
       <WrappingLetters
-         word="Carlos is a good person, but Carlos is a bad person"
-         // wordOptions={[
-         //    {
-         //       // ClassToAdd: "class",
-         //       SelectClass: {
-         //          wordToSearch: "Carlos is",
-         //          classToAdd: "special-class",
-         //          // spaceBetweenWord: true,
-         //       },
-         //       // PerWord: true,   
-         //    },
-         // ]}
+         word="Carlos is a good person, but Carlos is a bad person, Yeah, he is Carlos"
+         wordOptions={[
+            {
+               ClassToAdd: "class",
+               SelectClass: {
+                  wordToSearch: "Carlos",
+                  classToAdd: "special-class",
+                  // spaceBetweenWord: true,
+               },
+               PerWord: true,   
+            },
+         ]}
          // structure={devStructure}
       />
    </>

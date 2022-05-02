@@ -38,7 +38,7 @@
   "bugs": {
     "url": "https://github.com/Carlos-And-Ponce/wrapping-letters/issues"
   },
-  "homepage": "https://github.com/Carlos-And-Ponce/wrapping-letters#readme",
+  "homepage": "https://wrapping-letters.netlify.app/",
   "dependencies": {
     "react": "^17.0.2"
   },

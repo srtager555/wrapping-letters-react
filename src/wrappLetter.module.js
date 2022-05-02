@@ -53,17 +53,18 @@ export function WrappLetter({
          let cssClass = !specialStructure ? ClassToAdd : "";
 
          if (perWord) {
+            if (wrappElement === searchWordValue.join("")) {
+               cssClass = !specialStructure
+                  ? [ClassToAdd, specialClass].join(" ")
+                  : specialClass
+            }
+            
             if (index != text.length - 1) {
                wrappElement = wrappElement + " ";
             } else {
                wrappElement = wrappElement;
             }
             
-            if (wrappElement === searchWordValue.join("")) {
-               cssClass = !specialStructure
-                  ? [ClassToAdd, specialClass].join(" ")
-                  : specialClass
-            }
          }
          return [[
             // letter or word
