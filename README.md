@@ -19,6 +19,8 @@ SIMPLIFIES THE JOB OF WRAPPING LETTERS IN HTML TAGS
 
 - 1.4.3 error in wordOption solved.
 
+- 1.4.4 error in PerWord solved and home page url added.
+
 ## News
 
 - Are you have a idea for the library?, share the idea in github(in issue section)
