@@ -21,6 +21,8 @@ SIMPLIFIES THE JOB OF WRAPPING LETTERS IN HTML TAGS
 
 - 1.4.4 error in PerWord solved and home page url added.
 
+- 1.4.5 I moved the code of the page to Next Js 
+
 ## News
 
 - Are you have a idea for the library?, share the idea in github(in issue section)
