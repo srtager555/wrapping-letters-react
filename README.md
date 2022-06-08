@@ -5,23 +5,15 @@ SIMPLIFIES THE JOB OF WRAPPING LETTERS IN HTML TAGS
 
 ## New upgrades
 
-1.4.0 IS NOW !!!
+2.0.0 is now!!!!!
 
-- The new prop of WordOptions is here ```wordOptions={ PerWord: boolean }```!!!
+I'll start the new version with very small changes. Props have been renamed: word -> text, word options -> text options.
 
-- ```SpeaceBetweenWord``` is now a optional attribute.
+For the best performance in code development, it is now more intuitive.
 
-- increased of optimizations.
+come soon 2.1.0
 
-- 1.4.1 typing error in readme solved
-
-- 1.4.2 Errors of flexibility solved.
-
-- 1.4.3 error in wordOption solved.
-
-- 1.4.4 error in PerWord solved and home page url added.
-
-- 1.4.5 I moved the code of the page to Next Js 
+In this version, you will be able to find more than 2 specialWord and add more than 2 specialClass.
 
 ## News
 
@@ -48,10 +40,10 @@ export default App;
 
 Wrapping Letters is a component for react with the goal of to simplify 
 the job to wrap letters, call the component and that's ready to use.  
-its has a default word is: "Hello world!!! <3".
+its has a default text is: "Hello world!!! <3".
 
 The component ```` <WrappingLetters /> ```` always returns each letter of 
-the word or phrase within a ```<span />``` each letter.
+the text or phrase within a ```<span />``` each letter.
 
   ```!IMPORTANT```
 The component only returns the single letters, they are not inside 
@@ -64,19 +56,19 @@ any extra tag.
   <span>...</span>
 ```
 
-If you want modifies the word, call the prop "word", this prop only 
+If you want modifies the text, call the prop "text", this prop only 
 accept strings
 
 ```
-<WrappingLetters word="I'm the new word" />
+<WrappingLetters text="I'm the new text" />
 ```
 
-Now you can add a special options to the word, is so easy!:
+Now you can add a special options to the text, is so easy!:
 
 ```
 <WrappingLetters 
-    word="I'm the new word" 
-    wordOptions={[
+    text="I'm the new text" 
+    textOptions={[
         {
             "ClassToAdd": "letter-wrapp",
 
@@ -90,13 +82,13 @@ Now you can add a special options to the word, is so easy!:
 />
 ```
 
-```wordOptions``` is the new prop in 1.1.0, with this you can select
+```textOptions``` is the new prop in 1.1.0, with this you can select
 a special class for a word or phrase, put a class for all letters or both
 
 #
 ## How to add a class for all letters
 ```
-wordOptions={[
+textOptions={[
         {
             "ClassToAdd": "letter-wrapp",
         },
@@ -115,8 +107,8 @@ Is so easy to use, call the attribute and places the class of your choice
 ## How to add a special class for a word or phrase(or letters)
 
 ```
-  word="WrappingLetters"
-  wordOptions={[
+  text="WrappingLetters"
+  textOptions={[
         {
             "SelectClass": {
               wordToSearch: "ping",
@@ -152,14 +144,14 @@ in the sentence, is so easy to use:
 #
 ## I want a wrapp to each word
 
-```PerWord``` is an attribute of ```wordOptions``` to wrap each word instead of wrapping each letter (default is false)
+```PerWord``` is an attribute of ```textOptions``` to wrap each word instead of wrapping each letter (default is false)
 
 Is very easy to use: 
 
 ```
     <WrappingLetters
-         word="Carlos is a good person, but Carlos is a bad person"
-         wordOptions={[
+         text="Carlos is a good person, but Carlos is a bad person"
+         textOptions={[
             {
                ClassToAdd: "class",
                SelectClass: {
@@ -204,8 +196,8 @@ import WrappingLetters from 'wrapping-letters-react'
 function App(){
     return(
         <WrappingLetters 
-            word='This is the sentence to wrapped'
-            wordOptions={[
+         text='This is the sentence to wrapped'
+            textOptions={[
                 {
                     SelectClass: {
                         wordToSearch: 'sentence',
@@ -259,7 +251,7 @@ The list of element to send a the component for now is small:
 
 ```!IMPORTANT```
 
-The ```classToAdd``` attribute of ```wordOptions```,
+The ```classToAdd``` attribute of ```textOptions```,
 is disable when the ```structure``` is active, if you want a css class
 use ```className``` in the component.
 
