@@ -1,6 +1,6 @@
 {
   "name": "wrapping-letters-react",
-  "version": "1.4.5",
+  "version": "2.0.0",
   "description": "SIMPLIFY THE JOB OF WRAPPING LETTERS IN HTML TAGS WITH WRAPPING-LETTERS",
   "main": "./lib/index.js",
   "files": [
