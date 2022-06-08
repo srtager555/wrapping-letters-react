@@ -9,7 +9,7 @@ export function WrappLetter({
       specialClass,
       spaceBetweenWord,
    },
-   text,
+   crumbledText,
    ClassToAdd,
    Structure,
    specialStructure = false,
@@ -23,18 +23,18 @@ export function WrappLetter({
    } = SelectClass;
 
 
-   var arrElements = text.map(function (wrappElement, index) {
+   var arrElements = crumbledText.map(function (wrappElement, index) {
       if (
          !perWord &&
          searchWordValue.length > 0 &&
          wrappElement[0] === searchWordValue[0] &&
-         index + searchWordValueLength <= text.length &&
-         text.slice(index, index + searchWordValueLength).join("") ===
+         index + searchWordValueLength <= crumbledText.length &&
+         crumbledText.slice(index, index + searchWordValueLength).join("") ===
          searchWordValue.join("")
       ) {
-         const newText = text.slice(index, spaceBetweenWord ? index + searchWordValueLength - 1 : index + searchWordValueLength);
+         const newCrumbledText = crumbledText.slice(index, spaceBetweenWord ? index + searchWordValueLength - 1 : index + searchWordValueLength);
 
-         var wl = newText.map((wrappElement, index) => {
+         var wl = newCrumbledText.map((wrappElement, index) => {
             return [
                // letter or word
                wrappElement,
@@ -46,7 +46,7 @@ export function WrappLetter({
                ,
             ];
          });
-         text.splice(index, spaceBetweenWord ? searchWordValueLength - 2 : searchWordValueLength - 1);
+         crumbledText.splice(index, spaceBetweenWord ? searchWordValueLength - 2 : searchWordValueLength - 1);
 
          return wl;
       } else {
@@ -59,7 +59,7 @@ export function WrappLetter({
                   : specialClass
             }
             
-            if (index != text.length - 1) {
+            if (index != crumbledText.length - 1) {
                wrappElement = wrappElement + " ";
             } else {
                wrappElement = wrappElement;

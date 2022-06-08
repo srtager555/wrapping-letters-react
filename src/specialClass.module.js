@@ -46,7 +46,7 @@ function errorFilterSpecialClass(SelectClass, perWord) {
 // ====== select special class to add ======
 export function selectSpecialClass({
    SelectClass,
-   text,
+   crumbledText,
    ClassToAdd,
    Structure,
    specialStructure,
@@ -63,9 +63,9 @@ export function selectSpecialClass({
    if (SelectClass.spaceBetweenWord === true && perWord === false) {
       searchWordValue.unshift(" ");
       searchWordValue.push(" ");
-      text.push(" ");
+      crumbledText.push(" ");
 
-      text.unshift(" ");
+      crumbledText.unshift(" ");
    }
 
    searchWordValueLength = searchWordValue.length;
@@ -78,7 +78,7 @@ export function selectSpecialClass({
          specialClass,
          spaceBetweenWord: SelectClass.spaceBetweenWord,
       },
-      text,
+      crumbledText,
       ClassToAdd,
       Structure,
       specialStructure,

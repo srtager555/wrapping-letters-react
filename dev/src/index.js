@@ -21,8 +21,8 @@ function App() {
    return (
       <>
       <WrappingLetters
-         word="Carlos is a good person, but Carlos is a bad person, Yeah, he is Carlos"
-         wordOptions={[
+         text="Carlos is a good person, but Carlos is a bad person, Yeah, he is Carlos"
+         textOptions={[
             {
                ClassToAdd: "class",
                SelectClass: {

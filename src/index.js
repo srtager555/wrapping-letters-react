@@ -5,8 +5,8 @@ import { WrappLetter } from "./wrappLetter.module";
 import { selectSpecialClass } from "./specialClass.module";
 
 export default function WrappingLetters({
-   word = "Hello world !!! <3",
-   wordOptions = [{}],
+   text = "Hello world !!! <3",
+   textOptions = [{}],
    structure,
 }) {
    function baseStructure({ letter, cssClass, ...props }) {
@@ -19,17 +19,17 @@ export default function WrappingLetters({
    const Structure = structure || baseStructure;
    let specialStructure = Structure !== baseStructure ? true : false;
 
-   const { PerWord = false, ClassToAdd = new String(), SelectClass = {} } =  wordOptions[0]
+   const { PerWord = false, ClassToAdd = new String(), SelectClass = {} } =  textOptions[0]
 
    const isIts = (it) => {
       return Object.prototype.toString.call(it);
    };
 
-   if (isIts(word) !== "[object String]") {
-      throw new Error("Word must be a string");
+   if (isIts(text) !== "[object String]") {
+      throw new Error("text must be a string");
    }
-   if (word === "") {
-      throw new Error("Word cannot be empty");
+   if (text === "") {
+      throw new Error("text cannot be empty");
    }
 
    if (isIts(Structure) !== "[object Function]") {
@@ -40,12 +40,12 @@ export default function WrappingLetters({
       throw new Error("PerWord must be a boolean");
    }
 
-   let text = (PerWord ? word.split(" ") : [...word])
+   let crumbledText = (PerWord ? text.split(" ") : [...text])
 
-   var wrappedLetters = text.map(function (letter, index) {
+   var wrappedLetters = crumbledText.map(function (letter, index) {
       var a;
       if(PerWord) {
-         if(index != text.length - 1) {
+         if(index != crumbledText.length - 1) {
             a = letter + " ";  
          } else {
             a = letter;
@@ -59,36 +59,36 @@ export default function WrappingLetters({
       );
    });
 
-   if (isIts(wordOptions) !== "[object Array]") {
-      throw new Error("wordOptions must be an array");
-   } else if (wordOptions.length > 0) {
-      if (isIts(wordOptions[0]) !== "[object Object]") {
+   if (isIts(textOptions) !== "[object Array]") {
+      throw new Error("textOptions must be an array");
+   } else if (textOptions.length > 0) {
+      if (isIts(textOptions[0]) !== "[object Object]") {
          throw new Error(
-            "inside the array of wordOptions there must be an object"
+            "inside the array of textOptions there must be an object"
          );
       }
 
-      let wordOptionsKeys = Object.keys(wordOptions[0]);
+      let textOptionsKeys = Object.keys(textOptions[0]);
 
-      const verifyWordOptionsKeys = (value, valueNb = 1) => {
+      const verifytextOptionsKeys = (value, valueNb = 1) => {
          if (
-            wordOptionsKeys.length === valueNb &&
-            wordOptionsKeys.includes(value)
+            textOptionsKeys.length === valueNb &&
+            textOptionsKeys.includes(value)
          )
             return true;
          else return false;
       };
 
-      if (wordOptions.length > 1) {
-         throw new Error("wordOptions must be a single object");
+      if (textOptions.length > 1) {
+         throw new Error("textOptions must be a single object");
       }
 
       const wl_props = ['ClassToAdd', 'SelectClass', 'PerWord'];
       const containThisProps = (value) => wl_props.includes(value);
-      const container  = wordOptionsKeys.every(containThisProps);
+      const container  = textOptionsKeys.every(containThisProps);
       
       if(!container) {
-         throw new Error("wordOptions must contain the following properties: ClassToAdd, SelectClass, PerWord");
+         throw new Error("textOptions must contain the following properties: ClassToAdd, SelectClass, PerWord");
       }
 
       if (isIts(ClassToAdd) !== "[object String]") {
@@ -101,12 +101,12 @@ export default function WrappingLetters({
          SelectClass,
          ClassToAdd,
          perWord: PerWord,
-         text,
+         crumbledText,
          Structure,
          specialStructure,
       }
 
-      if(wordOptionsKeys.includes('SelectClass')) {
+      if(textOptionsKeys.includes('SelectClass')) {
          if (isIts(SelectClass) !== "[object Object]") {
             throw new Error("SelectClass must be an object");
          }
@@ -115,14 +115,14 @@ export default function WrappingLetters({
          return WrappLetter(wrappProps);
       }
    }
-   // ---- warning of empty wordOpting---- //
-   if (wordOptionsKeys.length === 0) {
+   // ---- warning of empty textOpting---- //
+   if (textOptionsKeys.length === 0) {
       Structure !== baseStructure
          ? console.warn(
-              '"wordOptions" is empty, returning a simple wrapper with structure'
+              '"textOptions" is empty, returning a simple wrapper with structure'
            )
          : console.warn(
-              '"wordOptions" is empty, returning a simple wrapper of letters'
+              '"textOptions" is empty, returning a simple wrapper of letters'
            );
    } // ---- Leave the process, start normal wrapp ---- //
    return wrappedLetters;
