@@ -6,6 +6,7 @@ function errorFilterSpecialClass(SelectClass, perWord) {
    const sc_props = ['wordToSearch', 'classToAdd', 'spaceBetweenWord'];
 
    // required props 'wordToSearch', 'classToAdd'.
+   // comprobation if the object contain a props not in the list
 
    var containThisProps = function containThisProps(value) {
       return sc_props.includes(value);
@@ -13,10 +14,12 @@ function errorFilterSpecialClass(SelectClass, perWord) {
 
    var contain = SelectClassKeys.every(containThisProps);
 
+   // if the object doesn't contain the required props
    if (!contain && !perWord) {
       throw new Error("\"SelectClass\" must contain the following properties: wordToSearch, classToAdd. spaceBetweenWord is optional");
    }
 
+   // if the object contain the required props
    var wordToSearchSearch = SelectClassKeys.some((value) => value === 'wordToSearch');
    var classToAddSearch = SelectClassKeys.some((value) => value === 'classToAdd');;
 
@@ -24,19 +27,23 @@ function errorFilterSpecialClass(SelectClass, perWord) {
       throw new Error("\"SelectClass\" must be required the following properties: wordToSearch, classToAdd.");
    }
 
+   // comprobation of the optional prop 'spaceBetweenWord'
    const searchSBW = SelectClassKeys.some((key) => key === "spaceBetweenWord");
 
    if (perWord && searchSBW) {
       throw new Error("\"spaceBetweenWord\" is not allowed when perWord is true");
    }
 
+
+   // 'SelectClass' contains the following properties:
+   //  wordToSearch, classToAdd. spaceBetweenWord is optional
    const { wordToSearch, classToAdd, spaceBetweenWord } = SelectClass;
 
-   if (typeof wordToSearch != "string") {
-      throw new Error("\"wordToSearch\" must be a string");
+   if (typeof wordToSearch != "string" && typeof wordToSearch != "array") {
+      throw new Error("\"wordToSearch\" must be a string or an array");
    }
-   if (typeof classToAdd != "string") {
-      throw new Error("\"classToAdd\" must be a string");
+   if (typeof classToAdd != "string" && typeof classToAdd != "array") {
+      throw new Error("\"classToAdd\" must be a string or an array");
    }
    if (!perWord && searchSBW && typeof spaceBetweenWord !== "boolean") {
       throw new Error("\"spaceBetweenWord\" must be a boolean");
@@ -60,6 +67,7 @@ export function selectSpecialClass({
 
    searchWordValue = [...SelectClass.wordToSearch];
 
+   // comprobation for search within words
    if (SelectClass.spaceBetweenWord === true && perWord === false) {
       searchWordValue.unshift(" ");
       searchWordValue.push(" ");
