@@ -11,6 +11,9 @@ I'll start the new version with very small changes. Props have been renamed: wor
 
 For the best performance in code development, it is now more intuitive.
 
+2.0.1
+Issue about unrestored file resolved
+
 come soon 2.1.0
 
 In this version, you will be able to find more than 2 specialWord and add more than 2 specialClass.
