@@ -1,8 +1,8 @@
 {
   "name": "wrapping-letters-react",
-  "version": "2.0.1",
+  "version": "2.0.3",
   "description": "SIMPLIFY THE JOB OF WRAPPING LETTERS IN HTML TAGS WITH WRAPPING-LETTERS",
-  "main": "./src/index.js",
+  "main": "./lib/index.js",
   "files": [
     "lib/**/*"
   ],
@@ -11,7 +11,7 @@
     "build": "npm run babel:compile",
     "dist": "webpack --config webpack.config.js",
     "server": "webpack-dev-server --mode development --open",
-    "start:dist": "npm run build && npm run server",
+    "start:dist": "webpack-dev-server --mode production --open",
     "start": "npm run server"
   },
   "repository": {

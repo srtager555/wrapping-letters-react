@@ -11,7 +11,7 @@ I'll start the new version with very small changes. Props have been renamed: wor
 
 For the best performance in code development, it is now more intuitive.
 
-2.0.1
+2.0.3
 Issue about unrestored file resolved
 
 come soon 2.1.0
