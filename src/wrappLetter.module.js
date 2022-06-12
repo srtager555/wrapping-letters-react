@@ -16,67 +16,87 @@ export function WrappLetter({
    perWord = false,
 }) {
    let {
-      searchWordValue = [],
+      searchWordValue = "",
       searchWordValueLength = 0,
       specialClass = new String(),
-      spaceBetweenWord = false
+      spaceBetweenWord = false,
    } = SelectClass;
 
+   // comprobation if searchWordValue is an array
+   if (!Array.isArray(searchWordValue)) {
+      searchWordValue = [searchWordValue];
+   }
 
-   var arrElements = crumbledText.map(function (wrappElement, index) {
-      if (
-         !perWord &&
-         searchWordValue.length > 0 &&
-         wrappElement[0] === searchWordValue[0] &&
-         index + searchWordValueLength <= crumbledText.length &&
-         crumbledText.slice(index, index + searchWordValueLength).join("") ===
-         searchWordValue.join("")
-      ) {
-         const newCrumbledText = crumbledText.slice(index, spaceBetweenWord ? index + searchWordValueLength - 1 : index + searchWordValueLength);
+   var arrElements = crumbledText
+      .map(function (wrappElement, index) {
+         if (
+            !perWord &&
+            searchWordValue.length > 0 &&
+            wrappElement[0] === searchWordValue[0] &&
+            index + searchWordValueLength <= crumbledText.length &&
+            searchWordValue.includes(crumbledText.slice(index, index + searchWordValueLength).join(""))
+         ) {
+            const newCrumbledText = crumbledText.slice(
+               index,
+               spaceBetweenWord
+                  ? index + searchWordValueLength - 1
+                  : index + searchWordValueLength
+            );
 
-         var wl = newCrumbledText.map((wrappElement, index) => {
+            var wl = newCrumbledText.map((wrappElement, index) => {
+               return [
+                  // letter or word
+                  wrappElement,
+
+                  // cssClass
+                  !specialStructure
+                     ? [ClassToAdd, specialClass].join(" ")
+                     : specialClass,
+               ];
+            });
+            crumbledText.splice(
+               index,
+               spaceBetweenWord
+                  ? searchWordValueLength - 2
+                  : searchWordValueLength - 1
+            );
+
+            return wl;
+         } else {
+            let cssClass = !specialStructure ? ClassToAdd : "";
+
+            if (perWord) {
+               if (
+                  searchWordValue.includes(wrappElement)
+               ) {
+                  cssClass = !specialStructure
+                     ? [ClassToAdd, specialClass].join(" ")
+                     : specialClass;
+               }
+
+               if (index != crumbledText.length - 1) {
+                  wrappElement = wrappElement + " ";
+               } else {
+                  wrappElement = wrappElement;
+               }
+            }
             return [
-               // letter or word
-               wrappElement,
+               [
+                  // letter or word
+                  wrappElement,
 
-               // cssClass
-               !specialStructure
-                  ? [ClassToAdd, specialClass].join(" ")
-                  : specialClass
-               ,
+                  // cssClass
+                  cssClass,
+               ],
             ];
-         });
-         crumbledText.splice(index, spaceBetweenWord ? searchWordValueLength - 2 : searchWordValueLength - 1);
-
-         return wl;
-      } else {
-         let cssClass = !specialStructure ? ClassToAdd : "";
-
-         if (perWord) {
-            if (wrappElement === searchWordValue.join("")) {
-               cssClass = !specialStructure
-                  ? [ClassToAdd, specialClass].join(" ")
-                  : specialClass
-            }
-            
-            if (index != crumbledText.length - 1) {
-               wrappElement = wrappElement + " ";
-            } else {
-               wrappElement = wrappElement;
-            }
-            
          }
-         return [[
-            // letter or word
-            wrappElement,
+      })
+      .flat();
 
-            // cssClass
-            cssClass,
-         ]];
-      }
-   }).flat();
-
-   if (arrElements[0][0] === " " && arrElements[arrElements.length - 1][0] === " ") {
+   if (
+      arrElements[0][0] === " " &&
+      arrElements[arrElements.length - 1][0] === " "
+   ) {
       arrElements.pop();
       arrElements.shift();
    }
@@ -88,7 +108,7 @@ export function WrappLetter({
             cssClass={wrappElement[1]}
             key={`${wrappElement[0]}-${index}`}
          />
-      )
+      );
    });
 
    return wrappedLetters;
