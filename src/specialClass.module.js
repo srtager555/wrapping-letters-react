@@ -1,9 +1,9 @@
-import { WrappLetter } from './wrappLetter.module';
+import { WrappLetter } from "./wrappLetter.module";
 
 function errorFilterSpecialClass(SelectClass, perWord) {
    const SelectClassKeys = Object.keys(SelectClass);
 
-   const sc_props = ['wordToSearch', 'classToAdd', 'spaceBetweenWord'];
+   const sc_props = ["wordToSearch", "classToAdd", "spaceBetweenWord"];
 
    // required props 'wordToSearch', 'classToAdd'.
    // comprobation if the object contain a props not in the list
@@ -16,37 +16,44 @@ function errorFilterSpecialClass(SelectClass, perWord) {
 
    // if the object doesn't contain the required props
    if (!contain && !perWord) {
-      throw new Error("\"SelectClass\" must contain the following properties: wordToSearch, classToAdd. spaceBetweenWord is optional");
+      throw new Error(
+         '"SelectClass" must contain the following properties: wordToSearch, classToAdd. spaceBetweenWord is optional'
+      );
    }
 
    // if the object contain the required props
-   var wordToSearchSearch = SelectClassKeys.some((value) => value === 'wordToSearch');
-   var classToAddSearch = SelectClassKeys.some((value) => value === 'classToAdd');;
+   var wordToSearchSearch = SelectClassKeys.some(
+      (value) => value === "wordToSearch"
+   );
+   var classToAddSearch = SelectClassKeys.some(
+      (value) => value === "classToAdd"
+   );
 
    if (!wordToSearchSearch || !classToAddSearch) {
-      throw new Error("\"SelectClass\" must be required the following properties: wordToSearch, classToAdd.");
+      throw new Error(
+         '"SelectClass" must be required the following properties: wordToSearch, classToAdd.'
+      );
    }
 
    // comprobation of the optional prop 'spaceBetweenWord'
    const searchSBW = SelectClassKeys.some((key) => key === "spaceBetweenWord");
 
    if (perWord && searchSBW) {
-      throw new Error("\"spaceBetweenWord\" is not allowed when perWord is true");
+      throw new Error('"spaceBetweenWord" is not allowed when perWord is true');
    }
-
 
    // 'SelectClass' contains the following properties:
    //  wordToSearch, classToAdd. spaceBetweenWord is optional
    const { wordToSearch, classToAdd, spaceBetweenWord } = SelectClass;
 
-   if (typeof wordToSearch != "string" && typeof wordToSearch != "array") {
-      throw new Error("\"wordToSearch\" must be a string or an array");
+   if (typeof wordToSearch != "string" && !Array.isArray(wordToSearch)) {
+      throw new Error('"wordToSearch" must be a string or an array');
    }
-   if (typeof classToAdd != "string" && typeof classToAdd != "array") {
-      throw new Error("\"classToAdd\" must be a string or an array");
+   if (typeof classToAdd != "string" &&  !Array.isArray(classToAdd)) {
+      throw new Error('"classToAdd" must be a string or an array');
    }
    if (!perWord && searchSBW && typeof spaceBetweenWord !== "boolean") {
-      throw new Error("\"spaceBetweenWord\" must be a boolean");
+      throw new Error('"spaceBetweenWord" must be a boolean');
    }
 }
 
@@ -61,11 +68,9 @@ export function selectSpecialClass({
 }) {
    errorFilterSpecialClass(SelectClass, perWord);
 
-   let searchWordValue;
+   let searchWordValue = SelectClass.wordToSearch;
    let searchWordValueLength;
    let specialClass;
-
-   searchWordValue = [...SelectClass.wordToSearch];
 
    // comprobation for search within words
    if (SelectClass.spaceBetweenWord === true && perWord === false) {
@@ -92,6 +97,5 @@ export function selectSpecialClass({
       specialStructure,
       perWord,
    });
-
 }
- // ====== select special class to add ======
+// ====== select special class to add ======
