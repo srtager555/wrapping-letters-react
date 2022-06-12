@@ -1,5 +1,5 @@
-// import WrappingLetters from "../../src";
-import WrappingLetters from "../../lib";
+import WrappingLetters from "../../src";
+// import WrappingLetters from "../../lib";
 import React from "react";
 import ReactDOM from "react-dom";
 
@@ -27,7 +27,7 @@ function App() {
                ClassToAdd: "class",
                SelectClass: {
                   // new object with the class to add []
-                  wordToSearch: "Carlos",
+                  wordToSearch: ["Carlos", "is", "a", "good", "person"],
                   classToAdd: "special-class",
                   // spaceBetweenWord: true,
                },
