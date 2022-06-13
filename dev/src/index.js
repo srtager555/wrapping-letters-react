@@ -28,10 +28,10 @@ function App() {
                SelectClass: {
                   // new object with the class to add []
                   wordToSearch: ["Carlos", "is", "a", "good", "person"],
-                  classToAdd: "special-class",
-                  // spaceBetweenWord: true,
+                  classToAdd: "special-class-1",
+                  spaceBetweenWord: true,
                },
-               PerWord: true,   
+               PerWord: false,   
             },
          ]}
          // structure={devStructure}

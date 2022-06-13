@@ -25,17 +25,28 @@ export function WrappLetter({
    // comprobation if searchWordValue is an array
    if (!Array.isArray(searchWordValue)) {
       searchWordValue = [searchWordValue];
+      console.log(searchWordValue)
    }
 
    var arrElements = crumbledText
       .map(function (wrappElement, index) {
+         // console.log(crumbledText.slice(index, index + searchWordValueLength).join(""))
+         console.log(searchWordValue.some(element => crumbledText.slice(index, index + element.length).join("") === element))
+         // console.log(searchWordValue.includes(crumbledText.slice(index, index + searchWordValueLength).join("")))
+         console.log(searchWordValue.some(element => crumbledText.slice(index, index + element.length).join("") === element))
          if (
             !perWord &&
-            searchWordValue.length > 0 &&
-            wrappElement[0] === searchWordValue[0] &&
-            index + searchWordValueLength <= crumbledText.length &&
-            searchWordValue.includes(crumbledText.slice(index, index + searchWordValueLength).join(""))
+            searchWordValue.some(element => element.length > 0) &&
+            //searchWordValue.length > 0 &&
+            searchWordValue.some(element => wrappElement === element[0]) &&
+            //wrappElement === searchWordValue[0] &&
+            searchWordValue.some(element => index + element.length <= crumbledText.length) &&
+            // index + searchWordValueLength <= crumbledText.length &&
+            searchWordValue.some(element => crumbledText.slice(index, index + element.length).join("") === element)
+            //searchWordValue.includes(crumbledText.slice(index, index + searchWordValueLength).join(""))
          ) {
+            // here made a new  string varible
+            // for a map to add the class
             const newCrumbledText = crumbledText.slice(
                index,
                spaceBetweenWord
@@ -43,9 +54,13 @@ export function WrappLetter({
                   : index + searchWordValueLength
             );
 
+            const INDEX_SPECIAL_CLASS = newCrumbledText.indexOf(searchWordValue[0]);
+            console.log(specialClass)
+            console.log(INDEX_SPECIAL_CLASS);
+
             var wl = newCrumbledText.map((wrappElement, index) => {
                return [
-                  // letter or word
+                  // letter
                   wrappElement,
 
                   // cssClass
@@ -54,6 +69,8 @@ export function WrappLetter({
                      : specialClass,
                ];
             });
+
+            // here it'll slice the searching word from the crumbledText
             crumbledText.splice(
                index,
                spaceBetweenWord
@@ -63,6 +80,7 @@ export function WrappLetter({
 
             return wl;
          } else {
+            //here is wrapped per word.
             let cssClass = !specialStructure ? ClassToAdd : "";
 
             if (perWord) {
