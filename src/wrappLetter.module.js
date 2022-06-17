@@ -30,32 +30,6 @@ export function WrappLetter({
 
    var arrElements = crumbledText
       .map(function (wrappElement, index) {
-         console.log(wrappElement);
-         console.log(
-            searchWordValue.some((element) => element.length > 0),
-            "length"
-         );
-         console.log(
-            searchWordValue.some((element) => wrappElement === element[0]),
-            "first letter"
-         );
-         console.log(
-            searchWordValue.some(
-               (element) => index + element.length <= crumbledText.length
-            ),
-            "letter not overflow"
-         );
-
-         console.log(
-            searchWordValue.some(
-               (element) =>
-                  crumbledText.slice(index, index + element.length).join("") ===
-                  element
-            ),
-            "letter match"
-         );
-         console.log("---");
-
          if (
             !perWord &&
             searchWordValue.some((element) => element.length > 0) &&
@@ -75,14 +49,12 @@ export function WrappLetter({
                let cutted = crumbledText
                   .slice(index, index + element.length)
                   .join("");
-               console.log(searchWordValue);
-               console.log(element);
-               console.log(cutted);
                return cutted === element;
             });
             newCrumbledText = [...newCrumbledText[0]];
 
-            console.log(newCrumbledText, "new crumbledText");
+            // newCrumbledText.pop();
+            // newCrumbledText.shift();
 
             // const INDEX_SPECIAL_CLASS = newCrumbledText.indexOf(
             //    searchWordValue[0]
@@ -103,9 +75,12 @@ export function WrappLetter({
             });
 
             // here it'll slice the searching word from the crumbledText
-            console.log(newCrumbledText.length, "newCrumbledText.length");
-            crumbledText.splice(index, newCrumbledText.length - 1);
-            console.log(crumbledText, "crumbledText");
+            crumbledText.splice(index, 
+               // newCrumbledText.length
+               spaceBetweenWord
+                  ? newCrumbledText.length - 2
+                  : newCrumbledText.length - 1
+               );
 
             return wl;
          } else {
