@@ -23,3 +23,9 @@ body {
 .container:nth-child(even) {
     color: #f00;
 }
+
+.special-class-1 {
+    color: blue;
+    font-size: 20px;
+    font-weight: 500;
+}
