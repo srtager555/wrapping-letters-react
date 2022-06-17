@@ -27,7 +27,7 @@ function App() {
                   ClassToAdd: "class",
                   SelectClass: {
                      // new object with the class to add []
-                     wordToSearch: ["Carlos", "is", "a", "good", "person"],
+                     wordToSearch: [ "is", "Carlos", "person,", "a", "good", ],
                      classToAdd: "special-class-1",
                      spaceBetweenWord: false,
                   },
