@@ -74,8 +74,8 @@ export function selectSpecialClass({
 
    // comprobation for search within words
    if (SelectClass.spaceBetweenWord === true && perWord === false) {
-      searchWordValue.unshift(" ");
-      searchWordValue.push(" ");
+      // searchWordValue.unshift(" ");
+      // searchWordValue.push(" ");
       crumbledText.push(" ");
 
       crumbledText.unshift(" ");

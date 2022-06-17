@@ -20,23 +20,23 @@ function devStructure({ letter, cssClass, ...prop }) {
 function App() {
    return (
       <>
-      <WrappingLetters
-         text="Carlos is a good person, but Carlos is a bad person, Yeah, he is Carlos"
-         textOptions={[
-            {
-               ClassToAdd: "class",
-               SelectClass: {
-                  // new object with the class to add []
-                  wordToSearch: ["Carlos", "is", "a", "good", "person"],
-                  classToAdd: "special-class-1",
-                  spaceBetweenWord: true,
+         <WrappingLetters
+            text="Carlos is a good person, This a Carlosproblemisitagoodperson, but Carlos is a bad person, Yeah, he is Carlos"
+            textOptions={[
+               {
+                  ClassToAdd: "class",
+                  SelectClass: {
+                     // new object with the class to add []
+                     wordToSearch: ["Carlos", "is", "a", "good", "person"],
+                     classToAdd: "special-class-1",
+                     spaceBetweenWord: false,
+                  },
+                  PerWord: false,
                },
-               PerWord: false,   
-            },
-         ]}
-         // structure={devStructure}
-      />
-   </>
+            ]}
+            // structure={devStructure}
+         />
+      </>
    );
 }
 

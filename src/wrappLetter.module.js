@@ -25,40 +25,72 @@ export function WrappLetter({
    // comprobation if searchWordValue is an array
    if (!Array.isArray(searchWordValue)) {
       searchWordValue = [searchWordValue];
-      console.log(searchWordValue)
+      console.log(searchWordValue);
    }
 
    var arrElements = crumbledText
       .map(function (wrappElement, index) {
-         // console.log(crumbledText.slice(index, index + searchWordValueLength).join(""))
-         console.log(searchWordValue.some(element => crumbledText.slice(index, index + element.length).join("") === element))
-         // console.log(searchWordValue.includes(crumbledText.slice(index, index + searchWordValueLength).join("")))
-         console.log(searchWordValue.some(element => crumbledText.slice(index, index + element.length).join("") === element))
+         console.log(wrappElement);
+         console.log(
+            searchWordValue.some((element) => element.length > 0),
+            "length"
+         );
+         console.log(
+            searchWordValue.some((element) => wrappElement === element[0]),
+            "first letter"
+         );
+         console.log(
+            searchWordValue.some(
+               (element) => index + element.length <= crumbledText.length
+            ),
+            "letter not overflow"
+         );
+
+         console.log(
+            searchWordValue.some(
+               (element) =>
+                  crumbledText.slice(index, index + element.length).join("") ===
+                  element
+            ),
+            "letter match"
+         );
+         console.log("---");
+
          if (
             !perWord &&
-            searchWordValue.some(element => element.length > 0) &&
-            //searchWordValue.length > 0 &&
-            searchWordValue.some(element => wrappElement === element[0]) &&
-            //wrappElement === searchWordValue[0] &&
-            searchWordValue.some(element => index + element.length <= crumbledText.length) &&
-            // index + searchWordValueLength <= crumbledText.length &&
-            searchWordValue.some(element => crumbledText.slice(index, index + element.length).join("") === element)
-            //searchWordValue.includes(crumbledText.slice(index, index + searchWordValueLength).join(""))
+            searchWordValue.some((element) => element.length > 0) &&
+            searchWordValue.some((element) => wrappElement === element[0]) &&
+            searchWordValue.some(
+               (element) => index + element.length <= crumbledText.length
+            ) &&
+            searchWordValue.some(
+               (element) =>
+                  crumbledText.slice(index, index + element.length).join("") ===
+                  element
+            )
          ) {
             // here made a new  string varible
             // for a map to add the class
-            const newCrumbledText = crumbledText.slice(
-               index,
-               spaceBetweenWord
-                  ? index + searchWordValueLength - 1
-                  : index + searchWordValueLength
-            );
+            let newCrumbledText = searchWordValue.filter((element) => {
+               let cutted = crumbledText
+                  .slice(index, index + element.length)
+                  .join("");
+               console.log(searchWordValue);
+               console.log(element);
+               console.log(cutted);
+               return cutted === element;
+            });
+            newCrumbledText = [...newCrumbledText[0]];
 
-            const INDEX_SPECIAL_CLASS = newCrumbledText.indexOf(searchWordValue[0]);
-            console.log(specialClass)
-            console.log(INDEX_SPECIAL_CLASS);
+            console.log(newCrumbledText, "new crumbledText");
 
-            var wl = newCrumbledText.map((wrappElement, index) => {
+            // const INDEX_SPECIAL_CLASS = newCrumbledText.indexOf(
+            //    searchWordValue[0]
+            // );
+            // console.log(specialClass);
+            // console.log(INDEX_SPECIAL_CLASS);
+
+            var wl = newCrumbledText.map((wrappElement) => {
                return [
                   // letter
                   wrappElement,
@@ -71,12 +103,9 @@ export function WrappLetter({
             });
 
             // here it'll slice the searching word from the crumbledText
-            crumbledText.splice(
-               index,
-               spaceBetweenWord
-                  ? searchWordValueLength - 2
-                  : searchWordValueLength - 1
-            );
+            console.log(newCrumbledText.length, "newCrumbledText.length");
+            crumbledText.splice(index, newCrumbledText.length - 1);
+            console.log(crumbledText, "crumbledText");
 
             return wl;
          } else {
@@ -84,9 +113,7 @@ export function WrappLetter({
             let cssClass = !specialStructure ? ClassToAdd : "";
 
             if (perWord) {
-               if (
-                  searchWordValue.includes(wrappElement)
-               ) {
+               if (searchWordValue.includes(wrappElement)) {
                   cssClass = !specialStructure
                      ? [ClassToAdd, specialClass].join(" ")
                      : specialClass;
