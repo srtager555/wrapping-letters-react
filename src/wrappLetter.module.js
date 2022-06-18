@@ -113,7 +113,7 @@ export function WrappLetter({
             crumbledText.splice(index, newCrumbledText.length - 1);
 
             return wl;
-         } else outSpecialClass();
+         } else return outSpecialClass();
 
          function outSpecialClass() {
             //here is wrapped per word.
@@ -142,7 +142,6 @@ export function WrappLetter({
          }
       })
       .flat();
-
       console.log(arrElements);
    if (
       arrElements[0][0] === " " &&
