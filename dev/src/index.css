@@ -9,7 +9,7 @@
 body {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     
     height: 100vh;
     background: #f5f5f5;
@@ -20,12 +20,19 @@ body {
     margin-left: 10px;
     white-space: pre;
 }
-.container:nth-child(even) {
-    color: #f00;
-}
 
 .special-class-1 {
     color: blue;
+    font-size: 20px;
+    font-weight: 500;
+}
+.special-class-2 {
+    color: red;
+    font-size: 20px;
+    font-weight: 500;
+}
+.special-class-3 {
+    color: yellowgreen;
     font-size: 20px;
     font-weight: 500;
 }
