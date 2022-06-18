@@ -5,18 +5,15 @@ SIMPLIFIES THE JOB OF WRAPPING LETTERS IN HTML TAGS
 
 ## New upgrades
 
-2.0.0 is now!!!!!
+2.1.0 is now!!!
 
-I'll start the new version with very small changes. Props have been renamed: word -> text, word options -> text options.
+Now the code can be able to find more than 2 specialWord and add more than 2 specialClass.
 
-For the best performance in code development, it is now more intuitive.
+I worked hard on this update because I changed a lot of the code to do the checks correctly.
 
-2.0.3
-Issue about unrestored file resolved
+come soon 2.2.0 
 
-come soon 2.1.0
-
-In this version, you will be able to find more than 2 specialWord and add more than 2 specialClass.
+New options about the structure of the wrapped for reduce your code
 
 ## News
 
@@ -127,9 +124,31 @@ Is so easy to use, call the attribute and places the class of your choice
 in the sentence, is so easy to use:
 
 
-- ```wordToSearch: <String>``` is the word to search, only accept strings!.
+- ```wordToSearch: <String>``` is the word to search for, but you can search for more word with an ```[Array]```.
 
-- ```classToAdd: <String>``` is the class to add a the ```<span>```
+- ```classToAdd: <String>``` is the class to add a the ```<span>```, You can add more specialClass with an ```[Array]```, The code will put the class depending of its index, for example: 
+
+``` 
+// You put 3 words to search
+
+wordToSearch: ["cheese", "rice", "eggs"]
+
+// the code will select the index of the word and
+// will check what the class is in the array.
+
+classToAdd: ["class-1", "class-2"]
+
+// if the index of the word is greater than that of 
+// the length of the array of specialClass, it'll 
+// select the first class.
+
+return
+    // PerWord: true
+    <span class="class-1">cheese </span>
+    <span class="class-2">rice </span>
+    <span class="class-1">eggs</span>
+
+```
 
 - ```spaceBetweenWord: <Boolean>``` is the a conditional for the search (default is `false`).
   
