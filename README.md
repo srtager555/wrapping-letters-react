@@ -11,6 +11,8 @@ Now the code can be able to find more than 2 specialWord and add more than 2 spe
 
 I worked hard on this update because I changed a lot of the code to do the checks correctly.
 
+2.1.1: error in the export solved
+
 come soon 2.2.0 
 
 New options about the structure of the wrapped for reduce your code
