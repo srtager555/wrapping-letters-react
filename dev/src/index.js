@@ -6,12 +6,13 @@ import ReactDOM from "react-dom";
 import "./index.css";
 
 function devStructure({ letter, cssClass, ...prop }) {
+   // console.log(prop)
    return (
       <>
          <div {...prop} className="container">
-            <span>{`LETTER: ${letter}, `}</span>
-            <span>{`CLASS: ${cssClass}`}</span>
-            <span>{`KEY: ${prop.key}`}</span>
+            <span className={cssClass}>{`LETTER: ${letter}, `}</span>
+            <span className={cssClass}>{`CLASS: ${cssClass}`}</span>
+            <span className={cssClass}>{`KEY: ${prop}`}</span>
          </div>
       </>
    );
@@ -27,11 +28,11 @@ function App() {
                   ClassToAdd: "class",
                   SelectClass: {
                      // new object with the class to add []
-                     wordToSearch: [ "is", "Carlos", "person,", "a", "good", ],
-                     classToAdd: "special-class-1",
-                     spaceBetweenWord: false,
+                     wordToSearch: [ "is", "Carlos", "person,", "h", "a", "good", ],
+                     classToAdd: ["special-class-1", "special-class-2", "special-class-3",],
+                     // spaceBetweenWord: true,
                   },
-                  PerWord: false,
+                  PerWord: true,
                },
             ]}
             // structure={devStructure}
