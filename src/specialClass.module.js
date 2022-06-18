@@ -74,9 +74,9 @@ export function selectSpecialClass({
 
    // comprobation for search within words
    if (SelectClass.spaceBetweenWord === true && perWord === false) {
-      searchWordValue = searchWordValue.map((element) => {
-         return ` ${element} `;
-      })
+      // searchWordValue = searchWordValue.map((element) => {
+      //    return ` ${element} `;
+      // })
       crumbledText.push(" ");
 
       crumbledText.unshift(" ");
