@@ -32,10 +32,10 @@ function App() {
                      classToAdd: ["special-class-1", "special-class-2", "special-class-3",],
                      // spaceBetweenWord: true,
                   },
-                  PerWord: false,
+                  PerWord: true,
                },
             ]}
-            structure={devStructure}
+            // structure={devStructure}
          />
       </>
    );

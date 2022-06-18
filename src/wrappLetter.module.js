@@ -142,7 +142,7 @@ export function WrappLetter({
          }
       })
       .flat();
-      console.log(arrElements);
+      
    if (
       arrElements[0][0] === " " &&
       arrElements[arrElements.length - 1][0] === " "
