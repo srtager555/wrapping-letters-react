@@ -25,7 +25,6 @@ export function WrappLetter({
    // comprobation if searchWordValue is an array
    if (!Array.isArray(searchWordValue)) {
       searchWordValue = [searchWordValue];
-      console.log(searchWordValue);
    }
 
    var arrElements = crumbledText
