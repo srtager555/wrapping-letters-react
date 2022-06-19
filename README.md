@@ -13,6 +13,8 @@ I worked hard on this update because I changed a lot of the code to do the check
 
 2.1.1: error in the export solved
 
+2.1.2: A hidden log has been removed
+
 come soon 2.2.0 
 
 New options about the structure of the wrapped for reduce your code
