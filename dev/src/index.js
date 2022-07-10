@@ -1,5 +1,5 @@
-import WrappingLetters from "../../src";
-// import WrappingLetters from "../../lib";
+// import WrappingLetters from "../../src";
+import WrappingLetters from "../../lib";
 import React from "react";
 import ReactDOM from "react-dom";
 
@@ -42,7 +42,7 @@ function App() {
                   PerWord: true,
                },
             ]}
-            structure={devStructure}
+            // structure={devStructure}
          />
       </>
    );
