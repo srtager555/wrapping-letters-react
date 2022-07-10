@@ -9,9 +9,9 @@ export default function WrappingLetters({
    textOptions = [{}],
    structure,
 }) {
-   function baseStructure({ letter, cssClass, ...props }) {
+   function baseStructure({ letter, cssClass }) {
       return (
-         <span className={cssClass} {...props}>
+         <span className={cssClass}>
             {letter}
          </span>
       );

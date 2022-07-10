@@ -1,18 +1,21 @@
-// import WrappingLetters from "../../src";
-import WrappingLetters from "../../lib";
+import WrappingLetters from "../../src";
+// import WrappingLetters from "../../lib";
 import React from "react";
 import ReactDOM from "react-dom";
 
 import "./index.css";
 
-function devStructure({ letter, cssClass, ...prop }) {
+function specialTag(element, setKey) {
+   return
+}
+
+function devStructure({ letter, cssClass }) {
    // console.log(prop)
    return (
       <>
-         <div {...prop} className="container">
+         <div className="container">
             <span className={cssClass}>{`LETTER: ${letter}, `}</span>
             <span className={cssClass}>{`CLASS: ${cssClass}`}</span>
-            <span className={cssClass}>{`KEY: ${prop}`}</span>
          </div>
       </>
    );
@@ -32,10 +35,14 @@ function App() {
                      classToAdd: ["special-class-1", "special-class-2", "special-class-3",],
                      // spaceBetweenWord: true,
                   },
+                  // specialStructure: {
+                  //    wordToSearch: "good",
+                  //    structureToAdd: specialTag,
+                  // },
                   PerWord: true,
                },
             ]}
-            // structure={devStructure}
+            structure={devStructure}
          />
       </>
    );

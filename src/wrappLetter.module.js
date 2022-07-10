@@ -155,7 +155,7 @@ export function WrappLetter({
          <Structure
             letter={wrappElement[0]}
             cssClass={wrappElement[1]}
-            key={`${wrappElement[0]}-${index}`}
+            key={`'${wrappElement[0]}'-${index}`}
          />
       );
    });
