@@ -15,6 +15,8 @@ I worked hard on this update because I changed a lot of the code to do the check
 
 2.1.2: A hidden log has been removed
 
+2.1.3: A problem in the key is solved.
+
 come soon 2.2.0 
 
 New options about the structure of the wrapped for reduce your code
@@ -270,9 +272,9 @@ The list of element to send a the component for now is small:
 
 - ```cssClass``` is the special css class
 
-```!IMPORTANT``` The elements under this line, cannot be assigned for their key name, only can be used with the deconstruction
+```!IMPORTANT``` The key is assigned automatically in the component
 
-- ```key``` is the key :3 ({wrappedElement}-{indexNumber})
+- ```key``` is the key :3 ('{wrappedElement}'-{indexNumber})
 
 
 ```!IMPORTANT```
