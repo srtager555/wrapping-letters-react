@@ -73,12 +73,9 @@ export default function WrappingLetters({
             a = letter;
          }
       }
-      return (
-         <Structure letter={a} key={`'${letter}'-${index}}`} />
-      );
+      return <Structure letter={a} key={`'${letter}'-${index}}`} />;
    });
 
-   console.log(wrappedLetters)
 
    const WHATIS_TEXTOPTIONS = whatItIs(textOptions);
 
@@ -89,12 +86,11 @@ export default function WrappingLetters({
    ) {
       // Come soon the code will work an array.
 
-      console.error('"textOptions" must be an Object')
-      console.warn('The component now is returning a simple wrapp')
-      
+      console.warn('"textOptions" must be an Object --- wrapping-letters');
+      console.warn("The component now is returning a simple wrapp --- wrapping-letters");
 
       // here is a simple wrapp
-      return wrappedLetters
+      return wrappedLetters;
    }
 
    // textOptions can't be empty
@@ -102,77 +98,73 @@ export default function WrappingLetters({
       whatItIs(textOptions) === "[object Object]" &&
       Object.keys(textOptions).length === 0
    ) {
-
       // here is a simple wrapp
-      return wrappedLetters
+      return wrappedLetters;
    }
 
-      // if (whatItIs(textOptions) !== "[object Array]") {
-      //    throw new Error("textOptions must be an array");
-      // } else
-      //  if (textOptions.length > 0) {
-         // if (whatItIs(textOptions[0]) !== "[object Object]") {
-         //    throw new Error(
-         //       "inside the array of textOptions there must be an object"
-         //    );
-         // }
+   // if (whatItIs(textOptions) !== "[object Array]") {
+   //    throw new Error("textOptions must be an array");
+   // } else
+   //  if (textOptions.length > 0) {
+   // if (whatItIs(textOptions[0]) !== "[object Object]") {
+   //    throw new Error(
+   //       "inside the array of textOptions there must be an object"
+   //    );
+   // }
 
-         let textOptionsKeys = Object.keys(textOptions);
+   let textOptionsKeys = Object.keys(textOptions);
 
-         const verifytextOptionsKeys = (value, valueNb = 1) => {
-            if (
-               textOptionsKeys.length === valueNb &&
-               textOptionsKeys.includes(value)
-            )
-               return true;
-            else return false;
-         };
+   const verifytextOptionsKeys = (value, valueNb = 1) => {
+      if (textOptionsKeys.length === valueNb && textOptionsKeys.includes(value))
+         return true;
+      else return false;
+   };
 
-         if (textOptions.length > 1) {
-            throw new Error("textOptions must be a single object");
-         }
+   if (textOptions.length > 1) {
+      throw new Error("textOptions must be a single object");
+   }
 
-         const wl_props = [
-            "ClassToAdd",
-            "SelectClass",
-            "SpecialStructure",
-            "PerWord",
-         ];
-         const containThisProps = (value) => wl_props.includes(value);
-         const container = textOptionsKeys.every(containThisProps);
+   const wl_props = [
+      "ClassToAdd",
+      "SelectClass",
+      "SpecialStructure",
+      "PerWord",
+   ];
+   const containThisProps = (value) => wl_props.includes(value);
+   const container = textOptionsKeys.every(containThisProps);
 
-         if (!container) {
-            throw new Error(
-               `textOptions must contain the following properties: ${wl_props.join(
-                  " "
-               )}`
-            );
-         }
+   if (!container) {
+      throw new Error(
+         `textOptions must contain the following properties: ${wl_props.join(
+            " "
+         )}`
+      );
+   }
 
-         if (whatItIs(ClassToAdd) !== "[object String]") {
-            throw new Error("ClassToAdd must be a string");
-         } else if (whatItIs(PerWord) !== "[object Boolean]") {
-            throw new Error("PerWord must be a boolean");
-         }
+   if (whatItIs(ClassToAdd) !== "[object String]") {
+      throw new Error("ClassToAdd must be a string");
+   } else if (whatItIs(PerWord) !== "[object Boolean]") {
+      throw new Error("PerWord must be a boolean");
+   }
 
-         const wrappProps = {
-            SelectClass,
-            ClassToAdd,
-            perWord: PerWord,
-            crumbledText,
-            Structure,
-            specialStructure,
-         };
+   const wrappProps = {
+      SelectClass,
+      ClassToAdd,
+      perWord: PerWord,
+      crumbledText,
+      Structure,
+      specialStructure,
+   };
 
-         if (textOptionsKeys.includes("SelectClass")) {
-            if (whatItIs(SelectClass) !== "[object Object]") {
-               throw new Error("SelectClass must be an object");
-            }
-            return selectSpecialClass(wrappProps);
-         } else {
-            return WrappLetter(wrappProps);
-         }
-      // }
+   if (textOptionsKeys.includes("SelectClass")) {
+      if (whatItIs(SelectClass) !== "[object Object]") {
+         throw new Error("SelectClass must be an object");
+      }
+      return selectSpecialClass(wrappProps);
+   } else {
+      return WrappLetter(wrappProps);
+   }
+   // }
    // ---- warning of empty textOpting---- //
    // if (textOptionsKeys.length === 0) {
    //    Structure !== baseStructure

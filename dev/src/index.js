@@ -45,8 +45,7 @@ function App() {
       <>
          <WrappingLetters
             text="Carlos is a good person, This a Carlosproblemisitagoodperson, but Carlos is a bad person, Yeah, he is Carlos"
-            textOptions={[
-               {
+            textOptions={{
                   ClassToAdd: "class",
                   SelectClass: {
                      // new object with the class to add []
@@ -65,13 +64,16 @@ function App() {
                      ],
                      // spaceBetweenWord: true,
                   },
+            }}
+               // {
                   // specialStructure: {
                   //    wordToSearch: "good",
                   //    structureToAdd: specialTag,
                   // },
-                  PerWord: true,
-               },
-            ]}
+               //    PerWord: true,
+               // },
+            
+            // }
             // structure={devStructure}
          />
       </>
