@@ -9,17 +9,32 @@ export default function WrappingLetters({
    textOptions = [{}],
    structure,
 }) {
-   function baseStructure({ letter, cssClass }) {
-      return (
-         <span className={cssClass}>
-            {letter}
-         </span>
+   function baseStructure({ letter, cssClass, specialStructure = {} }) {
+      function DEFAULT_COMPONENT({ letter, cssClass }) {
+         return <span className={cssClass}>{letter}</span>;
+      }
+      
+      const {
+         hasModification = false,
+         NewTagStructure = () => (
+            <DEFAULT_COMPONENT letter={letter} cssClass={cssClass} />
+         ),
+      } = specialStructure;
+
+      return hasModification ? (
+         <NewTagStructure />
+      ) : (
+         <DEFAULT_COMPONENT letter={letter} cssClass={cssClass} />
       );
    }
    const Structure = structure || baseStructure;
    let specialStructure = Structure !== baseStructure ? true : false;
 
-   const { PerWord = false, ClassToAdd = new String(), SelectClass = {} } =  textOptions[0]
+   const {
+      PerWord = false,
+      ClassToAdd = new String(),
+      SelectClass = {},
+   } = textOptions[0];
 
    const isIts = (it) => {
       return Object.prototype.toString.call(it);
@@ -40,22 +55,19 @@ export default function WrappingLetters({
       throw new Error("PerWord must be a boolean");
    }
 
-   let crumbledText = (PerWord ? text.split(" ") : [...text])
+   let crumbledText = PerWord ? text.split(" ") : [...text];
 
    var wrappedLetters = crumbledText.map(function (letter, index) {
       var a;
-      if(PerWord) {
-         if(index != crumbledText.length - 1) {
-            a = letter + " ";  
+      if (PerWord) {
+         if (index != crumbledText.length - 1) {
+            a = letter + " ";
          } else {
             a = letter;
          }
       }
       return (
-         <Structure
-            letter={a}
-            key={`${letter} ${index}-${Math.random()}`}
-         />
+         <Structure letter={a} key={`${letter} ${index}-${Math.random()}`} />
       );
    });
 
@@ -83,12 +95,14 @@ export default function WrappingLetters({
          throw new Error("textOptions must be a single object");
       }
 
-      const wl_props = ['ClassToAdd', 'SelectClass', 'PerWord'];
+      const wl_props = ["ClassToAdd", "SelectClass", "PerWord"];
       const containThisProps = (value) => wl_props.includes(value);
-      const container  = textOptionsKeys.every(containThisProps);
-      
-      if(!container) {
-         throw new Error("textOptions must contain the following properties: ClassToAdd, SelectClass, PerWord");
+      const container = textOptionsKeys.every(containThisProps);
+
+      if (!container) {
+         throw new Error(
+            "textOptions must contain the following properties: ClassToAdd, SelectClass, PerWord"
+         );
       }
 
       if (isIts(ClassToAdd) !== "[object String]") {
@@ -104,9 +118,9 @@ export default function WrappingLetters({
          crumbledText,
          Structure,
          specialStructure,
-      }
+      };
 
-      if(textOptionsKeys.includes('SelectClass')) {
+      if (textOptionsKeys.includes("SelectClass")) {
          if (isIts(SelectClass) !== "[object Object]") {
             throw new Error("SelectClass must be an object");
          }

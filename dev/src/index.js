@@ -1,5 +1,5 @@
-// import WrappingLetters from "../../src";
-import WrappingLetters from "../../lib";
+import WrappingLetters from "../../src";
+// import WrappingLetters from "../../lib";
 import React from "react";
 import ReactDOM from "react-dom";
 
