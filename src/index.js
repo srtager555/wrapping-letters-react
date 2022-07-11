@@ -9,6 +9,7 @@ export default function WrappingLetters({
    textOptions = [{}],
    structure,
 }) {
+   // first need declare the component to return
    function baseStructure({ letter, cssClass, specialStructure = {} }) {
       function DEFAULT_COMPONENT({ letter, cssClass }) {
          return <span className={cssClass}>{letter}</span>;
@@ -27,31 +28,36 @@ export default function WrappingLetters({
          <DEFAULT_COMPONENT letter={letter} cssClass={cssClass} />
       );
    }
+
+   // if the user has a custom structure here it will be changed by it
    const Structure = structure || baseStructure;
    let specialStructure = Structure !== baseStructure ? true : false;
 
+   // now destructure the props
    const {
       PerWord = false,
       ClassToAdd = new String(),
       SelectClass = {},
+      customWrapp = {}
    } = textOptions[0];
 
-   const isIts = (it) => {
+   // This function is to know what it is.
+   const whatItIs = (it) => {
       return Object.prototype.toString.call(it);
    };
 
-   if (isIts(text) !== "[object String]") {
+   if (whatItIs(text) !== "[object String]") {
       throw new Error("text must be a string");
    }
    if (text === "") {
       throw new Error("text cannot be empty");
    }
 
-   if (isIts(Structure) !== "[object Function]") {
+   if (whatItIs(Structure) !== "[object Function]") {
       throw new Error("Structure must be a function(React Component)");
    }
 
-   if (isIts(PerWord) !== "[object Boolean]") {
+   if (whatItIs(PerWord) !== "[object Boolean]") {
       throw new Error("PerWord must be a boolean");
    }
 
@@ -71,10 +77,10 @@ export default function WrappingLetters({
       );
    });
 
-   if (isIts(textOptions) !== "[object Array]") {
+   if (whatItIs(textOptions) !== "[object Array]") {
       throw new Error("textOptions must be an array");
    } else if (textOptions.length > 0) {
-      if (isIts(textOptions[0]) !== "[object Object]") {
+      if (whatItIs(textOptions[0]) !== "[object Object]") {
          throw new Error(
             "inside the array of textOptions there must be an object"
          );
@@ -95,19 +101,19 @@ export default function WrappingLetters({
          throw new Error("textOptions must be a single object");
       }
 
-      const wl_props = ["ClassToAdd", "SelectClass", "PerWord"];
+      const wl_props = ["ClassToAdd", "SelectClass", "SpecialStructure", "PerWord"];
       const containThisProps = (value) => wl_props.includes(value);
       const container = textOptionsKeys.every(containThisProps);
 
       if (!container) {
          throw new Error(
-            "textOptions must contain the following properties: ClassToAdd, SelectClass, PerWord"
+            `textOptions must contain the following properties: ${wl_props.join(" ")}`
          );
       }
 
-      if (isIts(ClassToAdd) !== "[object String]") {
+      if (whatItIs(ClassToAdd) !== "[object String]") {
          throw new Error("ClassToAdd must be a string");
-      } else if (isIts(PerWord) !== "[object Boolean]") {
+      } else if (whatItIs(PerWord) !== "[object Boolean]") {
          throw new Error("PerWord must be a boolean");
       }
 
@@ -121,7 +127,7 @@ export default function WrappingLetters({
       };
 
       if (textOptionsKeys.includes("SelectClass")) {
-         if (isIts(SelectClass) !== "[object Object]") {
+         if (whatItIs(SelectClass) !== "[object Object]") {
             throw new Error("SelectClass must be an object");
          }
          return selectSpecialClass(wrappProps);
