@@ -17,6 +17,8 @@ I worked hard on this update because I changed a lot of the code to do the check
 
 2.1.3: A problem in the key is solved.
 
+2.1.4: A issue in the simple wrapp is solved and now the array in textOptions is removed(you can't use an array in TO now)
+
 come soon 2.2.0 
 
 New options about the structure of the wrapped for reduce your code
@@ -74,7 +76,7 @@ Now you can add a special options to the text, is so easy!:
 ```
 <WrappingLetters 
     text="I'm the new text" 
-    textOptions={[
+    textOptions={
         {
             "ClassToAdd": "letter-wrapp",
 
@@ -84,7 +86,7 @@ Now you can add a special options to the text, is so easy!:
               spaceBetweenWord: false,
             }
         },
-    ]}
+    }
 />
 ```
 
@@ -94,11 +96,11 @@ a special class for a word or phrase, put a class for all letters or both
 #
 ## How to add a class for all letters
 ```
-textOptions={[
+textOptions={
         {
             "ClassToAdd": "letter-wrapp",
         },
-    ]}
+    }
 
 ```
 The atribute ```"ClassToAdd"``` of the new prop is your solution
@@ -114,7 +116,7 @@ Is so easy to use, call the attribute and places the class of your choice
 
 ```
   text="WrappingLetters"
-  textOptions={[
+  textOptions={
         {
             "SelectClass": {
               wordToSearch: "ping",
@@ -122,7 +124,7 @@ Is so easy to use, call the attribute and places the class of your choice
               spaceBetweenWord: false,
             }
         },
-    ]}
+    }
 ```
 ```"SelectClass"``` is the solution for this problem.
 
@@ -179,7 +181,7 @@ Is very easy to use:
 ```
     <WrappingLetters
          text="Carlos is a good person, but Carlos is a bad person"
-         textOptions={[
+         textOptions={
             {
                ClassToAdd: "class",
                SelectClass: {
@@ -188,7 +190,7 @@ Is very easy to use:
                },
                PerWord: true,
             },
-         ]}
+         }
     />
 ```
 
@@ -225,7 +227,7 @@ function App(){
     return(
         <WrappingLetters 
          text='This is the sentence to wrapped'
-            textOptions={[
+            textOptions={
                 {
                     SelectClass: {
                         wordToSearch: 'sentence',
@@ -233,7 +235,7 @@ function App(){
                         spaceBeetwenWord: true,,
                     },
                 }
-            ]}
+            }
             structure={ReactComponent}
         />
     )

@@ -40,6 +40,16 @@ function devStructure({ letter, cssClass, specilStructure }) {
    return <Component />
 }
 
+function structure({ letter, cssClass, }) {
+   const Default = (
+      <div className="container">
+         <span className={cssClass}>{`LETTER: ${letter}, `}</span>
+         <span className={cssClass}>{`CLASS: ${cssClass}`}</span>
+      </div>
+   );
+   return Default
+}
+
 function App() {
    return (
       <>
@@ -74,7 +84,7 @@ function App() {
                // },
             
             // }
-            // structure={devStructure}
+            structure={structure}
          />
       </>
    );
