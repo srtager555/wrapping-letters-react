@@ -73,13 +73,13 @@ function App() {
                         "special-class-3",
                      ],
                      // spaceBetweenWord: true,
-                  },
-            }}
-               // {
-                  // specialStructure: {
+                  // specialWrapp: {
                   //    wordToSearch: "good",
                   //    structureToAdd: specialTag,
                   // },
+                  },
+            }}
+               // {
                //    PerWord: true,
                // },
             
