@@ -3,12 +3,7 @@ import React from "react";
 // The function needs to be upgraded for the attribute perWord
 
 export function WrappLetter({
-   SelectClass = {
-      searchWordValue,
-      searchWordValueLength,
-      specialClass,
-      spaceBetweenWord,
-   },
+   SelectClass,
    crumbledText,
    ClassToAdd,
    Structure,
@@ -17,7 +12,6 @@ export function WrappLetter({
 }) {
    let {
       searchWordValue = "",
-      searchWordValueLength = 0,
       specialClass = new String(),
       spaceBetweenWord = false,
    } = SelectClass;

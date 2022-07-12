@@ -38,7 +38,7 @@ export default function WrappingLetters({
       PerWord = false,
       ClassToAdd = new String(),
       SelectClass = {},
-      customWrapp = {},
+      SpecialWrapp = {},
    } = textOptions;
 
    // This function is to know what it is.
@@ -76,7 +76,6 @@ export default function WrappingLetters({
       return <Structure letter={a} key={`'${letter}'-${index}}`} />;
    });
 
-
    const WHATIS_TEXTOPTIONS = whatItIs(textOptions);
 
    // textOptions must be an Object
@@ -87,7 +86,9 @@ export default function WrappingLetters({
       // Come soon the code will work an array.
 
       console.warn('"textOptions" must be an Object --- wrapping-letters');
-      console.warn("The component now is returning a simple wrapp --- wrapping-letters");
+      console.warn(
+         "The component now is returning a simple wrapp --- wrapping-letters"
+      );
 
       // here is a simple wrapp
       return wrappedLetters;
@@ -102,27 +103,7 @@ export default function WrappingLetters({
       return wrappedLetters;
    }
 
-   // if (whatItIs(textOptions) !== "[object Array]") {
-   //    throw new Error("textOptions must be an array");
-   // } else
-   //  if (textOptions.length > 0) {
-   // if (whatItIs(textOptions[0]) !== "[object Object]") {
-   //    throw new Error(
-   //       "inside the array of textOptions there must be an object"
-   //    );
-   // }
-
    let textOptionsKeys = Object.keys(textOptions);
-
-   const verifytextOptionsKeys = (value, valueNb = 1) => {
-      if (textOptionsKeys.length === valueNb && textOptionsKeys.includes(value))
-         return true;
-      else return false;
-   };
-
-   if (textOptions.length > 1) {
-      throw new Error("textOptions must be a single object");
-   }
 
    const wl_props = [
       "ClassToAdd",
@@ -130,50 +111,47 @@ export default function WrappingLetters({
       "SpecialStructure",
       "PerWord",
    ];
+
    const containThisProps = (value) => wl_props.includes(value);
    const container = textOptionsKeys.every(containThisProps);
 
    if (!container) {
       throw new Error(
          `textOptions must contain the following properties: ${wl_props.join(
-            " "
+            ", "
          )}`
       );
    }
 
-   if (whatItIs(ClassToAdd) !== "[object String]") {
+   if (whatItIs(ClassToAdd) !== "[object String]") 
       throw new Error("ClassToAdd must be a string");
-   } else if (whatItIs(PerWord) !== "[object Boolean]") {
+   
+
+   if (whatItIs(PerWord) !== "[object Boolean]") 
       throw new Error("PerWord must be a boolean");
-   }
 
    const wrappProps = {
-      SelectClass,
       ClassToAdd,
-      perWord: PerWord,
       crumbledText,
-      Structure,
+      perWord: PerWord,
+      SelectClass,
       specialStructure,
+      SpecialWrapp,
+      Structure,
    };
 
+
    if (textOptionsKeys.includes("SelectClass")) {
-      if (whatItIs(SelectClass) !== "[object Object]") {
+      if (whatItIs(SelectClass) !== "[object Object]")
          throw new Error("SelectClass must be an object");
-      }
+
       return selectSpecialClass(wrappProps);
-   } else {
-      return WrappLetter(wrappProps);
    }
-   // }
-   // ---- warning of empty textOpting---- //
-   // if (textOptionsKeys.length === 0) {
-   //    Structure !== baseStructure
-   //       ? console.warn(
-   //            '"textOptions" is empty, returning a simple wrapper with structure'
-   //         )
-   //       : console.warn(
-   //            '"textOptions" is empty, returning a simple wrapper of letters'
-   //         );
-   // } // ---- Leave the process, start normal wrapp ---- //
-   // return wrappedLetters;
+
+   if (textOptionsKeys.includes("SpecialWrapp")) {
+      if (whatItIs(SpecialWrapp) !== "[object Object]")
+         throw new Error("SelectClass must be an object");
+   }
+
+   return WrappLetter(wrappProps);
 }
