@@ -52,7 +52,10 @@ export default function WrappingLetters({
    if (whatItIs(textOptions) !== "[object Object]")
       throw new Error('"textOptions" must be an Object --- wrapping-letters');
 
-   let wrappProps = {};
+   let wrappProps = {
+      Structure,
+      specialStructure
+   };
 
    // delfaut value layout and value comprobations
    textOptions__process_layout__(textOptions, wrappProps);
@@ -66,45 +69,18 @@ export default function WrappingLetters({
    const crumbledText = PerWord ? text.split(" ") : [...text];
 
    // Process of the specialClass object
-   process__select_specialClass__({
+   const SPECIAL_CLASS__INFO_PROCESSED = process__select_specialClass__({
       SelectClass: wrappProps.SelectClass,
       crumbledText,
       PerWord,
    });
 
-   wrappProps = {
-      crumbledText,
-      perWord: PerWord,
-      Structure,
-      specialStructure,
-      SpecialWrapp,
-      ClassToAdd,
-      SelectClass,
-   };
+   wrappProps.SelectClass = SPECIAL_CLASS__INFO_PROCESSED;
 
-   if (textOptionsKeys.includes("SelectClass")) {
-      if (whatItIs(SelectClass) !== "[object Object]")
-         throw new Error("SelectClass must be an object");
 
-      return selectSpecialClass(wrappProps);
-   }
 
-   if (textOptionsKeys.includes("SpecialWrapp")) {
-      if (whatItIs(SpecialWrapp) !== "[object Object]")
-         throw new Error("SelectClass must be an object");
-   }
+   // The code will add the last values in the obj.
+   wrappProps.crumbledText = crumbledText
 
    return WrappLetter(wrappProps);
 }
-
-// var wrappedLetters = crumbledText.map(function (letter, index) {
-//    var a = letter;
-//    if (PerWord) {
-//       if (index != crumbledText.length - 1) {
-//          a = letter + " ";
-//       } else {
-//          a = letter;
-//       }
-//    }
-//    return <Structure letter={a} key={`'${letter}'-${index}}`} />;
-// });
