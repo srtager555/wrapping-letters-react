@@ -5,11 +5,12 @@ export function error__Filter_SpecialClass__(SelectClass, PerWord) {
     if (whatItIs(SelectClass) != '[object Object]') 
         throw new Error("SelectClass must be an Object!!! :s")
 
+   const SelectClassKeys = Object.keys(SelectClass);
+
     // If SelectClass an empty Object the filter ends here
-    if (SelectClass === {})
+    if (SelectClassKeys.length === 0)
         return
 
-    const SelectClassKeys = Object.keys(SelectClass);
  
     const sc_props = ["wordToSearch", "classToAdd", "spaceBetweenWord"];
  
