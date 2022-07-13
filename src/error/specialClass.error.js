@@ -1,7 +1,13 @@
 import { whatItIs } from "../common/whatIsIt";
 
 export function error__Filter_SpecialClass__(SelectClass, PerWord) {
+    // first the code need know if SelectClass is an Object
+    if (whatItIs(SelectClass) != '[object Object]') 
+        throw new Error("SelectClass must be an Object!!! :s")
 
+    // If SelectClass an empty Object the filter ends here
+    if (SelectClass === {})
+        return
 
     const SelectClassKeys = Object.keys(SelectClass);
  
