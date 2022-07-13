@@ -1,4 +1,8 @@
+import { whatItIs } from "../common/whatIsIt";
+
 export function error__Filter_SpecialClass__(SelectClass, PerWord) {
+
+
     const SelectClassKeys = Object.keys(SelectClass);
  
     const sc_props = ["wordToSearch", "classToAdd", "spaceBetweenWord"];

@@ -1,4 +1,5 @@
 import { error__Filter_SpecialClass__ } from "./specialClass.error"
+import { whatItIs } from "../common/whatIsIt";
 
 export function error__main_filter__(wrappProps) {
    const { ClassToAdd, SelectClass, SpecialWrapp, PerWord } = wrappProps;

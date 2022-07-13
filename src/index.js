@@ -1,8 +1,11 @@
 import React from "react";
 
+import { textOptions__process_layout__ } from "./layout";
 import { WrappLetter } from "./wrappLetter.module";
+import { process__select_specialClass__ } from "./specialClass.process";
+import { error__main_filter__ } from "./error";
 
-import { selectSpecialClass } from "./specialClass.module";
+import { whatItIs } from "./common/whatIsIt";
 
 export default function WrappingLetters({
    text = "Hello world !!! <3",
@@ -33,19 +36,7 @@ export default function WrappingLetters({
    const Structure = structure || baseStructure;
    let specialStructure = Structure !== baseStructure ? true : false;
 
-   // now destructure the props
-   const {
-      PerWord = false,
-      ClassToAdd = new String(),
-      SelectClass = {},
-      SpecialWrapp = {},
-   } = textOptions;
-
-   // This function is to know what it is.
-   const whatItIs = (it) => {
-      return Object.prototype.toString.call(it);
-   };
-
+   // checks to avoid errors
    if (whatItIs(text) !== "[object String]") {
       throw new Error("text must be a string");
    }
@@ -57,89 +48,39 @@ export default function WrappingLetters({
       throw new Error("Structure must be a function(React Component)");
    }
 
-   if (whatItIs(PerWord) !== "[object Boolean]") {
-      throw new Error("PerWord must be a boolean");
-   }
+   // textOptions must be an Object
+   if (whatItIs(textOptions) !== "[object Object]")
+      throw new Error('"textOptions" must be an Object --- wrapping-letters');
 
-   // here the code will make a simple wrapp for to return
-   let crumbledText = PerWord ? text.split(" ") : [...text];
+   let wrappProps = {};
 
-   var wrappedLetters = crumbledText.map(function (letter, index) {
-      var a = letter;
-      if (PerWord) {
-         if (index != crumbledText.length - 1) {
-            a = letter + " ";
-         } else {
-            a = letter;
-         }
-      }
-      return <Structure letter={a} key={`'${letter}'-${index}}`} />;
+   // delfaut value layout and value comprobations
+   textOptions__process_layout__(textOptions, wrappProps);
+
+   // here the code will cath the errors in the user's code
+   error__main_filter__(wrappProps);
+
+   const { ClassToAdd, SelectClass, SpecialWrapp, PerWord } = wrappProps;
+
+   // here the code will declare the crumble text per word or letters
+   const crumbledText = PerWord ? text.split(" ") : [...text];
+
+   // Process of the specialClass object
+   process__select_specialClass__({
+      SelectClass: wrappProps.SelectClass,
+      crumbledText,
+      PerWord,
    });
 
-   const WHATIS_TEXTOPTIONS = whatItIs(textOptions);
-
-   // textOptions must be an Object
-   if (
-      // WHATIS_TEXTOPTIONS !== "[object Array]" &&
-      WHATIS_TEXTOPTIONS !== "[object Object]"
-   ) {
-      // Come soon the code will work an array.
-
-      console.warn('"textOptions" must be an Object --- wrapping-letters');
-      console.warn(
-         "The component now is returning a simple wrapp --- wrapping-letters"
-      );
-
-      // here is a simple wrapp
-      return wrappedLetters;
-   }
-
-   // textOptions can't be empty
-   if (
-      whatItIs(textOptions) === "[object Object]" &&
-      Object.keys(textOptions).length === 0
-   ) {
-      // here is a simple wrapp
-      return wrappedLetters;
-   }
-
-   let textOptionsKeys = Object.keys(textOptions);
-
-   const wl_props = [
-      "ClassToAdd",
-      "SelectClass",
-      "SpecialStructure",
-      "PerWord",
-   ];
-
-   const containThisProps = (value) => wl_props.includes(value);
-   const container = textOptionsKeys.every(containThisProps);
-
-   if (!container) {
-      throw new Error(
-         `textOptions must contain the following properties: ${wl_props.join(
-            ", "
-         )}`
-      );
-   }
-
-   if (whatItIs(ClassToAdd) !== "[object String]") 
-      throw new Error("ClassToAdd must be a string");
-   
-
-   if (whatItIs(PerWord) !== "[object Boolean]") 
-      throw new Error("PerWord must be a boolean");
-
-   const wrappProps = {
-      ClassToAdd,
+   wrappProps = {
       crumbledText,
       perWord: PerWord,
-      SelectClass,
+      Structure,
       specialStructure,
       SpecialWrapp,
-      Structure,
+      ClassToAdd,
+      SelectClass,
    };
-
 
    if (textOptionsKeys.includes("SelectClass")) {
       if (whatItIs(SelectClass) !== "[object Object]")
@@ -155,3 +96,15 @@ export default function WrappingLetters({
 
    return WrappLetter(wrappProps);
 }
+
+// var wrappedLetters = crumbledText.map(function (letter, index) {
+//    var a = letter;
+//    if (PerWord) {
+//       if (index != crumbledText.length - 1) {
+//          a = letter + " ";
+//       } else {
+//          a = letter;
+//       }
+//    }
+//    return <Structure letter={a} key={`'${letter}'-${index}}`} />;
+// });
