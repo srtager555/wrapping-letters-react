@@ -19,6 +19,8 @@ I worked hard on this update because I changed a lot of the code to do the check
 
 2.1.4: A issue in the simple wrapp is solved and now the array in textOptions is removed(you can't use an array in TO now)
 
+2.1.5: I optimized the code for a best performance in general
+
 come soon 2.2.0 
 
 New options about the structure of the wrapped for reduce your code
