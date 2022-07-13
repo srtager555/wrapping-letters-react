@@ -1,6 +1,6 @@
 import React from "react";
 
-// The function needs to be upgraded for the attribute perWord
+// The function needs to be upgraded for the attribute PerWord
 
 export function WrappLetter({
    SelectClass,
@@ -8,7 +8,7 @@ export function WrappLetter({
    ClassToAdd,
    Structure,
    specialStructure = false,
-   perWord = false,
+   PerWord = false,
 }) {
    let {
       searchWordValue = "",
@@ -37,7 +37,7 @@ export function WrappLetter({
             }
          };
 
-         if (!perWord) {
+         if (!PerWord) {
             if (!searchWordValue.some((element) => element.length > 0))
                return outSpecialClass();
 
@@ -112,7 +112,7 @@ export function WrappLetter({
             //here is wrapped per word.
             let cssClass = !specialStructure ? ClassToAdd : "";
 
-            if (perWord) {
+            if (PerWord) {
                if (searchWordValue.includes(wrappElement)) {
                   // here search the word in the array
                   // and add the class
