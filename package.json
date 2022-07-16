@@ -13,7 +13,9 @@
     "server": "webpack-dev-server --mode development --open",
     "start:dist": "webpack-dev-server --mode production --open",
     "start": "npm run server",
-    "send": "npm run build && npm link && npm publish"
+    "send": "npm run build && npm link && npm publish",
+    "prettier": "npx prettier -c .",
+    "prettier:format": "npx prettier -w ."
   },
   "repository": {
     "type": "git",
