@@ -10,11 +10,7 @@ export function WrappLetter({
    specialStructure = false,
    PerWord = false,
 }) {
-   let {
-      searchWordValue = "",
-      specialClass = new String(),
-      spaceBetweenWord = false,
-   } = SelectClass;
+   let { searchWordValue = "", specialClass = new String(), spaceBetweenWord = false } = SelectClass;
 
    // comprobation if searchWordValue is an array
    if (!Array.isArray(searchWordValue)) {
@@ -38,25 +34,16 @@ export function WrappLetter({
          };
 
          if (!PerWord) {
-            if (!searchWordValue.some((element) => element.length > 0))
-               return outSpecialClass();
+            if (!searchWordValue.some((element) => element.length > 0)) return outSpecialClass();
 
-            if (!searchWordValue.some((element) => wrappElement === element[0]))
-               return outSpecialClass();
+            if (!searchWordValue.some((element) => wrappElement === element[0])) return outSpecialClass();
 
-            if (
-               !searchWordValue.some(
-                  (element) => index + element.length <= crumbledText.length
-               )
-            )
+            if (!searchWordValue.some((element) => index + element.length <= crumbledText.length))
                return outSpecialClass();
 
             if (
                !searchWordValue.some(
-                  (element) =>
-                     crumbledText
-                        .slice(index, index + element.length)
-                        .join("") === element
+                  (element) => crumbledText.slice(index, index + element.length).join("") === element
                )
             )
                return outSpecialClass();
@@ -76,18 +63,14 @@ export function WrappLetter({
             // here made a new  string varible
             // for a map to add the class
             let newCrumbledText = searchWordValue.filter((element) => {
-               let cutted = crumbledText
-                  .slice(index, index + element.length)
-                  .join("");
+               let cutted = crumbledText.slice(index, index + element.length).join("");
                return cutted === element;
             });
 
             newCrumbledText = [...newCrumbledText[0]];
 
             var wl = newCrumbledText.map((wrappElement) => {
-               const INDEX_SPECIAL_CLASS = searchWordValue.indexOf(
-                  newCrumbledText.join("")
-               );
+               const INDEX_SPECIAL_CLASS = searchWordValue.indexOf(newCrumbledText.join(""));
 
                specialArray(INDEX_SPECIAL_CLASS);
 
@@ -96,9 +79,7 @@ export function WrappLetter({
                   wrappElement,
 
                   // cssClass
-                  !specialStructure
-                     ? [ClassToAdd, newClass].join(" ")
-                     : newClass,
+                  !specialStructure ? [ClassToAdd, newClass].join(" ") : newClass,
                ];
             });
 
@@ -116,13 +97,10 @@ export function WrappLetter({
                if (searchWordValue.includes(wrappElement)) {
                   // here search the word in the array
                   // and add the class
-                  const INDEX_SPECIAL_CLASS =
-                     searchWordValue.indexOf(wrappElement);
+                  const INDEX_SPECIAL_CLASS = searchWordValue.indexOf(wrappElement);
                   specialArray(INDEX_SPECIAL_CLASS);
 
-                  cssClass = !specialStructure
-                     ? [ClassToAdd, newClass].join(" ")
-                     : newClass;
+                  cssClass = !specialStructure ? [ClassToAdd, newClass].join(" ") : newClass;
                }
 
                if (index != crumbledText.length - 1) {
@@ -135,11 +113,8 @@ export function WrappLetter({
          }
       })
       .flat();
-      
-   if (
-      arrElements[0][0] === " " &&
-      arrElements[arrElements.length - 1][0] === " "
-   ) {
+
+   if (arrElements[0][0] === " " && arrElements[arrElements.length - 1][0] === " ") {
       arrElements.pop();
       arrElements.shift();
    }
