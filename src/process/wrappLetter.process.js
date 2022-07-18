@@ -142,7 +142,6 @@ export function WrappLetter({
   }
 
   if (test) return arrElements;
-  console.log(arrElements);
 
   var wrappedLetters = arrElements.map(function (wrappElement, index) {
     return (
