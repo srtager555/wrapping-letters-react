@@ -11,7 +11,6 @@ test("Should be the same Object", () => {
   const PerWord = false;
 
   const crumbledText = [
-    " ",
     "T",
     "h",
     "i",
@@ -59,7 +58,6 @@ test("Should be the same Object", () => {
     "O",
     "w",
     "O",
-    " ",
   ];
 
   const expectedObj = {
