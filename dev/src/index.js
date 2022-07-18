@@ -54,12 +54,12 @@ function App() {
   return (
     <>
       <WrappingLetters
-        text="Carlos is a good person, This a Carlosproblemisitagoodperson, but Carlos is a bad person, Yeah, he is Carlos..."
+        text="This is a short sentece for an example test OwO"
         textOptions={{
           ClassToAdd: "class",
           SelectClass: {
             // new object with the class to add []
-            wordToSearch: ["is", "Carlos", "person,", "h", "a", "good"],
+            wordToSearch: ["OwO", "sentence", "example", "This", "is", "s"],
             classToAdd: [
               "special-class-1",
               "special-class-2",
