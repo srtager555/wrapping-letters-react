@@ -30,7 +30,7 @@ function baseStructure({ letter, cssClass, specialStructure = {} }) {
 
 // if the user has a custom structure here it will be changed by it
 
-test("Should be return the same array", () => {
+test("Should be return the same array (SBW: true)", () => {
   const Structure = structure || baseStructure;
 
   const crumbledText = [
@@ -149,7 +149,51 @@ test("Should be return the same array", () => {
     test: true,
   });
 
-  //   console.log(wrappResponse);
+  expect(wrappResponse).toStrictEqual(arrWrapp);
+});
+
+test("Should be return the same array (PerWord: true)", () => {
+  const Structure = structure || baseStructure;
+
+  const crumbledText = [
+    "This",
+    "is",
+    "a",
+    "short",
+    "sentece",
+    "for",
+    "an",
+    "example",
+    "test",
+    "OwO",
+  ];
+
+  const arrWrapp = [
+    ["This ", "class special-class-1"],
+    ["is ", "class special-class-1"],
+    ["a ", "class"],
+    ["short ", "class"],
+    ["sentece ", "class"],
+    ["for ", "class"],
+    ["an ", "class"],
+    ["example ", "class special-class-3"],
+    ["test ", "class"],
+    ["OwO", "class special-class-1"],
+  ];
+
+  const wrappResponse = wrappLetter.WrappLetter({
+    SelectClass: {
+      searchWordValue: ["OwO", "sentence", "example", "This", "is", "s"],
+      specialClass: ["special-class-1", "special-class-2", "special-class-3"],
+      spaceBetweenWord: false,
+    },
+    crumbledText,
+    ClassToAdd: "class",
+    Structure,
+    specialStructure: false,
+    PerWord: true,
+    test: true,
+  });
 
   expect(wrappResponse).toStrictEqual(arrWrapp);
 });
