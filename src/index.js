@@ -1,8 +1,8 @@
 import React from "react";
 
 import { textOptions__process_layout__ } from "./layout";
-import { WrappLetter } from "./wrappLetter.module";
-import { process__select_specialClass__ } from "./specialClass.process";
+import { WrappLetter } from "./process/wrappLetter.process";
+import { process__select_specialClass__ } from "./process/specialClass.process";
 import { error__main_filter__ } from "./error";
 
 import { whatItIs } from "./common/whatIsIt";
