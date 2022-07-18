@@ -9,6 +9,7 @@ export function WrappLetter({
   Structure,
   specialStructure = false,
   PerWord = false,
+  test = false,
 }) {
   let {
     searchWordValue = "",
@@ -139,6 +140,9 @@ export function WrappLetter({
     arrElements.pop();
     arrElements.shift();
   }
+
+  if (test) return arrElements;
+  console.log(arrElements);
 
   var wrappedLetters = arrElements.map(function (wrappElement, index) {
     return (
