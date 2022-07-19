@@ -5,7 +5,7 @@ export function textOptions__process_layout__(textOptions, wrappProps) {
   const wl_props = [
     ["ClassToAdd", ""],
     ["SelectClass", {}],
-    ["SpecialStructure", {}],
+    ["SpecialWrapp", {}],
     ["PerWord", false],
   ];
 
