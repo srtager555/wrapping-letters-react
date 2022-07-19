@@ -1,9 +1,11 @@
 import React from "react";
 
-import { textOptions__process_layout__ } from "./layout";
 import { WrappLetter } from "./process/wrappLetter.process";
-import { process__select_specialClass__ } from "./process/specialClass.process";
+import { textOptions__process_layout__ } from "./layout";
 import { error__main_filter__ } from "./error";
+
+import { process__select_specialClass__ } from "./process/specialClass.process";
+import { process__select_specialWrapp__ } from "./process/specialWrapp.process";
 
 import { whatItIs } from "./common/whatIsIt";
 
@@ -75,7 +77,13 @@ export default function WrappingLetters({
     PerWord,
   });
 
+  const SPECIAL_WRAPP__INFO_PROCESSED = process__select_specialWrapp__({
+    wordToSearch: SpecialWrapp.wordToSearch,
+    structureToAdd: SpecialWrapp.structureToAdd,
+  });
+
   wrappProps.SelectClass = SPECIAL_CLASS__INFO_PROCESSED;
+  wrappProps.SpecialWrapp = SPECIAL_WRAPP__INFO_PROCESSED;
 
   // The code will add the last values in the obj.
   wrappProps.crumbledText = crumbledText;
