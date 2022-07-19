@@ -2,6 +2,7 @@ import { whatItIs } from "../common/whatIsIt";
 
 import { error__Filter_SpecialClass__ } from "./specialClass.error";
 import { error__Filter_structure__ } from "./structure.error";
+import { error__Filter_SpecialWrapp__ } from "./specialWrapp.error";
 
 export function error__main_filter__(wrappProps) {
   const { ClassToAdd, SelectClass, SpecialWrapp, specialStructure, PerWord } =
@@ -14,6 +15,8 @@ export function error__main_filter__(wrappProps) {
     throw new Error("PerWord must be a boolean");
 
   error__Filter_SpecialClass__(SelectClass, PerWord);
+
+  error__Filter_SpecialWrapp__(SpecialWrapp);
 
   error__Filter_structure__(ClassToAdd, specialStructure);
 }
