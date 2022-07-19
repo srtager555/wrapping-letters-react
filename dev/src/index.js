@@ -67,16 +67,12 @@ function App() {
             ],
             spaceBetweenWord: true,
           },
-          // specialWrapp: {
-          //    wordToSearch: "good",
-          //    structureToAdd: specialTag,
-          // },
+          SpecialWrapp: {
+            wordToSearch: "good",
+            structureToAdd: specialTag,
+          },
           //    PerWord: true,
         }}
-        // {
-        // },
-
-        // }
         // structure={structure}
       />
     </>
