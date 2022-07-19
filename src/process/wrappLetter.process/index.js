@@ -11,11 +11,7 @@ export function WrappLetter({
   PerWord = false,
   test = false,
 }) {
-  let {
-    searchWordValue = "",
-    specialClass = new String(),
-    spaceBetweenWord = false,
-  } = SelectClass;
+  let { searchWordValue, specialClass, spaceBetweenWord } = SelectClass;
 
   // comprobation if searchWordValue is an array
   if (!Array.isArray(searchWordValue)) {
@@ -28,38 +24,43 @@ export function WrappLetter({
       let newClass = specialClass;
       // And here verify if is an array or a string
       // for to add the correct class to the element
-      const specialArray = (INDEX_SPECIAL_CLASS) => {
-        if (Array.isArray(specialClass)) {
+
+      const outSpecialClassProps = {
+        wrappElement,
+        newClass,
+        specialArray,
+        specialStructure,
+        searchWordValue,
+        index,
+        crumbledText,
+        PerWord,
+      };
+
+      function specialArray(INDEX_SPECIAL_CLASS) {
+        if (Array.isArray(specialClass))
           if (INDEX_SPECIAL_CLASS > specialClass.length - 1) {
             newClass = specialClass[0];
           } else {
             newClass = specialClass[INDEX_SPECIAL_CLASS];
           }
-        }
-      };
+      }
 
       if (!PerWord) {
-        if (!searchWordValue.some((element) => element.length > 0))
-          return outSpecialClass();
-
-        if (!searchWordValue.some((element) => wrappElement === element[0]))
-          return outSpecialClass();
-
-        if (
+        const arrComprobations = [
+          !searchWordValue.some((element) => element.length > 0),
+          !searchWordValue.some((element) => wrappElement === element[0]),
           !searchWordValue.some(
             (element) => index + element.length <= crumbledText.length
-          )
-        )
-          return outSpecialClass();
-
-        if (
+          ),
           !searchWordValue.some(
             (element) =>
               crumbledText.slice(index, index + element.length).join("") ===
               element
-          )
-        )
-          return outSpecialClass();
+          ),
+        ];
+
+        if (!arrComprobations.every((currentValue) => currentValue === true))
+          return outSpecialClass(outSpecialClassProps);
 
         if (spaceBetweenWord) {
           if (
@@ -70,7 +71,7 @@ export function WrappLetter({
               return a && b;
             })
           )
-            return outSpecialClass();
+            return outSpecialClass(outSpecialClassProps);
         }
 
         // here made a new  string varible
@@ -92,10 +93,7 @@ export function WrappLetter({
           specialArray(INDEX_SPECIAL_CLASS);
 
           return [
-            // letter
             wrappElement,
-
-            // cssClass
             !specialStructure ? [ClassToAdd, newClass].join(" ") : newClass,
           ];
         });
@@ -104,32 +102,7 @@ export function WrappLetter({
         crumbledText.splice(index, newCrumbledText.length - 1);
 
         return wl;
-      } else return outSpecialClass();
-
-      function outSpecialClass() {
-        //here is wrapped per word.
-        let cssClass = !specialStructure ? ClassToAdd : "";
-
-        if (PerWord) {
-          if (searchWordValue.includes(wrappElement)) {
-            // here search the word in the array
-            // and add the class
-            const INDEX_SPECIAL_CLASS = searchWordValue.indexOf(wrappElement);
-            specialArray(INDEX_SPECIAL_CLASS);
-
-            cssClass = !specialStructure
-              ? [ClassToAdd, newClass].join(" ")
-              : newClass;
-          }
-
-          if (index != crumbledText.length - 1) {
-            wrappElement = wrappElement + " ";
-          } else {
-            wrappElement = wrappElement;
-          }
-        }
-        return [[wrappElement, cssClass]];
-      }
+      } else return outSpecialClass(outSpecialClassProps);
     })
     .flat();
 
