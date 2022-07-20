@@ -44,9 +44,9 @@ export function WrappLetter({
       function specialArray(INDEX_SPECIAL_CLASS) {
         if (Array.isArray(specialClass))
           if (INDEX_SPECIAL_CLASS > specialClass.length - 1) {
-            newClass = specialClass[0];
+            return (newClass = specialClass[0]);
           } else {
-            newClass = specialClass[INDEX_SPECIAL_CLASS];
+            return (newClass = specialClass[INDEX_SPECIAL_CLASS]);
           }
       }
 
