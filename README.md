@@ -25,7 +25,7 @@ I worked hard on this update because I changed a lot of the code to do the check
 
 2.1.7: Hotfix in the folder order
 
-2.1.8: Hotfix in the depencies.
+2.1.10: Hotfix in the depencies.
 
 come soon 2.2.0
 

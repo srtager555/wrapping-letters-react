@@ -1,6 +1,6 @@
 {
   "name": "wrapping-letters-react",
-  "version": "2.1.8",
+  "version": "2.1.10",
   "description": "SIMPLIFY THE JOB OF WRAPPING LETTERS IN HTML TAGS WITH WRAPPING-LETTERS",
   "main": "./lib/index.js",
   "files": [
@@ -44,10 +44,10 @@
   },
   "homepage": "https://wrapping-letters.vercel.app/",
   "dependencies": {
-    "react": "^17.0.2"
+    "react": "^17.0.2",
+    "wrapping-letters-react": "^2.1.9"
   },
   "devDependencies": {
-    "jest": "^28.1.3",
     "@babel/cli": "^7.16.8",
     "@babel/core": "^7.16.7",
     "@babel/preset-env": "^7.16.8",
@@ -55,6 +55,7 @@
     "babel-loader": "^8.2.3",
     "css-loader": "^6.5.1",
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^28.1.3",
     "mini-css-extract-plugin": "^2.5.2",
     "prettier": "2.7.1",
     "react-dom": "^17.0.2",

@@ -1,3 +1,3 @@
 src/**
 dev/**
-test/**
+lib/test/**
