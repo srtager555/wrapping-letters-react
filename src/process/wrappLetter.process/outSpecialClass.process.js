@@ -1,6 +1,7 @@
 export function outSpecialClass({
   wrappElement,
   newClass,
+  ClassToAdd,
   specialArray,
   specialStructure,
   searchWordValue,
@@ -23,11 +24,9 @@ export function outSpecialClass({
         : newClass;
     }
 
-    if (index != crumbledText.length - 1) {
-      wrappElement = wrappElement + " ";
-    } else {
-      wrappElement = wrappElement;
-    }
+    if (index != crumbledText.length - 1) wrappElement = wrappElement + " ";
+    else wrappElement = wrappElement;
   }
+
   return [[wrappElement, cssClass]];
 }
