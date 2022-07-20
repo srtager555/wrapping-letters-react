@@ -21,6 +21,10 @@ I worked hard on this update because I changed a lot of the code to do the check
 
 2.1.5: I optimized the code for a best performance in general
 
+2.1.6: I fixed a bug in the specialWords when it had only one letter in the element
+
+2.1.7: Hotfix in the folder order
+
 come soon 2.2.0
 
 New options about the structure of the wrapped for reduce your code
