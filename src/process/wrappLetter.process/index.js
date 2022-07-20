@@ -20,10 +20,13 @@ export function WrappLetter({
 
   var arrElements = crumbledText
     .map(function (wrappElement, index) {
-      // here declare the variable for the specialClass
+      // ********* !IMPORTANT *********
+      // the code wil use this var for the function "specialArray"
       let newClass = specialClass;
-      // And here verify if is an array or a string
-      // for to add the correct class to the element
+
+      //.
+      //.
+      //.
 
       const outSpecialClassProps = {
         wrappElement,
@@ -37,6 +40,7 @@ export function WrappLetter({
         PerWord,
       };
 
+      // This function has the work find the specialClass with the index
       function specialArray(INDEX_SPECIAL_CLASS) {
         if (Array.isArray(specialClass))
           if (INDEX_SPECIAL_CLASS > specialClass.length - 1) {
@@ -54,14 +58,19 @@ export function WrappLetter({
       //.
       //.
       // Here the code will start the comprobations
+      //.
       const arrComprobations = [
         !PerWord,
         // if the array is empty, return the false
         searchWordValue.length > 0,
+        // the wrappElement has to have same first letter of an Element
         searchWordValue.some((element) => wrappElement === element[0]),
+        // the element can't be longer than crumbledText
         searchWordValue.some(
           (element) => index + element.length <= crumbledText.length
         ),
+        // Here the code will check if an element is same with a slice
+        // of its length
         searchWordValue.some(
           (element) =>
             crumbledText.slice(index, index + element.length).join("") ===
@@ -72,39 +81,64 @@ export function WrappLetter({
       if (!arrComprobations.every((currentValue) => currentValue === true))
         return outSpecialClass(outSpecialClassProps);
 
-      if (spaceBetweenWord) {
-        // these variables indicate the position of the first " " and the las " " beetwen word
-        let firstWhiteSpace = crumbledText[index - 1];
-        let lastWhiteSpace = crumbledText.indexOf(" ", index);
+      //.
+      //.
+      //.
+      //.
+      //.
+      //.
 
+      // here the code will comprobate if the first letter is the start
+      // of a special word
+      if (spaceBetweenWord) {
+        // if SBW (spaceBetweenWord) is true, the code need see the before and after
+        // element beacause these element need be whitespace
         if (
-          firstWhiteSpace === " " &&
-          lastWhiteSpace === " " &&
           !searchWordValue.some((element) => {
-            return crumbledText.slice(index, lastWhiteSpace) === element;
+            let firstWhiteSpace = crumbledText[index - 1];
+            let lastWhiteSpace = crumbledText.indexOf(" ", index);
+            let choppedWordCoditional =
+              crumbledText.slice(index, lastWhiteSpace).join("") === element;
+
+            return (
+              choppedWordCoditional &&
+              firstWhiteSpace === " " &&
+              crumbledText[lastWhiteSpace] === " "
+            );
           })
         )
+          // if this "word" is false, it means it is a false positive
+          // the code will return a simple wrapp
           return outSpecialClass(outSpecialClassProps);
       }
 
-      // here made a new string varible
-      // for a map to add the class
+      //.
+      //.
+      //.
+      //.
+      //.
+      //.
+
+      // here the code will filter the correct special "word"
+      // after the "word" will return within an Array
       let newCrumbledText = searchWordValue.filter((element) => {
-        let cutted = crumbledText.slice(index, index + element.length).join("");
+        // here the code will cut the "word" from the array
+        let choppedWord = crumbledText
+          .slice(index, index + element.length)
+          .join("");
 
         if (spaceBetweenWord) {
+          // here the code will checks if the "word" has whitespace
+          // before and after
           if (crumbledText[index - 1] !== " ") return false;
 
           if (crumbledText[index + element.length] !== " ") return false;
         }
 
-        return cutted === element;
+        return choppedWord === element;
       });
 
-      // If the code can't find the special word, it will return a simple wrapp
-      if (newCrumbledText.length === 0)
-        return outSpecialClass(outSpecialClassProps);
-
+      //.
       // end of the comprobation
       //.
       //.
@@ -116,6 +150,8 @@ export function WrappLetter({
 
       newCrumbledText = [...newCrumbledText[0]];
 
+      // here the code will create magic
+      // with the before information the code can wrapp the elements
       var wl = newCrumbledText.map((wrappElement) => {
         const INDEX_SPECIAL_CLASS = searchWordValue.indexOf(
           newCrumbledText.join("")
@@ -129,12 +165,23 @@ export function WrappLetter({
         ];
       });
 
-      // here it'll slice the searching word from the crumbledText
+      // here it'll slice the current "word" from the crumbledText
       crumbledText.splice(index, newCrumbledText.length - 1);
 
       return wl;
     })
+    // [[[]], [[]], ...]
     .flat();
+  // [[], [] ...]
+
+  //.
+  //.
+  //.
+  //.
+  //.
+  //.
+  //.
+  //.
 
   if (
     arrElements[0][0] === " " &&
@@ -144,6 +191,7 @@ export function WrappLetter({
     arrElements.shift();
   }
 
+  // Switch for test files
   if (test) return arrElements;
 
   var wrappedLetters = arrElements.map(function (wrappElement, index) {
