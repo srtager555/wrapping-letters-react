@@ -17,7 +17,7 @@ export function outSpecialClass({
       // here search the word in the array
       // and add the class
       const INDEX_SPECIAL_CLASS = searchWordValue.indexOf(wrappElement);
-      specialArray(INDEX_SPECIAL_CLASS);
+      newClass = specialArray(INDEX_SPECIAL_CLASS);
 
       cssClass = !specialStructure
         ? [ClassToAdd, newClass].join(" ")
