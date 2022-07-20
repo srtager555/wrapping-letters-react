@@ -19,8 +19,8 @@ export function process__select_specialClass__({
   specialClass = SelectClass.classToAdd;
 
   return {
-    searchWordValue,
-    specialClass,
-    spaceBetweenWord: SelectClass.spaceBetweenWord,
+    searchWordValue: searchWordValue || new String(),
+    specialClass: specialClass || new String(),
+    spaceBetweenWord: SelectClass.spaceBetweenWord || false,
   };
 }
