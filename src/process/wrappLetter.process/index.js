@@ -1,28 +1,32 @@
 import React from "react";
 
 import { outSpecialClass } from "./outSpecialClass.process";
+import { __specialArray__ } from "./specialArray.process";
 
 export function WrappLetter({
-  SelectClass,
   crumbledText,
+  SelectClass,
   ClassToAdd,
+  SpecialWrapp,
   Structure,
   specialStructure = false,
   PerWord = false,
   test = false,
 }) {
   let { searchWordValue, specialClass, spaceBetweenWord } = SelectClass;
+  let { hasCustomWrapp, wordToWrapp, wrappToAdd } = SpecialWrapp;
 
-  // comprobation if searchWordValue is an array
-  if (!Array.isArray(searchWordValue)) {
-    searchWordValue = [searchWordValue];
-  }
+  // comprobation if searchWordValue or wordToWrapp is an array
+  if (!Array.isArray(searchWordValue)) searchWordValue = [searchWordValue];
+
+  if (!Array.isArray(wordToWrapp)) wordToWrapp = [wordToWrapp];
 
   var arrElements = crumbledText
     .map(function (wrappElement, index) {
       // ********* !IMPORTANT *********
-      // the code wil use this var for the function "specialArray"
+      // the code wil use this var for the function "__specialArray__"
       let newClass = specialClass;
+      let customWrapp = undefined;
 
       //.
       //.
@@ -32,8 +36,9 @@ export function WrappLetter({
         wrappElement,
         newClass,
         ClassToAdd,
-        specialArray,
+        SpecialWrapp,
         specialStructure,
+        specialClass,
         searchWordValue,
         index,
         crumbledText,
@@ -41,14 +46,6 @@ export function WrappLetter({
       };
 
       // This function has the work find the specialClass with the index
-      function specialArray(INDEX_SPECIAL_CLASS) {
-        if (Array.isArray(specialClass))
-          if (INDEX_SPECIAL_CLASS > specialClass.length - 1) {
-            return (newClass = specialClass[0]);
-          } else {
-            return (newClass = specialClass[INDEX_SPECIAL_CLASS]);
-          }
-      }
 
       //.
       //.
@@ -150,6 +147,26 @@ export function WrappLetter({
 
       newCrumbledText = [...newCrumbledText[0]];
 
+      //.
+      //.
+      //.
+      //.
+
+      let word = newCrumbledText.join("");
+      if (wordToWrapp.some((element) => element === word)) {
+        word = wordToWrapp.filter((el) => el === word);
+        hasCustomWrapp = true;
+        const WORD_INDEX = wordToWrapp.indexOf(word);
+
+        customWrapp = __specialArray__(wrappToAdd, WORD_INDEX);
+      }
+
+      //.
+      //.
+      //.
+      //.
+      //.
+
       // here the code will create magic
       // with the before information the code can wrapp the elements
       var wl = newCrumbledText.map((wrappElement) => {
@@ -157,12 +174,18 @@ export function WrappLetter({
           newCrumbledText.join("")
         );
 
-        specialArray(INDEX_SPECIAL_CLASS);
+        newClass = __specialArray__(specialClass, INDEX_SPECIAL_CLASS);
 
-        return [
-          wrappElement,
-          !specialStructure ? [ClassToAdd, newClass].join(" ") : newClass,
-        ];
+        return {
+          letter: wrappElement,
+          cssClass: !specialStructure
+            ? [ClassToAdd, newClass].join(" ")
+            : newClass,
+          specialWrapp: {
+            hasCustomWrapp: false,
+            NewWrappStructure: customWrapp,
+          },
+        };
       });
 
       // here it'll slice the current "word" from the crumbledText
@@ -191,15 +214,18 @@ export function WrappLetter({
     arrElements.shift();
   }
 
+  console.log(arrElements);
+
   // Switch for test files
   if (test) return arrElements;
 
   var wrappedLetters = arrElements.map(function (wrappElement, index) {
     return (
       <Structure
-        letter={wrappElement[0]}
-        cssClass={wrappElement[1]}
-        key={`'${wrappElement[0]}'-${index}`}
+        letter={wrappElement.letter}
+        cssClass={wrappElement.cssClass}
+        specialWrapp={wrappElement.specialWrapp}
+        key={`'${wrappElement.letter}'-${index}`}
       />
     );
   });
