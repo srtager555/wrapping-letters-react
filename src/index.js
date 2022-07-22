@@ -15,20 +15,20 @@ export default function WrappingLetters({
   structure,
 }) {
   // first need declare the component to return
-  function baseStructure({ letter, cssClass, specialStructure = {} }) {
+  function baseStructure({ letter, cssClass, specialWrapp = {} }) {
     function DEFAULT_COMPONENT({ letter, cssClass }) {
       return <span className={cssClass}>{letter}</span>;
     }
 
     const {
-      hasModification = false,
-      NewTagStructure = () => (
+      hasCustomWrapp = false,
+      NewWrappStructure = () => (
         <DEFAULT_COMPONENT letter={letter} cssClass={cssClass} />
       ),
-    } = specialStructure;
+    } = specialWrapp;
 
-    return hasModification ? (
-      <NewTagStructure />
+    return hasCustomWrapp ? (
+      <NewWrappStructure />
     ) : (
       <DEFAULT_COMPONENT letter={letter} cssClass={cssClass} />
     );
@@ -79,7 +79,7 @@ export default function WrappingLetters({
 
   const SPECIAL_WRAPP__INFO_PROCESSED = process__select_specialWrapp__({
     wordToSearch: SpecialWrapp.wordToSearch,
-    structureToAdd: SpecialWrapp.structureToAdd,
+    wordToWrapp: SpecialWrapp.structureToAdd,
   });
 
   wrappProps.SelectClass = SPECIAL_CLASS__INFO_PROCESSED;
