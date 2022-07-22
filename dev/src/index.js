@@ -5,10 +5,10 @@ import ReactDOM from "react-dom";
 
 import "./index.css";
 
-function specialTag(element) {
+function specialTag({ letter, cssClass }) {
   return (
-    <a href="https://ttager.page/" target="_blank">
-      {element}
+    <a className={cssClass} href="https://ttager.page/" target="_blank">
+      {letter}
     </a>
   );
 }
@@ -74,13 +74,13 @@ function App() {
               "special-class-2",
               "special-class-3",
             ],
-            spaceBetweenWord: true,
+            // spaceBetweenWord: true,
           },
           SpecialWrapp: {
-            wordToSearch: "good",
+            wordToSearch: "short",
             structureToAdd: specialTag,
           },
-          // PerWord: true,
+          PerWord: true,
         }}
         // structure={structure}
       />
