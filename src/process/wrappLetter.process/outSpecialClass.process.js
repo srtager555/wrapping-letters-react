@@ -31,8 +31,7 @@ export function outSpecialClass({
         : newClass;
     }
 
-    if (wordToWrapp.some((element) => element === word)) {
-      word = wordToWrapp.filter((el) => el === word);
+    if (wordToWrapp === word) {
       hasCustomWrapp = true;
       const WORD_INDEX = wordToWrapp.indexOf(word);
 
@@ -41,6 +40,13 @@ export function outSpecialClass({
 
     if (index != crumbledText.length - 1) wrappElement = wrappElement + " ";
     else wrappElement = wrappElement;
+  } else {
+    if (wordToWrapp.some((element) => element === word)) {
+      hasCustomWrapp = true;
+      const WORD_INDEX = wordToWrapp.indexOf(word);
+
+      customWrapp = __specialArray__(wrappToAdd, WORD_INDEX);
+    }
   }
 
   return [
