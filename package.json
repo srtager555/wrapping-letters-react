@@ -1,6 +1,6 @@
 {
   "name": "wrapping-letters-react",
-  "version": "2.1.10",
+  "version": "2.1.11",
   "description": "SIMPLIFY THE JOB OF WRAPPING LETTERS IN HTML TAGS WITH WRAPPING-LETTERS",
   "main": "./lib/index.js",
   "files": [
@@ -44,7 +44,6 @@
   },
   "homepage": "https://wrapping-letters.vercel.app/",
   "dependencies": {
-    "jest": "^28.1.3",
     "react": "^17.0.2"
   },
   "devDependencies": {

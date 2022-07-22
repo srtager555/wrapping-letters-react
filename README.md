@@ -27,6 +27,8 @@ I worked hard on this update because I changed a lot of the code to do the check
 
 2.1.10: Hotfix in the depencies.
 
+2.1.11: Fix in the info of the dependencies.
+
 come soon 2.2.0
 
 New options about the structure of the wrapped for reduce your code
