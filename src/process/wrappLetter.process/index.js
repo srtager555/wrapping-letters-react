@@ -154,7 +154,6 @@ export function WrappLetter({
 
       let word = newCrumbledText.join("");
       if (wordToWrapp.some((element) => element === word)) {
-        word = wordToWrapp.filter((el) => el === word);
         hasCustomWrapp = true;
         const WORD_INDEX = wordToWrapp.indexOf(word);
 
@@ -182,7 +181,7 @@ export function WrappLetter({
             ? [ClassToAdd, newClass].join(" ")
             : newClass,
           specialWrapp: {
-            hasCustomWrapp: false,
+            hasCustomWrapp,
             NewWrappStructure: customWrapp,
           },
         };
