@@ -13,6 +13,14 @@ function specialTag({ letter, cssClass }) {
   );
 }
 
+function specialTag1({ letter, cssClass }) {
+  return (
+    <a className={cssClass} href="https://ttager.page/" target="_blank">
+      :D{letter}
+    </a>
+  );
+}
+
 function devStructure({ letter, cssClass, specilStructure }) {
   const [Component, SetComponent] = React.useState();
 
@@ -74,13 +82,13 @@ function App() {
               "special-class-2",
               "special-class-3",
             ],
-            // spaceBetweenWord: true,
+            spaceBetweenWord: true,
           },
           SpecialWrapp: {
-            wordToSearch: "short",
-            structureToAdd: specialTag,
+            wordToSearch: ["short", "is"],
+            structureToAdd: [specialTag, specialTag1],
           },
-          PerWord: true,
+          // PerWord: true,
         }}
         // structure={structure}
       />

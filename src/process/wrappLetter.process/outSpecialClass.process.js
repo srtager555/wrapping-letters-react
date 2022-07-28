@@ -14,6 +14,8 @@ export function outSpecialClass({
 }) {
   let { hasCustomWrapp, wordToWrapp, wrappToAdd } = SpecialWrapp;
 
+  if (!Array.isArray(wordToWrapp)) wordToWrapp = [wordToWrapp];
+
   let cssClass = !specialStructure ? ClassToAdd : "";
   let word = wrappElement;
   let customWrapp = undefined;
@@ -31,7 +33,7 @@ export function outSpecialClass({
         : newClass;
     }
 
-    if (wordToWrapp === word) {
+    if (wordToWrapp.some((element) => element === word)) {
       hasCustomWrapp = true;
       const WORD_INDEX = wordToWrapp.indexOf(word);
 

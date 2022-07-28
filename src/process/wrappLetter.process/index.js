@@ -213,8 +213,6 @@ export function WrappLetter({
     arrElements.shift();
   }
 
-  console.log(arrElements);
-
   // Switch for test files
   if (test) return arrElements;
 
