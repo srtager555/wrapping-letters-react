@@ -7,15 +7,26 @@ import "./index.css";
 
 function specialTag({ letter, cssClass }) {
   return (
-    <a className={cssClass} href="https://ttager.page/" target="_blank">
+    <a
+      className={cssClass}
+      href="https://ttager.page/"
+      target="_blank"
+      rel="noreferrer"
+    >
       {letter}
     </a>
   );
 }
 
-function specialTag1({ letter, cssClass }) {
+function specialTag1({ letter, cssClass, specialStructure }) {
+  console.log(specialStructure);
   return (
-    <a className={cssClass} href="https://ttager.page/" target="_blank">
+    <a
+      className={cssClass}
+      href="https://ttager.page/"
+      target="_blank"
+      rel="noreferrer"
+    >
       :D{letter}
     </a>
   );
