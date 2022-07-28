@@ -5,33 +5,14 @@ SIMPLIFIES THE JOB OF WRAPPING LETTERS IN HTML TAGS
 
 ## New upgrades
 
-2.1.0 is now!!!
+2.2.0
 
-Now the code can be able to find more than 2 specialWord and add more than 2 specialClass.
+The new property is here!!!
 
-I worked hard on this update because I changed a lot of the code to do the checks correctly.
+The `SpecialWrapp` is the new property for Wrapping Letters in the 2.2.0.
 
-2.1.1: error in the export solved
-
-2.1.2: A hidden log has been removed
-
-2.1.3: A problem in the key is solved.
-
-2.1.4: A issue in the simple wrapp is solved and now the array in textOptions is removed(you can't use an array in TO now)
-
-2.1.5: I optimized the code for a best performance in general
-
-2.1.6: I fixed a bug in the specialWords when it had only one letter in the element
-
-2.1.7: Hotfix in the folder order
-
-2.1.10: Hotfix in the depencies.
-
-2.1.11: Fix in the info of the dependencies.
-
-come soon 2.2.0
-
-New options about the structure of the wrapped for reduce your code
+Create your custom wrapp for your text with this new
+property!
 
 ## News
 
