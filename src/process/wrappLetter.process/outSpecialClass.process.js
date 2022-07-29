@@ -67,7 +67,7 @@ export function outSpecialClass({
         arrayOfWords: wordToWrapp,
         crumbledText,
         SpecialWrapp,
-        word,
+        searchWordValue,
         specialStructure,
         newClass,
         ClassToAdd,
