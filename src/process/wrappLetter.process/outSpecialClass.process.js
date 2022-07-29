@@ -1,4 +1,5 @@
 import { __specialArray__ } from "./specialArray.process";
+import { __specialWorld_PerLetters__ } from "./specialWordPerLetters.process.js";
 
 export function outSpecialClass({
   wrappElement,
@@ -41,13 +42,37 @@ export function outSpecialClass({
     }
 
     if (index != crumbledText.length - 1) wrappElement = wrappElement + " ";
-  } else {
-    if (wordToWrapp.some((element) => element === word)) {
-      hasCustomWrapp = true;
-      const WORD_INDEX = wordToWrapp.indexOf(word);
+  }
+  // if the property SpecialWrapp is different to the
+  // default values, this conprobations search the
+  // word with a especial wrapp
 
-      customWrapp = __specialArray__(wrappToAdd, WORD_INDEX);
-    }
+  if (wrappToAdd !== undefined && wordToWrapp !== new String()) {
+    const arrComprobations = [
+      // basicly is the same comprobations in the index of this
+      // folder
+      wordToWrapp.length > 0,
+      wordToWrapp.some((element) => wrappElement === element[0]),
+      wordToWrapp.some(
+        (element) => index + element.length <= crumbledText.length
+      ),
+      wordToWrapp.some(
+        (element) =>
+          crumbledText.slice(index, index + element.length).join("") === element
+      ),
+    ];
+    if (arrComprobations.every((currentValue) => currentValue === true))
+      return __specialWorld_PerLetters__({
+        index,
+        arrayOfWords: wordToWrapp,
+        crumbledText,
+        SpecialWrapp,
+        word,
+        specialStructure,
+        newClass,
+        ClassToAdd,
+        specialClass,
+      });
   }
 
   return [
