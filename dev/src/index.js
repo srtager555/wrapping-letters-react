@@ -5,10 +5,28 @@ import ReactDOM from "react-dom";
 
 import "./index.css";
 
-function specialTag(element) {
+function specialTag({ letter, cssClass }) {
   return (
-    <a href="https://ttager.page/" target="_blank">
-      {element}
+    <a
+      className={cssClass}
+      href="https://ttager.page/"
+      target="_blank"
+      rel="noreferrer"
+    >
+      {letter}
+    </a>
+  );
+}
+
+function specialTag1({ letter, cssClass, specialStructure }) {
+  return (
+    <a
+      className={cssClass}
+      href="https://ttager.page/"
+      target="_blank"
+      rel="noreferrer"
+    >
+      :D{letter}
     </a>
   );
 }
@@ -74,11 +92,11 @@ function App() {
               "special-class-2",
               "special-class-3",
             ],
-            spaceBetweenWord: true,
+            // spaceBetweenWord: true,
           },
           SpecialWrapp: {
-            wordToSearch: "good",
-            structureToAdd: specialTag,
+            wordToSearch: ["for", "an", "test"],
+            structureToAdd: [specialTag, specialTag1],
           },
           // PerWord: true,
         }}

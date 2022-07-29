@@ -1,7 +1,10 @@
-export function process__select_specialWrapp__(wordToSearch, structureToAdd) {
+export function process__select_specialWrapp__({
+  wordToSearch,
+  structureToAdd,
+}) {
   return {
-    hasModification: false,
-    wordToSearch: wordToSearch || new String(),
-    structureToAdd: structureToAdd || undefined,
+    hasCustomWrapp: false,
+    wordToWrapp: wordToSearch || new String(),
+    wrappToAdd: structureToAdd || undefined,
   };
 }

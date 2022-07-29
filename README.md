@@ -5,31 +5,14 @@ SIMPLIFIES THE JOB OF WRAPPING LETTERS IN HTML TAGS
 
 ## New upgrades
 
-2.1.0 is now!!!
+2.2.0
 
-Now the code can be able to find more than 2 specialWord and add more than 2 specialClass.
+The new property is here!!!
 
-I worked hard on this update because I changed a lot of the code to do the checks correctly.
+The `SpecialWrapp` is the new property for Wrapping Letters in the 2.2.0.
 
-2.1.1: error in the export solved
-
-2.1.2: A hidden log has been removed
-
-2.1.3: A problem in the key is solved.
-
-2.1.4: A issue in the simple wrapp is solved and now the array in textOptions is removed(you can't use an array in TO now)
-
-2.1.5: I optimized the code for a best performance in general
-
-2.1.6: I fixed a bug in the specialWords when it had only one letter in the element
-
-2.1.7: Hotfix in the folder order
-
-2.1.10: Hotfix in the depencies.
-
-come soon 2.2.0
-
-New options about the structure of the wrapped for reduce your code
+Create your custom wrapp for your text with this new
+property!
 
 ## News
 
@@ -145,11 +128,31 @@ Is so easy to use, call the attribute and places the class of your choice
 `"SelectClass"` is a object it can a search a word, phrase or letters
 in the sentence, is so easy to use:
 
-- `wordToSearch: <String>` is the word to search for, but you can search for more word with an `[Array]`.
+- `wordToSearch: <String>` is the word to search for, but you can search for more word with an `[Array]` these Arrays are called "special array".
 
 - `classToAdd: <String>` is the class to add a the `<span>`, You can add more specialClass with an `[Array]`, The code will put the class depending of its index, for example:
 
+- `spaceBetweenWord: <Boolean>` is the a conditional for the search (default is `false`).
+
+  For example: `wordToSearch: "ping"` has the word `"ping"`
+  but the algorithm can search for a word within other words and also
+  being alone, `spaceBeetwenWord` in ` true` only allows
+  searching for the word alone, in `false` searches everywhere
+
+  `IMPORTANT!`
+
+  `"SelectClass"` look for all the times the word is repeated,
+  `spaceBetweenWord`
+  is important for avoiding problems
+
+#
+
+## Special Array, find more with less
+
+find more information with 2 arrays, sooooo easy to use!
+
 ```
+
 // You put 3 words to search
 
 wordToSearch: ["cheese", "rice", "eggs"]
@@ -171,18 +174,7 @@ return
 
 ```
 
-- `spaceBetweenWord: <Boolean>` is the a conditional for the search (default is `false`).
-
-  For example: `wordToSearch: "ping"` has the word `"ping"`
-  but the algorithm can search for a word within other words and also
-  being alone, `spaceBeetwenWord` in ` true` only allows
-  searching for the word alone, in `false` searches everywhere
-
-  `IMPORTANT!`
-
-  `"SelectClass"` look for all the times the word is repeated,
-  `spaceBetweenWord`
-  is important for avoiding problems
+This is only a example, "special Array" has support with any property in Wrapping Letters!!!
 
 #
 
@@ -266,11 +258,10 @@ animations or whatever you can think of.
 ```
 // React component example
 
-function ReactComponent({letter, cssClass, ...props}) {
+function ReactComponent({letter, cssClass }) {
     return(
         <div
             className={`container-letter ${cssClass}`}
-            {...props}
         >
             <span className="letter-wrapp">{letter}</span>
         </div>
@@ -280,9 +271,6 @@ function ReactComponent({letter, cssClass, ...props}) {
 
 Being able to make a personalized structure opens a new sea of ​​
 possibilities for the use of Wrapping-letters
-
-`!IMPORTANT:`
-It is suggested to put out cssClass of the descontruction, if anyways not used, for evit syntax errors.
 
 #
 
@@ -301,5 +289,87 @@ The list of element to send a the component for now is small:
 The `classToAdd` attribute of `textOptions`,
 is disable when the `structure` is active, if you want a css class
 use `className` in the component.
+
+#
+
+## How to add a `special wrap`
+
+The property `SpecialWrapp` is the solution for this problem!
+
+```
+<Wl
+    text="This is a short sentence"
+    textOptions={{
+        SpecialWrapp: {
+            wordToSearch: ["short", "is", "This"],
+            structureToAdd: [specialTag, specialTag1],
+        },
+    }}
+/>
+```
+
+SpecialWrapp has support with specialArray
+
+The atribute will find the words in the text for to add a specialWrapp
+
+Your structure will recive the following properties
+
+- letter
+- cssClass
+
+Here a component example
+
+```
+function specialTag({ letter, cssClass }) {
+    return (
+        <div className={`example-class ${cssClass}`}>
+            <a
+                className={`another example-class`}
+                href="//..."
+            >
+                {letter}
+            </a>
+        </div>
+    )
+}
+```
+
+`!IMPORTANT`
+The component has priority in the `specialClass` for example:
+
+You have this config
+
+```
+    text="This is an apple 🍎 :3"
+    textOptions={{
+        SelectClass: {
+            wordToSearch: ["a", "apple"],
+            classToAdd: "class"
+        },
+        SpecialWrapp: {
+            wordToSearch: "an",
+            structureToAdd: specialWrapp
+        }
+        spaceBetweenWord: false,
+    }}
+```
+
+This is the return:
+
+```
+    //...
+    <span>i</span>
+    <span>s</span>
+    <span> </span>
+    <span class="class">a</span>
+    <span class="">n</span>
+    //...
+```
+
+The code first will iterate the `SpecialClass` after the `SpecialWrapp`. The code sintaxis will work with the letter and then remove it, In this example the next letter is "n" so no `SpecialWrapp` is added.
+
+To avoid this priority you can use`spaceBetweenWord: true`, the code will check if the `wordToSerch` from `SelectClass` is between white-space.
+
+Now customization is superior thanks to being able to customize each word separately if you wish.
 
 Thanks for you visit :v
