@@ -41,7 +41,6 @@ export function outSpecialClass({
     }
 
     if (index != crumbledText.length - 1) wrappElement = wrappElement + " ";
-    else wrappElement = wrappElement;
   } else {
     if (wordToWrapp.some((element) => element === word)) {
       hasCustomWrapp = true;

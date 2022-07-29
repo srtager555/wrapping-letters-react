@@ -19,7 +19,6 @@ function specialTag({ letter, cssClass }) {
 }
 
 function specialTag1({ letter, cssClass, specialStructure }) {
-  console.log(specialStructure);
   return (
     <a
       className={cssClass}
@@ -93,10 +92,10 @@ function App() {
               "special-class-2",
               "special-class-3",
             ],
-            spaceBetweenWord: true,
+            // spaceBetweenWord: true,
           },
           SpecialWrapp: {
-            wordToSearch: ["short", "is"],
+            wordToSearch: ["short", "is", "This"],
             structureToAdd: [specialTag, specialTag1],
           },
           // PerWord: true,
