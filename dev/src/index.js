@@ -95,7 +95,7 @@ function App() {
             // spaceBetweenWord: true,
           },
           SpecialWrapp: {
-            wordToSearch: ["short", "is", "This"],
+            wordToSearch: ["for", "an", "test"],
             structureToAdd: [specialTag, specialTag1],
           },
           // PerWord: true,

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { outSpecialClass } from "./outSpecialClass.process";
-import { __specialArray__ } from "./specialArray.process";
+import { __specialWorld_PerLetters__ } from "./specialWordPerLetters.process";
 
 export function WrappLetter({
   crumbledText,
@@ -14,7 +14,7 @@ export function WrappLetter({
   test = false,
 }) {
   let { searchWordValue, specialClass, spaceBetweenWord } = SelectClass;
-  let { hasCustomWrapp, wordToWrapp, wrappToAdd } = SpecialWrapp;
+  let { wordToWrapp } = SpecialWrapp;
 
   // comprobation if searchWordValue or wordToWrapp is an array
   if (!Array.isArray(searchWordValue)) searchWordValue = [searchWordValue];
@@ -26,7 +26,6 @@ export function WrappLetter({
       // ********* !IMPORTANT *********
       // the code wil use this var for the function "__specialArray__"
       let newClass = specialClass;
-      let customWrapp = undefined;
 
       //.
       //.
@@ -116,81 +115,18 @@ export function WrappLetter({
       //.
       //.
 
-      // here the code will filter the correct special "word"
-      // after the "word" will return within an Array
-      let newCrumbledText = searchWordValue.filter((element) => {
-        // here the code will cut the "word" from the array
-        let choppedWord = crumbledText
-          .slice(index, index + element.length)
-          .join("");
-
-        if (spaceBetweenWord) {
-          // here the code will checks if the "word" has whitespace
-          // before and after
-          if (crumbledText[index - 1] !== " ") return false;
-
-          if (crumbledText[index + element.length] !== " ") return false;
-        }
-
-        return choppedWord === element;
+      return __specialWorld_PerLetters__({
+        index,
+        arrayOfWords: searchWordValue,
+        crumbledText,
+        SpecialWrapp,
+        searchWordValue,
+        spaceBetweenWord,
+        specialStructure,
+        newClass,
+        ClassToAdd,
+        specialClass,
       });
-
-      //.
-      // end of the comprobation
-      //.
-      //.
-      //.
-      //.
-      //.
-      //.
-      //.
-
-      newCrumbledText = [...newCrumbledText[0]];
-
-      //.
-      //.
-      //.
-      //.
-
-      let word = newCrumbledText.join("");
-      if (wordToWrapp.some((element) => element === word)) {
-        hasCustomWrapp = true;
-        const WORD_INDEX = wordToWrapp.indexOf(word);
-
-        customWrapp = __specialArray__(wrappToAdd, WORD_INDEX);
-      }
-
-      //.
-      //.
-      //.
-      //.
-      //.
-
-      // here the code will create magic
-      // with the before information the code can wrapp the elements
-      var wl = newCrumbledText.map((wrappElement) => {
-        const INDEX_SPECIAL_CLASS = searchWordValue.indexOf(
-          newCrumbledText.join("")
-        );
-
-        newClass = __specialArray__(specialClass, INDEX_SPECIAL_CLASS);
-
-        return {
-          letter: wrappElement,
-          cssClass: !specialStructure
-            ? [ClassToAdd, newClass].join(" ")
-            : newClass,
-          specialWrapp: {
-            hasCustomWrapp,
-            NewWrappStructure: customWrapp,
-          },
-        };
-      });
-
-      // here it'll slice the current "word" from the crumbledText
-      crumbledText.splice(index, newCrumbledText.length - 1);
-
-      return wl;
     })
     // [[[]], [[]], ...]
     .flat();
