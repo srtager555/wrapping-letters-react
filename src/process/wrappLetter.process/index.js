@@ -47,12 +47,6 @@ export function WrappLetter({
       // This function has the work find the specialClass with the index
 
       //.
-      //.
-      //.
-      //.
-      //.
-      //.
-      //.
       // Here the code will start the comprobations
       //.
       const arrComprobations = [
@@ -77,10 +71,6 @@ export function WrappLetter({
       if (!arrComprobations.every((currentValue) => currentValue === true))
         return outSpecialClass(outSpecialClassProps);
 
-      //.
-      //.
-      //.
-      //.
       //.
       //.
 
@@ -108,13 +98,6 @@ export function WrappLetter({
           return outSpecialClass(outSpecialClassProps);
       }
 
-      //.
-      //.
-      //.
-      //.
-      //.
-      //.
-
       return __specialWorld_PerLetters__({
         index,
         arrayOfWords: searchWordValue,
@@ -131,15 +114,6 @@ export function WrappLetter({
     // [[[]], [[]], ...]
     .flat();
   // [[], [] ...]
-
-  //.
-  //.
-  //.
-  //.
-  //.
-  //.
-  //.
-  //.
 
   if (
     arrElements[0][0] === " " &&
