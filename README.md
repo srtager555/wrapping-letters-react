@@ -292,7 +292,7 @@ use `className` in the component.
 
 #
 
-## How to add a `SpecialWrapp`
+## How to add a `special wrap`
 
 The property `SpecialWrapp` is the solution for this problem!
 
@@ -333,6 +333,42 @@ function specialTag({ letter, cssClass }) {
     )
 }
 ```
+
+`!IMPORTANT`
+The component has priority in the `specialClass` for example:
+
+You have this config
+
+```
+    text="This is an apple 🍎 :3"
+    textOptions={{
+        SelectClass: {
+            wordToSearch: ["a", "apple"],
+            classToAdd: "class"
+        },
+        SpecialWrapp: {
+            wordToSearch: "an",
+            structureToAdd: specialWrapp
+        }
+        spaceBetweenWord: false,
+    }}
+```
+
+This is the return:
+
+```
+    //...
+    <span>i</span>
+    <span>s</span>
+    <span> </span>
+    <span class="class">a</span>
+    <span class="">n</span>
+    //...
+```
+
+The code first will iterate the `SpecialClass` after the `SpecialWrapp`. The code sintaxis will work with the letter and then remove it, In this example the next letter is "n" so no `SpecialWrapp` is added.
+
+To avoid this priority you can use`spaceBetweenWord: true`, the code will check if the `wordToSerch` from `SelectClass` is between white-space.
 
 Now customization is superior thanks to being able to customize each word separately if you wish.
 
