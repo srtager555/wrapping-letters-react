@@ -14,12 +14,10 @@ export function WrappLetter({
   test = false,
 }) {
   let { searchWordValue, specialClass, spaceBetweenWord } = SelectClass;
-  let { wordToWrapp } = SpecialWrapp;
+  // let { wordToWrapp } = SpecialWrapp;
 
   // comprobation if searchWordValue or wordToWrapp is an array
-  if (!Array.isArray(searchWordValue)) searchWordValue = [searchWordValue];
-
-  if (!Array.isArray(wordToWrapp)) wordToWrapp = [wordToWrapp];
+  // if (!Array.isArray(searchWordValue)) searchWordValue = [searchWordValue];
 
   var arrElements = crumbledText
     .map(function (wrappElement, index) {

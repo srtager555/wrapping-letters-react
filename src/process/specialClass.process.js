@@ -18,9 +18,14 @@ export function process__select_specialClass__({
 
   specialClass = SelectClass.classToAdd;
 
-  return {
+  let props = {
     searchWordValue: searchWordValue || new String(),
     specialClass: specialClass || new String(),
     spaceBetweenWord: SelectClass.spaceBetweenWord || false,
   };
+
+  if (!Array.isArray(props.searchWordValue))
+    props.searchWordValue = [props.searchWordValue];
+
+  return props;
 }

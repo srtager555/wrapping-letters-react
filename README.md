@@ -14,6 +14,8 @@ The `SpecialWrapp` is the new property for Wrapping Letters in the 2.2.0.
 Create your custom wrapp for your text with this new
 property!
 
+2.2.1 Error when specialWrapp was not in component props resolved
+
 ## News
 
 - Are you have a idea for the library?, share the idea in github(in issue section)
