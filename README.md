@@ -16,6 +16,8 @@ property!
 
 2.2.1 Error when specialWrapp was not in component props resolved
 
+2.2.2 New documentation added with new customitation in "SpecialWrapp"
+
 ## News
 
 - Are you have a idea for the library?, share the idea in github(in issue section)
@@ -333,6 +335,93 @@ function specialTag({ letter, cssClass }) {
             </a>
         </div>
     )
+}
+```
+
+Well get this problem, Do you have a `specialStruture`, but How Do you can put the `specialWrapp`? well is sample.
+
+```
+// Now your customStrucuture will recive a new prop "specialWrapp"
+// With this prop do you can comprobate if the text has a "specialWrapp"
+
+function customStrucuture({ letter, cssClass, specialWrapp }) {
+    // specialWrapp is an object with this attribute.
+    const { hasCustomWrapp, NewWrappStructure } = specialWrapp;
+
+    // here will declare the components to the comprobation
+    // the "Default" component, when the "hasCustomWrapp" is false
+    // this is will returned
+    const Default = ({ letter, cssClass }) => (
+        <div className="container">
+        <span className={cssClass}>{letter}</span>
+        </div>
+    );
+
+    // When "hasCustomWrapp" is true this is the return
+    // "NewWrappStructure" will pass to be the custom wrapp
+    const CustomComponent = ({ letter, cssClass }) => (
+        <div className="container">
+            // I have been error when I don't put this comprobation beacuase
+            // "NewWrappStrucuture" is undefiend when hasCustomWrapp is false.
+            {hasCustomWrapp ? (
+                <NewWrappStructure letter={letter} cssClass={cssClass} />
+            ) : null}
+        </div>
+    );
+
+
+    // Now You do will make the comprobation with your another params or it
+    // can be like this
+    return hasCustomWrapp ? (
+        <CustomComponent letter={letter} cssClass={cssClass} />
+    ) : (
+        <Default letter={letter} cssClass={cssClass} />
+    );
+}
+
+function YourComponent() {
+    // this is a sample example of WrappingLetters component
+    return (
+        <>
+            <WrappingLetters
+            text="This is a short sentence for an example test OwO"
+            textOptions={{
+                SpecialWrapp: {
+                wordToSearch: ["for", "an", "test"],
+                structureToAdd: [specialTag, specialTag1],
+                },
+            }}
+            structure={customStructure}
+            />
+        </>
+    );
+}
+
+// here is the custom tags
+function specialTag({ letter, cssClass }) {
+  return (
+    <a
+      className={cssClass}
+      href="https://ttager.page/"
+      target="_blank"
+      rel="noreferrer"
+    >
+      {letter}
+    </a>
+  );
+}
+
+function specialTag1({ letter, cssClass }) {
+  return (
+    <a
+      className={cssClass}
+      href="https://ttager.page/"
+      target="_blank"
+      rel="noreferrer"
+    >
+      :D{letter}
+    </a>
+  );
 }
 ```
 
