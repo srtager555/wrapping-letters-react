@@ -16,8 +16,11 @@ body {
     
     font-family: 'Poppins', sans-serif;
 }
+.container {
+    display: inline-block
+}
 .container > span {
-    margin-left: 10px;
+    /* margin-left: 10px; */
     white-space: pre;
 }
 

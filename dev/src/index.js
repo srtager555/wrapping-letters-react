@@ -18,7 +18,7 @@ function specialTag({ letter, cssClass }) {
   );
 }
 
-function specialTag1({ letter, cssClass, specialStructure }) {
+function specialTag1({ letter, cssClass }) {
   return (
     <a
       className={cssClass}
@@ -31,31 +31,30 @@ function specialTag1({ letter, cssClass, specialStructure }) {
   );
 }
 
-function devStructure({ letter, cssClass, specilStructure }) {
-  const [Component, SetComponent] = React.useState();
+function devStructure({ letter, cssClass, specialWrapp }) {
+  const { hasCustomWrapp, NewWrappStructure } = specialWrapp;
 
-  const Default = (
+  // eslint-disable-next-line react/prop-types
+  const Default = ({ letter, cssClass }) => (
     <div className="container">
-      <span className={cssClass}>{`LETTER: ${letter}, `}</span>
-      <span className={cssClass}>{`CLASS: ${cssClass}`}</span>
-    </div>
-  );
-  const Good = (
-    <div className="container">
-      <a href="htp..." className={cssClass}>{`LETTER: ${letter}, `}</a>
-      <span className={cssClass}>{`CLASS: ${cssClass}`}</span>
+      <span className={cssClass}>{letter}</span>
     </div>
   );
 
-  React.useEffect(() => {
-    if (specilStructure.Good) {
-      //...
-    } else {
-      //...
-    }
-  }, []);
+  // eslint-disable-next-line react/prop-types
+  const CustomComponent = ({ letter, cssClass }) => (
+    <div className="container">
+      {hasCustomWrapp ? (
+        <NewWrappStructure letter={letter} cssClass={cssClass} />
+      ) : null}
+    </div>
+  );
 
-  return <Component />;
+  return hasCustomWrapp ? (
+    <CustomComponent letter={letter} cssClass={cssClass} />
+  ) : (
+    <Default letter={letter} cssClass={cssClass} />
+  );
 }
 
 function structure({ letter, cssClass }) {
@@ -73,36 +72,34 @@ function App() {
     <>
       <WrappingLetters
         text="This is a short sentence for an example test OwO"
-        textOptions={
-          {
-            // ClassToAdd: "class",
-            // SelectClass: {
-            //   // new object with the class to add []
-            //   wordToSearch: [
-            //     "a",
-            //     "OwO",
-            //     "sentence",
-            //     "sent",
-            //     "short",
-            //     "example",
-            //     "This",
-            //     "is",
-            //   ],
-            //   classToAdd: [
-            //     "special-class-1",
-            //     "special-class-2",
-            //     "special-class-3",
-            //   ],
-            //   spaceBetweenWord: true,
-            // },
-            // SpecialWrapp: {
-            //   wordToSearch: ["for", "an", "test"],
-            //   structureToAdd: [specialTag, specialTag1],
-            // },
-            // PerWord: true,
-          }
-        }
-        // structure={structure}
+        textOptions={{
+          // ClassToAdd: "class",
+          // SelectClass: {
+          //   // new object with the class to add []
+          //   wordToSearch: [
+          //     "a",
+          //     "OwO",
+          //     "sentence",
+          //     "sent",
+          //     "short",
+          //     "example",
+          //     "This",
+          //     "is",
+          //   ],
+          //   classToAdd: [
+          //     "special-class-1",
+          //     "special-class-2",
+          //     "special-class-3",
+          //   ],
+          //   spaceBetweenWord: true,
+          // },
+          SpecialWrapp: {
+            wordToSearch: ["for", "an", "test"],
+            structureToAdd: [specialTag, specialTag1],
+          },
+          // PerWord: true,
+        }}
+        structure={devStructure}
       />
     </>
   );
