@@ -31,7 +31,7 @@ function specialTag1({ letter, cssClass }) {
   );
 }
 
-function devStructure({ letter, cssClass, specialWrapp }) {
+function devStructure({ letter, cssClass, specialWrapp, index }) {
   const { hasCustomWrapp, NewWrappStructure } = specialWrapp;
 
   // eslint-disable-next-line react/prop-types
