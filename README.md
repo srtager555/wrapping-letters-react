@@ -14,9 +14,15 @@ The `SpecialWrapp` is the new property for Wrapping Letters in the 2.2.0.
 Create your custom wrapp for your text with this new
 property!
 
-2.2.1 Error when specialWrapp was not in component props resolved
+- 2.2.1 Error when specialWrapp was not in component props resolved
 
-2.2.2 New documentation added with new customitation in "SpecialWrapp"
+- 2.2.2 New documentation added with new customitation in "SpecialWrapp"
+
+  2.3.0
+
+This upgrade is very small.
+
+- now you do can get the index in `structure` for you sintaxis.
 
 ## News
 
@@ -284,6 +290,10 @@ The list of element to send a the component for now is small:
 
 - `cssClass` is the special css class
 
+- `specialWrapp` this attribute is explaining in the next section
+
+- `index` yeah, the index is now available.
+
 `!IMPORTANT` The key is assigned automatically in the component
 
 - `key` is the key :3 ('{wrappedElement}'-{indexNumber})
@@ -338,7 +348,7 @@ function specialTag({ letter, cssClass }) {
 }
 ```
 
-Well get this problem, Do you have a `specialStruture`, but How Do you can put the `specialWrapp`? well is sample.
+Well get this problem, Do you have a `specialStruture`, but How Do you can put the `specialWrapp`? well is simple.
 
 ```
 // Now your customStrucuture will recive a new prop "specialWrapp"
@@ -361,8 +371,9 @@ function customStrucuture({ letter, cssClass, specialWrapp }) {
     // "NewWrappStructure" will pass to be the custom wrapp
     const CustomComponent = ({ letter, cssClass }) => (
         <div className="container">
-            // I have been error when I don't put this comprobation beacuase
-            // "NewWrappStrucuture" is undefiend when hasCustomWrapp is false.
+            // I have been error when I don't put this
+            // comprobation beacuase "NewWrappStrucuture"
+            // is undefiend when hasCustomWrapp is false.
             {hasCustomWrapp ? (
                 <NewWrappStructure letter={letter} cssClass={cssClass} />
             ) : null}
@@ -370,8 +381,8 @@ function customStrucuture({ letter, cssClass, specialWrapp }) {
     );
 
 
-    // Now You do will make the comprobation with your another params or it
-    // can be like this
+    // Now You do will make the comprobation with
+    // your another params or it can be like this
     return hasCustomWrapp ? (
         <CustomComponent letter={letter} cssClass={cssClass} />
     ) : (
@@ -380,7 +391,7 @@ function customStrucuture({ letter, cssClass, specialWrapp }) {
 }
 
 function YourComponent() {
-    // this is a sample example of WrappingLetters component
+    // this is a simple example of WrappingLetters component
     return (
         <>
             <WrappingLetters
