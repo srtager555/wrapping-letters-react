@@ -130,6 +130,7 @@ export function WrappLetter({
         letter={wrappElement.letter}
         cssClass={wrappElement.cssClass}
         specialWrapp={wrappElement.specialWrapp}
+        index={index}
         key={`'${wrappElement.letter}'-${index}`}
       />
     );
