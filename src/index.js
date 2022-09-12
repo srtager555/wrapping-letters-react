@@ -10,7 +10,19 @@ import { process__select_specialWrapp__ } from "./process/specialWrapp.process";
 
 import { whatItIs } from "./common/whatIsIt";
 
-export default function WrappingLetters(props) {
+/**
+ * @param  {string} text - what do you need wrap? here put your text.
+ * @param  {Object} textOptions - Here you'll put the options to wrap
+ * @param  {function} structure - Here put the component with the JSX syntax that you want out each wrap
+ * @returns {function} returns multiple React components on JSX
+ */
+export default function WrappingLetters(
+  props = {
+    text: String,
+    textOptions: Object,
+    structure: Function,
+  }
+) {
   // first need declare the component to return
   function baseStructure({ letter, cssClass, specialWrapp }) {
     // eslint-disable-next-line react/prop-types
@@ -34,8 +46,7 @@ export default function WrappingLetters(props) {
 
   // Here the code'll verify if the props are correct.
   error__props_filter__(props);
-
-  const { text = "Hello world !!! <3", textOptions = {}, structure } = props;
+  let { text = "Hellos world!!! <3", textOptions = {}, structure } = props;
 
   // if the user has a custom structure here it will be changed by it
   const Structure = structure || baseStructure;
