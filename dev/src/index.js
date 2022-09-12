@@ -73,33 +73,33 @@ function App() {
       <WrappingLetters
         text="This is a short sentence for an example test OwO"
         textOptions={{
-          // ClassToAdd: "class",
-          // SelectClass: {
-          //   // new object with the class to add []
-          //   wordToSearch: [
-          //     "a",
-          //     "OwO",
-          //     "sentence",
-          //     "sent",
-          //     "short",
-          //     "example",
-          //     "This",
-          //     "is",
-          //   ],
-          //   classToAdd: [
-          //     "special-class-1",
-          //     "special-class-2",
-          //     "special-class-3",
-          //   ],
-          //   spaceBetweenWord: true,
-          // },
-          SpecialWrapp: {
-            wordToSearch: ["for", "an", "test"],
-            structureToAdd: [specialTag, specialTag1],
+          ClassToAdd: "class",
+          SelectClass: {
+            // new object with the class to add []
+            wordToSearch: [
+              "a",
+              "OwO",
+              "sentence",
+              "sent",
+              "short",
+              "example",
+              "This",
+              "is",
+            ],
+            classToAdd: [
+              "special-class-1",
+              "special-class-2",
+              "special-class-3",
+            ],
+            spaceBetweenWord: true,
           },
+          // SpecialWrapp: {
+          //   wordToSearch: ["for", "an", "test"],
+          //   structureToAdd: [specialTag, specialTag1],
+          // },
           // PerWord: true,
         }}
-        structure={devStructure}
+        // structure={structure}
       />
     </>
   );
