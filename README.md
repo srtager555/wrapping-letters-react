@@ -3,7 +3,7 @@
 WRAPPING LETTERS IS A REACT LIBRARY(come soon for JS) THAT
 SIMPLIFIES THE JOB OF WRAPPING LETTERS IN HTML TAGS
 
-``` $ npm install wrapping-letters-react ```
+`$ npm install wrapping-letters-react`
 
 ## New upgrades
 
@@ -25,6 +25,8 @@ property!
 This upgrade is very small.
 
 - now you do can get the index in `structure` for you sintaxis.
+
+- 2.3.1 Issue about incorrect props solved
 
 ## News
 
