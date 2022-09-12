@@ -1,7 +1,6 @@
+lib/
 package-lock.json
 
-# Created by https://www.toptal.com/developers/gitignore/api/macos,react,visualstudio
-# Edit at https://www.toptal.com/developers/gitignore?templates=macos,react,visualstudio
 
 ### macOS ###
 # General
