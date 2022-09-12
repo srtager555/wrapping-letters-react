@@ -1,4 +1,6 @@
-export function __error__props_filter__(props) {
+import stringSimilarity from "string-similarity";
+
+export function error__props_filter__(props) {
   const oficialProperties = ["text", "textOptions", "structure"];
   const propsKeys = Object.keys(props);
 
@@ -6,7 +8,11 @@ export function __error__props_filter__(props) {
     let oficialProperty = oficialProperties.some((element) => element === el);
 
     if (!oficialProperty) {
-      throw new Error(`${el} isn't a registered property.`);
+      const SS = stringSimilarity.findBestMatch(el, oficialProperties);
+
+      throw new Error(
+        `"${el}" isn't a registered property. Did you mean "${SS.bestMatch.target}"?`
+      );
     }
   });
 }
