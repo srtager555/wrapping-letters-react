@@ -13,6 +13,7 @@ import { whatItIs } from "./common/whatIsIt";
 export default function WrappingLetters(props) {
   // first need declare the component to return
   function baseStructure({ letter, cssClass, specialWrapp }) {
+    // eslint-disable-next-line react/prop-types
     function DEFAULT_COMPONENT({ letter, cssClass }) {
       return <span className={cssClass}>{letter}</span>;
     }
@@ -67,7 +68,8 @@ export default function WrappingLetters(props) {
   // here the code will cath the errors in the user's code
   error__main_filter__(wrappProps);
 
-  const { ClassToAdd, SelectClass, SpecialWrapp, PerWord } = wrappProps;
+  // ClassToAdd, SelectClass,
+  const { SpecialWrapp, PerWord } = wrappProps;
 
   // here the code will declare the crumble text per word or letters
   const crumbledText = PerWord ? text.split(" ") : [...text];
