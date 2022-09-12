@@ -3,17 +3,14 @@ import React from "react";
 import { WrappLetter } from "./process/wrappLetter.process";
 import { textOptions__process_layout__ } from "./layout";
 import { error__main_filter__ } from "./error";
+import { error__props_filter__ } from "./error/props-filter.error";
 
 import { process__select_specialClass__ } from "./process/specialClass.process";
 import { process__select_specialWrapp__ } from "./process/specialWrapp.process";
 
 import { whatItIs } from "./common/whatIsIt";
 
-export default function WrappingLetters({
-  text = "Hello world !!! <3",
-  textOptions = {},
-  structure,
-}) {
+export default function WrappingLetters(props) {
   // first need declare the component to return
   function baseStructure({ letter, cssClass, specialWrapp }) {
     function DEFAULT_COMPONENT({ letter, cssClass }) {
@@ -33,6 +30,11 @@ export default function WrappingLetters({
       <DEFAULT_COMPONENT letter={letter} cssClass={cssClass} />
     );
   }
+
+  // Here the code'll verify if the props are correct.
+  error__props_filter__(props);
+
+  const { text = "Hello world !!! <3", textOptions = {}, structure } = props;
 
   // if the user has a custom structure here it will be changed by it
   const Structure = structure || baseStructure;
