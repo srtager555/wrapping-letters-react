@@ -5,6 +5,10 @@ SIMPLIFIES THE JOB OF WRAPPING LETTERS IN HTML TAGS
 
 `$ npm install wrapping-letters-react`
 
+## News
+
+- The Demo page is cooming soon, this readme will change in a week ~
+
 ## New upgrades
 
 2.2.0
@@ -28,11 +32,7 @@ This upgrade is very small.
 
 - 2.3.1 Issue about incorrect props solved
 
-## News
-
-- Are you have a idea for the library?, share the idea in github(in issue section)
-
-- I working now in the demo page from the wrapping-letters
+- 2.3.2 I added "helps" in the Wl component, I'm talking about JSDocs
 
 ## How to use
 
