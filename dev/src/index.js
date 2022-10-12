@@ -1,5 +1,5 @@
-import WrappingLetters from "../../src";
-// import WrappingLetters from "../../lib";
+// import WrappingLetters from "../../src";
+import WrappingLetters from "../../lib";
 import React from "react";
 import ReactDOM from "react-dom";
 
@@ -71,8 +71,7 @@ function App() {
   return (
     <>
       <WrappingLetters
-        // text
-        // ="This is a short sentence for an example test OwO"
+        text={{}}
         // textOptions
         // ={{
         //   ClassToAdd: "class",
@@ -101,7 +100,7 @@ function App() {
         //   // },
         //   // PerWord: true,
         // }}
-        structure={structure}
+        // structure={structure}
       />
     </>
   );
