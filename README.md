@@ -19,4 +19,4 @@ The website is a beta but make a great work in the docs
 
 Go to the home page!!!
 
-<a href="https://wrapping-letter.vercel.app/docs">Here is the docs pages!</a>
+<a href="https://wrapping-letters.vercel.app/docs">Here is the docs pages!</a>
