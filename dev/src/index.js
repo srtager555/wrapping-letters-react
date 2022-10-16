@@ -71,8 +71,8 @@ function App() {
   return (
     <>
       <WrappingLetters
-        text={{}}
-        // textOptions
+        // text={{}}
+        textOptions={{}}
         // ={{
         //   ClassToAdd: "class",
         //   SelectClass: {
