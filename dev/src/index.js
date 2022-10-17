@@ -48,7 +48,7 @@ function App() {
         textOptions={{
           SpecialWrapp: {
             wordToSearch: "Hello",
-            structureToAdd: { wrapp: specialTag, props: { uwu: "uwu" } },
+            structureToAdd: { struc: specialTag, props: { uwu: "uwu" } },
           },
         }}
         structure={{ wrapp: structure, props: { owo: "owo" } }}
