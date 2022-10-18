@@ -46,7 +46,7 @@ export default function WrappingLetters(
 
   // Here the code'll verify if the props are correct.
   error__props_filter__(props);
-  let { text = "Hellos world!!! <3", textOptions = {}, structure } = props;
+  let { text = "Hello world!!! <3", textOptions = {}, structure } = props;
 
   // if the user has a custom structure here it will be changed by it
   const Structure = structure || baseStructure;
@@ -60,8 +60,14 @@ export default function WrappingLetters(
     throw new Error("text cannot be empty");
   }
 
-  if (whatItIs(Structure) !== "[object Function]") {
-    throw new Error("Structure must be a function(React Component)");
+  if (
+    !["[object Object]", "[object Function]"].some(
+      (el) => el === whatItIs(Structure)
+    )
+  ) {
+    throw new Error(
+      "Structure must be a function(React Component) or an Object"
+    );
   }
 
   // textOptions must be an Object
