@@ -9,6 +9,7 @@ import { process__select_specialClass__ } from "./process/specialClass.process";
 import { process__select_specialWrapp__ } from "./process/specialWrapp.process";
 
 import { whatItIs } from "./common/whatIsIt";
+import { process__structure__ } from "./process/structure.process";
 
 /**
  * @param  {string} text - what do you need wrap? here put your text.
@@ -103,8 +104,11 @@ export default function WrappingLetters(
     structureToAdd: SpecialWrapp.structureToAdd,
   });
 
+  const STRUCTURE__INFO_PROCESS = process__structure__(Structure);
+
   wrappProps.SelectClass = SPECIAL_CLASS__INFO_PROCESSED;
   wrappProps.SpecialWrapp = SPECIAL_WRAPP__INFO_PROCESSED;
+  wrappProps.Structure = STRUCTURE__INFO_PROCESS;
 
   // The code will add the last values in the obj.
   wrappProps.crumbledText = crumbledText;
