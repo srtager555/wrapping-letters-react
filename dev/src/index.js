@@ -31,12 +31,13 @@ function specialTag1({ letter, cssClass }) {
   );
 }
 
-function structure({ letter, cssClass }) {
+function structure({ letter, cssClass, owo, awita, sex }) {
   const Default = (
-    <div className="container">
-      <span className={cssClass}>{`LETTER: "${letter}", `}</span>
-      <span className={cssClass}>{`CLASS: "${cssClass}"`}</span>
-    </div>
+    <span>
+      {letter} - {owo}
+      {awita.a}
+      {sex}{" "}
+    </span>
   );
   return Default;
 }
@@ -46,12 +47,19 @@ function App() {
     <>
       <WrappingLetters
         textOptions={{
-          SpecialWrapp: {
+          SelectClass: {
             wordToSearch: "Hello",
-            structureToAdd: { struc: specialTag, props: { uwu: "uwu" } },
+            classToAdd: "aloh",
           },
+          //   SpecialWrapp: {
+          //     wordToSearch: "Hello",
+          //     structureToAdd: { struc: specialTag, props: { uwu: "uwu" } },
+          //   },
         }}
-        structure={{ wrapp: structure, props: { owo: "owo" } }}
+        structure={{
+          structure: undefined,
+          props: { owo: "owo", awita: { a: "a " }, sex: "uwu" },
+        }}
       />
     </>
   );
