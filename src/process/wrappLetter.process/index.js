@@ -14,10 +14,8 @@ export function WrappLetter({
   test = false,
 }) {
   let { searchWordValue, specialClass, spaceBetweenWord } = SelectClass;
-  // let { wordToWrapp } = SpecialWrapp;
-
-  // comprobation if searchWordValue or wordToWrapp is an array
-  // if (!Array.isArray(searchWordValue)) searchWordValue = [searchWordValue];
+  const CustomComponent = Structure.structure;
+  const CustomProps = Structure.props;
 
   var arrElements = crumbledText
     .map(function (wrappElement, index) {
@@ -126,12 +124,13 @@ export function WrappLetter({
 
   var wrappedLetters = arrElements.map(function (wrappElement, index) {
     return (
-      <Structure
+      <CustomComponent
         letter={wrappElement.letter}
         cssClass={wrappElement.cssClass}
         specialWrapp={wrappElement.specialWrapp}
         index={index}
         key={`'${wrappElement.letter}'-${index}`}
+        {...CustomProps}
       />
     );
   });
