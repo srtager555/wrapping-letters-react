@@ -56,10 +56,10 @@ function App() {
           //     structureToAdd: { struc: specialTag, props: { uwu: "uwu" } },
           //   },
         }}
-        // structure={{
-        //   structure: undefined,
-        //   props: { owo: "owo", awita: { a: "a " }, sex: "uwu" },
-        // }}
+        structure={{
+          structure: structure,
+          props: { owo: "owo", awita: { a: "a " }, sex: "uwu" },
+        }}
       />
     </>
   );
