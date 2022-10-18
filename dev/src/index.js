@@ -31,14 +31,8 @@ function specialTag1({ letter, cssClass }) {
   );
 }
 
-function structure({ letter, cssClass, owo, awita, sex }) {
-  const Default = (
-    <span>
-      {letter} - {owo}
-      {awita.a}
-      {sex}{" "}
-    </span>
-  );
+function structure({ letter, cssClass }) {
+  const Default = <span className={cssClass}>{letter}</span>;
   return Default;
 }
 
@@ -46,20 +40,22 @@ function App() {
   return (
     <>
       <WrappingLetters
+        text="Hello <3"
         textOptions={{
           SelectClass: {
-            wordToSearch: "Hello",
-            classToAdd: "aloh",
+            wordToSearch: ["Hello", "<3"],
+            classToAdd: ["aloh", "a"],
           },
           //   SpecialWrapp: {
           //     wordToSearch: "Hello",
           //     structureToAdd: { struc: specialTag, props: { uwu: "uwu" } },
           //   },
         }}
-        structure={{
-          structure: structure,
-          props: { owo: "owo", awita: { a: "a " }, sex: "uwu" },
-        }}
+        structure={structure}
+        // structure={{
+        //   structure: structure,
+        //   props: { owo: "owo", awita: { a: "a " }, sex: "uwu" },
+        // }}
       />
     </>
   );
