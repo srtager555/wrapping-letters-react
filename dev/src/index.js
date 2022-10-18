@@ -31,39 +31,8 @@ function specialTag1({ letter, cssClass }) {
   );
 }
 
-function devStructure({ letter, cssClass, specialWrapp, index }) {
-  const { hasCustomWrapp, NewWrappStructure } = specialWrapp;
-
-  // eslint-disable-next-line react/prop-types
-  const Default = ({ letter, cssClass }) => (
-    <div className="container">
-      <span className={cssClass}>{letter}</span>
-    </div>
-  );
-
-  // eslint-disable-next-line react/prop-types
-  const CustomComponent = ({ letter, cssClass }) => (
-    <div className="container">
-      {hasCustomWrapp ? (
-        <NewWrappStructure letter={letter} cssClass={cssClass} />
-      ) : null}
-    </div>
-  );
-
-  return hasCustomWrapp ? (
-    <CustomComponent letter={letter} cssClass={cssClass} />
-  ) : (
-    <Default letter={letter} cssClass={cssClass} />
-  );
-}
-
 function structure({ letter, cssClass }) {
-  const Default = (
-    <div className="container">
-      <span className={cssClass}>{`LETTER: "${letter}", `}</span>
-      <span className={cssClass}>{`CLASS: "${cssClass}"`}</span>
-    </div>
-  );
+  const Default = <span className={cssClass}>{letter}</span>;
   return Default;
 }
 
@@ -71,37 +40,22 @@ function App() {
   return (
     <>
       <WrappingLetters
-        // text
-        // ="This is a short sentence for an example test OwO"
-        // textOptions
-        // ={{
-        //   ClassToAdd: "class",
-        //   SelectClass: {
-        //     // new object with the class to add []
-        //     wordToSearch: [
-        //       "a",
-        //       "OwO",
-        //       "sentence",
-        //       "sent",
-        //       "short",
-        //       "example",
-        //       "This",
-        //       "is",
-        //     ],
-        //     classToAdd: [
-        //       "special-class-1",
-        //       "special-class-2",
-        //       "special-class-3",
-        //     ],
-        //     spaceBetweenWord: true,
-        //   },
-        //   // SpecialWrapp: {
-        //   //   wordToSearch: ["for", "an", "test"],
-        //   //   structureToAdd: [specialTag, specialTag1],
-        //   // },
-        //   // PerWord: true,
-        // }}
+        text="Hello <3"
+        textOptions={{
+          SelectClass: {
+            wordToSearch: ["Hello", "<3"],
+            classToAdd: ["aloh", "a"],
+          },
+          //   SpecialWrapp: {
+          //     wordToSearch: "Hello",
+          //     structureToAdd: { struc: specialTag, props: { uwu: "uwu" } },
+          //   },
+        }}
         structure={structure}
+        // structure={{
+        //   structure: structure,
+        //   props: { owo: "owo", awita: { a: "a " }, sex: "uwu" },
+        // }}
       />
     </>
   );
