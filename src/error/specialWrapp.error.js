@@ -8,6 +8,8 @@ export function error__Filter_SpecialWrapp__(SpecialWrapp) {
 
   const { wordToSearch, structureToAdd } = SpecialWrapp;
 
+  // missing the check if the object has the 2 correct attributes
+
   if (
     whatItIs(wordToSearch) != "[object String]" &&
     !Array.isArray(wordToSearch)
