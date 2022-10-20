@@ -17,12 +17,17 @@ export function error__Filter_SpecialWrapp__(SpecialWrapp) {
     );
   }
 
+  // from now on the code will check if
+  // the attribute has the correct conditions
+
   if (
-    whatItIs(structureToAdd) != "[object Function]" &&
+    whatItIs(structureToAdd) != "[object Object]" &&
     !Array.isArray(structureToAdd)
   ) {
     throw new Error(
-      'SpecialWrapp --- "structureToAdd" must be an Array or Function(component)'
+      'SpecialWrapp --- "structureToAdd" must be an Array or Object'
     );
   }
+
+  if (whatItIs(structureToAdd) != "[object Array]") 
 }
