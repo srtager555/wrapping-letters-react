@@ -9,6 +9,9 @@ export function process__select_specialWrapp__({
     wordToWrapp: wordToSearch || new String(),
   };
 
+  // here the code need a check if the attribute... wait a moment
+
+  // translating the component to an object
   if (whatItIs(structureToAdd) != "[object Object]")
     props.wrappToAdd = [
       {
