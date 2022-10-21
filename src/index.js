@@ -33,6 +33,7 @@ export default function WrappingLetters(
 
     const {
       hasCustomWrapp,
+      // the code is crashed because it can receive an object instead of a component
       NewWrappStructure = () => (
         <DEFAULT_COMPONENT letter={letter} cssClass={cssClass} />
       ),
