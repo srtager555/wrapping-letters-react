@@ -24,12 +24,55 @@ export function error__Filter_SpecialWrapp__(SpecialWrapp) {
 
   if (
     whatItIs(structureToAdd) != "[object Object]" &&
+    whatItIs(structureToAdd) != "[object Function]" &&
     !Array.isArray(structureToAdd)
   ) {
     throw new Error(
-      'SpecialWrapp --- "structureToAdd" must be an Array or Object'
+      'SpecialWrapp --- "structureToAdd" must be an Array, Object or Function'
     );
   }
 
-  if (whatItIs(structureToAdd) != "[object Array]") 
+  if (whatItIs(structureToAdd) === "[object Object]")
+    __comprobation_correct_attributes__(structureToAdd);
+
+  // here the code will check each element from an Array
+  if (Array.isArray(structureToAdd)) {
+    // here the will iterate the elements
+    structureToAdd.forEach((element) => {
+      const __CONDITIONS__ = (target) => {
+        return [
+          whatItIs(target) != "[object Object]",
+          whatItIs(target) != "[object Function]",
+          !Array.isArray(target),
+        ];
+      };
+
+      if (__CONDITIONS__(element).every((el) => el)) {
+        throw new Error(
+          `SpecialWrapp --- The Elements on "structureToAdd" must be an Array, Object or Function, You did put an ${whatItIs(
+            element
+          )}`
+        );
+      }
+
+      if (Array.isArray(element)) {
+        element.forEach((el) => {
+          const CONDITIONS = __CONDITIONS__(el).pop();
+
+          if (CONDITIONS.every((el) => el)) {
+            throw new Error(
+              `SpecialWrapp --- The Elements from an Array on "structureToAdd" must be an  Object or Function, You did put an ${whatItIs(
+                element
+              )}`
+            );
+          }
+
+          if (whatItIs(el) === "[object Object]")
+            __comprobation_correct_attributes__(el);
+        });
+      }
+    });
+  }
 }
+
+function __comprobation_correct_attributes__(element) {}
