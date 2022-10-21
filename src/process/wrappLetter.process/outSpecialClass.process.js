@@ -15,8 +15,6 @@ export function outSpecialClass({
 }) {
   let { hasCustomWrapp, wordToWrapp, wrappToAdd } = SpecialWrapp;
 
-  if (!Array.isArray(wordToWrapp)) wordToWrapp = [wordToWrapp];
-
   let cssClass = !specialStructure ? ClassToAdd : "";
   let word = wrappElement;
   let customWrapp = undefined;
