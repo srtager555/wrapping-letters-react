@@ -11,18 +11,19 @@ export function process__select_specialWrapp__({
 
   // here the code need a check if the attribute... wait a moment
 
-  // translating the component to an object
-  if (whatItIs(structureToAdd) != "[object Object]")
-    props.wrappToAdd = [
-      {
-        structure: structureToAdd || undefined,
-        props: { AwAdeUwU: "uwu" },
-      },
-    ];
-  else props.wrappToAdd = [structureToAdd] || undefined;
+  if (whatItIs(structureToAdd) === "[object Function]")
+    props.props.wrappToAdd = {
+      structure: structureToAdd,
+      props: { AwAdeUwU: "uwu" },
+    };
+  // if it's not a function, it's an Object or an Array
+  else props.wrappToAdd = structureToAdd;
 
   if (!Array.isArray(props.wordToWrapp))
     props.wordToWrapp = [props.wordToWrapp];
+
+  // I need check the wrapper to uncomment this code line
+  // if (!Array.isArray(props.wrappToAdd)) props.wrappToAdd = [props.wrappToAdd];
 
   return props;
 }
