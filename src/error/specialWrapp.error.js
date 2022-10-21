@@ -32,6 +32,7 @@ export function error__Filter_SpecialWrapp__(SpecialWrapp) {
     );
   }
 
+  // here the code will verify that the object has the correct attributes
   if (whatItIs(structureToAdd) === "[object Object]")
     __comprobation_correct_attributes__(structureToAdd);
 
@@ -45,7 +46,7 @@ export function error__Filter_SpecialWrapp__(SpecialWrapp) {
         !Array.isArray(target),
       ];
 
-      // condi
+      // here the code will know if the element has the correct element inside it
       if (__CONDITIONS__(element).every((el) => el)) {
         var err = `SpecialWrapp --- The Elements on "structureToAdd" must be an Array, Object or Function, You did put an ${whatItIs(
           element
@@ -53,6 +54,8 @@ export function error__Filter_SpecialWrapp__(SpecialWrapp) {
         throw new Error(err);
       }
 
+      // here the code check if the Arrays on special Array
+      // feature has been did put the correct elements
       if (Array.isArray(element))
         element.forEach((el) => {
           const CONDITIONS = __CONDITIONS__(el).pop();
@@ -64,6 +67,7 @@ export function error__Filter_SpecialWrapp__(SpecialWrapp) {
             throw new Error(err);
           }
 
+          // the object has the same conditions
           if (whatItIs(el) === "[object Object]")
             __comprobation_correct_attributes__(el);
         });
