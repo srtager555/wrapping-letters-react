@@ -18,14 +18,8 @@ export function process__select_specialWrapp__({
 
   //the container does not process the object, it only returns it when needed
 
-  // if it's not a function, it's an Object or an Array
-  // else props.wrappToAdd = structureToAdd;
-
   if (!Array.isArray(props.wordToWrapp))
     props.wordToWrapp = [props.wordToWrapp];
-
-  // I need check the wrapper to uncomment this code line
-  // if (!Array.isArray(props.wrappToAdd)) props.wrappToAdd = [props.wrappToAdd];
 
   return props;
 }
