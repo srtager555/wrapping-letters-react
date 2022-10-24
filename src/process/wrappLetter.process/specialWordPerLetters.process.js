@@ -62,7 +62,7 @@ export function __specialWorld_PerLetters__({
 
     customWrapp = __specialArray__(wrappToAdd, WORD_INDEX);
 
-    if (whatItIs(wrappToAdd) === "[object Object]") hasCustomProps = true;
+    if (whatItIs(customWrapp) === "[object Object]") hasCustomProps = true;
   }
 
   // here the code will create magic
