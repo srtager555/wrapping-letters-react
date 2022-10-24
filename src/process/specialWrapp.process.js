@@ -6,6 +6,7 @@ export function process__select_specialWrapp__({
 }) {
   let props = {
     hasCustomWrapp: false,
+    hasCustomProps: false,
     wordToWrapp: wordToSearch || new String(),
     wrappToAdd: structureToAdd,
   };
