@@ -5,29 +5,12 @@ import ReactDOM from "react-dom";
 
 import "./index.css";
 
-function specialTag({ letter, cssClass }) {
+function specialTag({ letter, cssClass, color }) {
   return (
-    <a
-      className={cssClass}
-      href="https://ttager.page/"
-      target="_blank"
-      rel="noreferrer"
-    >
+    <span className={cssClass}>
       {letter}
-    </a>
-  );
-}
-
-function specialTag1({ letter, cssClass }) {
-  return (
-    <a
-      className={cssClass}
-      href="https://ttager.page/"
-      target="_blank"
-      rel="noreferrer"
-    >
-      :D{letter}
-    </a>
+      {color}
+    </span>
   );
 }
 
@@ -46,12 +29,21 @@ function App() {
             wordToSearch: ["Hello", "<3"],
             classToAdd: ["aloh", "a"],
           },
-          //   SpecialWrapp: {
-          //     wordToSearch: "Hello",
-          //     structureToAdd: { struc: specialTag, props: { uwu: "uwu" } },
-          //   },
+          SpecialWrapp: {
+            wordToSearch: ["Hello", "<3"],
+            structureToAdd: [
+              {
+                structureToAdd: specialTag,
+                props: { color: "." },
+              },
+              {
+                structureToAdd: specialTag,
+                props: { color: "2" },
+              },
+            ],
+          },
         }}
-        structure={structure}
+        // structure={structure}
         // structure={{
         //   structure: structure,
         //   props: { owo: "owo", awita: { a: "a " }, sex: "uwu" },
