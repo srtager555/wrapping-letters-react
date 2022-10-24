@@ -31,19 +31,27 @@ export default function WrappingLetters(
       return <span className={cssClass}>{letter}</span>;
     }
 
-    const {
-      hasCustomWrapp,
-      // the code is crashed because it can receive an object instead of a component
-      NewWrappStructure = () => (
-        <DEFAULT_COMPONENT letter={letter} cssClass={cssClass} />
-      ),
-    } = specialWrapp;
+    const { hasCustomWrapp, hasCustomProps, NewWrappStructure } = specialWrapp;
 
-    return hasCustomWrapp ? (
-      <NewWrappStructure letter={letter} cssClass={cssClass} />
-    ) : (
-      <DEFAULT_COMPONENT letter={letter} cssClass={cssClass} />
-    );
+    let props = {
+      letter,
+      cssClass,
+    };
+
+    // if the variable has a default value, the "hasCustomWrapp" not is required
+    let Component =
+      specialWrapp.NewWrappStructure ||
+      function () {
+        return <DEFAULT_COMPONENT {...props} />;
+      };
+
+    if (hasCustomProps) {
+      Component = NewWrappStructure.structureToAdd;
+
+      return <Component {...props} {...NewWrappStructure.props} />;
+    }
+
+    return <Component {...props} />;
   }
 
   // Here the code'll verify if the props are correct.
