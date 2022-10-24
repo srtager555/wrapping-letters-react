@@ -1,3 +1,4 @@
+import { whatItIs } from "../../common/whatIsIt";
 import { __specialArray__ } from "./specialArray.process";
 import { __specialWorld_PerLetters__ } from "./specialWordPerLetters.process.js";
 
@@ -13,7 +14,8 @@ export function outSpecialClass({
   crumbledText,
   PerWord,
 }) {
-  let { hasCustomWrapp, wordToWrapp, wrappToAdd } = SpecialWrapp;
+  let { hasCustomWrapp, wordToWrapp, wrappToAdd, hasCustomProps } =
+    SpecialWrapp;
 
   let cssClass = !specialStructure ? ClassToAdd : "";
   let word = wrappElement;
@@ -37,6 +39,8 @@ export function outSpecialClass({
       const WORD_INDEX = wordToWrapp.indexOf(word);
 
       customWrapp = __specialArray__(wrappToAdd, WORD_INDEX);
+
+      if (whatItIs(wrappToAdd) === "[object Object]") hasCustomProps = true;
     }
 
     if (index != crumbledText.length - 1) wrappElement = wrappElement + " ";
