@@ -43,7 +43,6 @@ export function error__Filter_SpecialWrapp__(SpecialWrapp) {
       const __CONDITIONS__ = (target) => [
         whatItIs(target) != "[object Object]",
         whatItIs(target) != "[object Function]",
-        !Array.isArray(target),
       ];
 
       // here the code will know if the element has the correct element inside it
@@ -53,24 +52,6 @@ export function error__Filter_SpecialWrapp__(SpecialWrapp) {
         )}`;
         throw new Error(err);
       }
-
-      // here the code check if the Arrays on special Array
-      // feature has been did put the correct elements
-      if (Array.isArray(element))
-        element.forEach((el) => {
-          const CONDITIONS = __CONDITIONS__(el).pop();
-
-          if (CONDITIONS.every((el) => el)) {
-            var err = `SpecialWrapp --- The Elements from an Array on "structureToAdd" must be an Object or Function, You did put an ${whatItIs(
-              element
-            )}`;
-            throw new Error(err);
-          }
-
-          // the object has the same conditions
-          if (whatItIs(el) === "[object Object]")
-            __comprobation_correct_attributes__(el);
-        });
     });
   }
 }
@@ -81,7 +62,9 @@ function __comprobation_correct_attributes__(element) {
 
   // If SelectClass an empty Object the filter ends here
   if (ElementKeys.length === 0)
-    return console.log('remove the empty object "{}"');
+    throw new Error(
+      'SpecialWrapp - The Wrapper can process empty objects on strutureToAdd from SpecialWrapp "{}"'
+    );
 
   const sc_props = ["structureToAdd", "props"];
 
