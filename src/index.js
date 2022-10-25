@@ -125,6 +125,13 @@ function WL(
   return WrappLetter(wrappProps);
 }
 
-const WrappingLetters = React.memo(WL, (prevV, nextV) => true);
+const WrappingLetters = React.memo(WL, (prevV, nextV) => {
+  const CONDITIONS = [
+    prevV.text === nextV.text,
+    prevV.textOptions.ClassToAdd === nextV.textOptions.ClassToAdd,
+  ];
+
+  return !CONDITIONS.some((el) => el != true);
+});
 
 export default WrappingLetters;
