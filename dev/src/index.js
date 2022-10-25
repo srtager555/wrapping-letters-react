@@ -1,6 +1,6 @@
 import WrappingLetters from "../../src";
 // import WrappingLetters from "../../lib";
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
 import "./index.css";
@@ -20,35 +20,49 @@ function structure({ letter, cssClass }) {
 }
 
 function App() {
+  const [color, setColor] = useState(false);
+
+  const handleHover = () => {
+    setColor(!color);
+  };
+
   return (
     <>
-      <WrappingLetters
-        text="Hello <3"
-        textOptions={{
-          SelectClass: {
-            wordToSearch: ["Hello", "<3"],
-            classToAdd: ["aloh", "a"],
-          },
-          SpecialWrapp: {
-            wordToSearch: ["Hello", "<3"],
-            structureToAdd: [
-              {
-                structureToAdd: specialTag,
-                props: { color: "." },
+      <div
+        className={`container ${color ? "blue" : ""}`}
+        onMouseEnter={handleHover}
+      >
+        <span>letter </span>
+        <span>
+          <WrappingLetters
+            text="Hello <3"
+            textOptions={{
+              SelectClass: {
+                wordToSearch: ["Hello", "<3"],
+                classToAdd: ["aloh", "a"],
               },
-              {
-                structureToAdd: specialTag,
-                props: { color: "2" },
+              SpecialWrapp: {
+                wordToSearch: ["Hello", "<3"],
+                structureToAdd: [
+                  {
+                    structureToAdd: specialTag,
+                    props: { color: "." },
+                  },
+                  {
+                    structureToAdd: specialTag,
+                    props: { color: "2" },
+                  },
+                ],
               },
-            ],
-          },
-        }}
-        // structure={structure}
-        // structure={{
-        //   structure: structure,
-        //   props: { owo: "owo", awita: { a: "a " }, sex: "uwu" },
-        // }}
-      />
+            }}
+            // structure={structure}
+            // structure={{
+            //   structure: structure,
+            //   props: { owo: "owo", awita: { a: "a " }, sex: "uwu" },
+            // }}
+          />
+        </span>
+      </div>
     </>
   );
 }

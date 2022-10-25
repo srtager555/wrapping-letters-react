@@ -20,9 +20,14 @@ body {
 .container {
     display: inline-block
 }
-.container > span {
+.container span {
+    transition: 2s ease-in-out;
+}
+.container.blue span {
+    color: blue;
+
     /* margin-left: 10px; */
-    white-space: pre;
+    /* white-space: pre; */
 }
 
 .special-class-1 {
