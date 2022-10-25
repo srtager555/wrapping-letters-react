@@ -17,7 +17,7 @@ import { process__structure__ } from "./process/structure.process";
  * @param  {JSX.Element} structure - Here put the component with the JSX syntax that you want out each wrap
  * @returns {JSX.Element} returns multiple React components on JSX
  */
-export default function WrappingLetters(
+function WL(
   props = {
     text: new String(),
     textOptions: new Object(),
@@ -124,3 +124,7 @@ export default function WrappingLetters(
 
   return WrappLetter(wrappProps);
 }
+
+const WrappingLetters = React.memo(WL, (prevV, nextV) => true);
+
+export default WrappingLetters;
