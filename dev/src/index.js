@@ -11,15 +11,13 @@ function specialTag({ letter, cssClass }) {
 
 function structure(props) {
   console.log(props);
-  // const Default = <span className={cssClass}>{letter}</span>;
-  return <span>aaa</span>;
+  const Default = <span>{props.letter}</span>;
+  return Default;
 }
 
 function App() {
   const [color, setColor] = useState(false);
-  const [value, setValue] = useState(structure);
-
-  console.log(value);
+  // const [value, setValue] = useState(structure);
 
   const handleHover = () => {
     setColor(!color);
@@ -57,7 +55,7 @@ function App() {
                 // },
               }
             }
-            structure={value}
+            structure={structure}
             // structure={{
             //   structure: structure,
             //   props: { owo: "owo", awita: { a: "a " }, sex: "uwu" },
