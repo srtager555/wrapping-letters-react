@@ -10,6 +10,7 @@ import { process__select_specialWrapp__ } from "./process/specialWrapp.process";
 
 import { whatItIs } from "./common/whatIsIt";
 import { process__structure__ } from "./process/structure.process";
+import { memo__process } from "./process/memo.process";
 
 /**
  * @param  {string} text - what do you need wrap? here put your text.
@@ -125,13 +126,6 @@ function WL(
   return WrappLetter(wrappProps);
 }
 
-const WrappingLetters = React.memo(WL, (prevV, nextV) => {
-  const CONDITIONS = [
-    prevV.text === nextV.text,
-    prevV.textOptions.ClassToAdd === nextV.textOptions.ClassToAdd,
-  ];
-
-  return !CONDITIONS.some((el) => el != true);
-});
+const WrappingLetters = React.memo(WL, memo__process);
 
 export default WrappingLetters;
