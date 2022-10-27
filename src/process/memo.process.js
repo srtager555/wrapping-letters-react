@@ -87,7 +87,6 @@ export function memo__process(prevV, nextV) {
   ) {
     if (prevStruc != nextStruc) conditions.push(false);
   }
-  console.log(conditions);
 
   return conditions.every((el) => el === true);
 }
