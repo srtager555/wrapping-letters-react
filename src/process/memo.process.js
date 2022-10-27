@@ -80,20 +80,12 @@ export function memo__process(prevV, nextV) {
     whatItIs(prevStruc) === "[object Object]" &&
     whatItIs(nextStruc) === "[object Object]"
   ) {
-    if (
-      Function.prototype.toString(prevStruc.structure) !=
-      Function.prototype.toString(nextStruc.structure)
-    )
-      conditions.push(false);
+    if (prevStruc.structure != nextStruc.structure) conditions.push(false);
   } else if (
     whatItIs(prevStruc) === "[object Function]" &&
     whatItIs(nextStruc) === "[object Function]"
   ) {
-    if (
-      Function.prototype.toString(prevStruc) !=
-      Function.prototype.toString(nextStruc)
-    )
-      conditions.push(false);
+    if (prevStruc != nextStruc) conditions.push(false);
   }
   console.log(conditions);
 
