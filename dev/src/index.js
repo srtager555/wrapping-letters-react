@@ -1,62 +1,69 @@
 import WrappingLetters from "../../src";
 // import WrappingLetters from "../../lib";
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
 import "./index.css";
+import { whatItIs } from "../../src/common/whatIsIt";
 
 function specialTag({ letter, cssClass }) {
-  return (
-    <a
-      className={cssClass}
-      href="https://ttager.page/"
-      target="_blank"
-      rel="noreferrer"
-    >
-      {letter}
-    </a>
-  );
+  return <span className={cssClass}>{letter}</span>;
 }
 
-function specialTag1({ letter, cssClass }) {
-  return (
-    <a
-      className={cssClass}
-      href="https://ttager.page/"
-      target="_blank"
-      rel="noreferrer"
-    >
-      :D{letter}
-    </a>
-  );
-}
 
-function structure({ letter, cssClass }) {
-  const Default = <span className={cssClass}>{letter}</span>;
+function structure({ letter }) {
+  const Default = <span>{letter}</span>;
   return Default;
 }
 
 function App() {
+  const [color, setColor] = useState(false);
+  // const [value, setValue] = useState(structure);
+
+  const handleHover = () => {
+    setColor(!color);
+    // setValue(specialTag);
+  };
+
   return (
     <>
-      <WrappingLetters
-        text="Hello <3"
-        textOptions={{
-          SelectClass: {
-            wordToSearch: ["Hello", "<3"],
-            classToAdd: ["aloh", "a"],
-          },
-          //   SpecialWrapp: {
-          //     wordToSearch: "Hello",
-          //     structureToAdd: { struc: specialTag, props: { uwu: "uwu" } },
-          //   },
-        }}
-        structure={structure}
-        // structure={{
-        //   structure: structure,
-        //   props: { owo: "owo", awita: { a: "a " }, sex: "uwu" },
-        // }}
-      />
+      <div
+        className={`container ${color ? "blue" : ""}`}
+        onMouseEnter={handleHover}
+      >
+        <span>letter </span>
+        <span>
+          <WrappingLetters
+            text="Hello <3"
+            textOptions={
+              {
+                // SelectClass: {
+                //   wordToSearch: ["Hello", "<3"],
+                //   classToAdd: ["aloh", "a"],
+                // },
+                // SpecialWrapp: {
+                //   wordToSearch: ["Hello", "<3"],
+                //   structureToAdd: [
+                //     {
+                //       structureToAdd: specialTag,
+                //       props: { color: "." },
+                //     },
+                //     {
+                //       structureToAdd: specialTag,
+                //       props: { color: "2" },
+                //     },
+                //   ],
+                // },
+              }
+            }
+            structure={structure}
+            // structure={{
+            //   structure: structure,
+            //   props: { owo: "owo", awita: { a: "a " }, sex: "uwu" },
+            // }}
+          />
+        </span>
+      </div>
     </>
   );
 }

@@ -11,13 +11,15 @@ import { process__select_specialWrapp__ } from "./process/specialWrapp.process";
 import { whatItIs } from "./common/whatIsIt";
 import { process__structure__ } from "./process/structure.process";
 
+import { memo__process } from "./process/memo.process";
+
 /**
  * @param  {string} text - what do you need wrap? here put your text.
  * @param  {Object} textOptions - Here you'll put the options to wrap
  * @param  {JSX.Element} structure - Here put the component with the JSX syntax that you want out each wrap
  * @returns {JSX.Element} returns multiple React components on JSX
  */
-export default function WrappingLetters(
+function WL(
   props = {
     text: new String(),
     textOptions: new Object(),
@@ -31,18 +33,27 @@ export default function WrappingLetters(
       return <span className={cssClass}>{letter}</span>;
     }
 
-    const {
-      hasCustomWrapp,
-      NewWrappStructure = () => (
-        <DEFAULT_COMPONENT letter={letter} cssClass={cssClass} />
-      ),
-    } = specialWrapp;
+    const { hasCustomWrapp, hasCustomProps, NewWrappStructure } = specialWrapp;
 
-    return hasCustomWrapp ? (
-      <NewWrappStructure letter={letter} cssClass={cssClass} />
-    ) : (
-      <DEFAULT_COMPONENT letter={letter} cssClass={cssClass} />
-    );
+    let props = {
+      letter,
+      cssClass,
+    };
+
+    // if the variable has a default value, the "hasCustomWrapp" not is required
+    let Component =
+      specialWrapp.NewWrappStructure ||
+      function () {
+        return <DEFAULT_COMPONENT {...props} />;
+      };
+
+    if (hasCustomProps) {
+      Component = NewWrappStructure.structureToAdd;
+
+      return <Component {...props} {...NewWrappStructure.props} />;
+    }
+
+    return <Component {...props} />;
   }
 
   // Here the code'll verify if the props are correct.
@@ -115,3 +126,7 @@ export default function WrappingLetters(
 
   return WrappLetter(wrappProps);
 }
+
+const WrappingLetters = React.memo(WL, memo__process);
+
+export default WrappingLetters;

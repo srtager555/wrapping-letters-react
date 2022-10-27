@@ -1,3 +1,4 @@
+import { whatItIs } from "../../common/whatIsIt";
 import { __specialArray__ } from "./specialArray.process";
 
 export function __specialWorld_PerLetters__({
@@ -15,7 +16,8 @@ export function __specialWorld_PerLetters__({
   let customWrapp = undefined;
   let cssClass = !specialStructure ? ClassToAdd : "";
 
-  let { hasCustomWrapp, wordToWrapp, wrappToAdd } = SpecialWrapp;
+  let { hasCustomWrapp, wordToWrapp, wrappToAdd, hasCustomProps } =
+    SpecialWrapp;
 
   // here the code will filter the correct special "word"
   // after the "word" will return within an Array
@@ -59,6 +61,8 @@ export function __specialWorld_PerLetters__({
     const WORD_INDEX = arrayOfWords.indexOf(word);
 
     customWrapp = __specialArray__(wrappToAdd, WORD_INDEX);
+
+    if (whatItIs(customWrapp) === "[object Object]") hasCustomProps = true;
   }
 
   // here the code will create magic
@@ -73,6 +77,7 @@ export function __specialWorld_PerLetters__({
       cssClass: cssClass,
       specialWrapp: {
         hasCustomWrapp,
+        hasCustomProps,
         NewWrappStructure: customWrapp,
       },
     };

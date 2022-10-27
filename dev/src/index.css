@@ -5,6 +5,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: #fff;
 }
 body {
     display: flex;
@@ -12,16 +13,21 @@ body {
     align-items: flex-start;
     
     height: 100vh;
-    background: #f5f5f5;
+    background: #121212;
     
     font-family: 'Poppins', sans-serif;
 }
 .container {
     display: inline-block
 }
-.container > span {
+.container span {
+    transition: 2s ease-in-out;
+}
+.container.blue span {
+    color: blue;
+
     /* margin-left: 10px; */
-    white-space: pre;
+    /* white-space: pre; */
 }
 
 .special-class-1 {

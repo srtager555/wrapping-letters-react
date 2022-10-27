@@ -13,7 +13,16 @@ The website is a beta but make a great work in the docs
 
 ## New upgrades
 
-~ nothing for now, a new upgrade to [special Array] is coming soon!
+The attribute from the prop `textOptions`, `SpecialWrapp` and `structure` are been upgraded with an new attribute `props`, take a look the docs to learn more about the feature
+
+<p>
+  <a href="https://wrapping-letters.vercel.app/docs/SpecialWrapp">`SpecialWrapp`</a>
+  <a href="https://wrapping-letters.vercel.app/docs/structure">`strucuture`</a>
+</p>
+
+You can find more information about the feature in its documentation page <a href="https://wrapping-letters.vercel.app/docs/props">`props`</a>
+
+Issue about the re-render in the component when parent element changes, fixed, now the component can't re-render if the primaries props don't change
 
 ## How to use
 
