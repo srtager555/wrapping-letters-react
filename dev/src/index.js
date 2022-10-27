@@ -10,6 +10,7 @@ function specialTag({ letter, cssClass }) {
   return <span className={cssClass}>{letter}</span>;
 }
 
+
 function structure({ letter }) {
   const Default = <span>{letter}</span>;
   return Default;

@@ -7,6 +7,7 @@ export function error__Filter_structure__(
   Structure
 ) {
   if (specialStructure) {
+
     // the check if it is not a correct element is in the index.js
     if (whatItIs(whatItIs) === "[object Object]") {
       const STRUCTURE_KEYS = Object.keys(Structure);
