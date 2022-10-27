@@ -4,14 +4,14 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
 import "./index.css";
+import { whatItIs } from "../../src/common/whatIsIt";
 
 function specialTag({ letter, cssClass }) {
   return <span className={cssClass}>{letter}</span>;
 }
 
-function structure(props) {
-  console.log(props);
-  const Default = <span>{props.letter}</span>;
+function structure({ letter }) {
+  const Default = <span>{letter}</span>;
   return Default;
 }
 
@@ -21,7 +21,7 @@ function App() {
 
   const handleHover = () => {
     setColor(!color);
-    setValue(specialTag);
+    // setValue(specialTag);
   };
 
   return (
