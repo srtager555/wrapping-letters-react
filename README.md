@@ -20,7 +20,7 @@ The attribute from the prop `textOptions`, `SpecialWrapp` and `structure` are be
   <a href="https://wrapping-letters.vercel.app/docs/structure">`strucuture`</a>
 </p>
 
-You can find more information about the feature in its documentation page <a href="https://wrapping-letters.vercel.app/docs/props">`props`</a>
+<!-- You can find more information about the feature in its documentation page <a href="https://wrapping-letters.vercel.app/docs/props">`props`</a> -->
 
 Issue about the re-render in the component when parent element changes, fixed, now the component can't re-render if the primaries props don't change
 
