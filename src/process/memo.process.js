@@ -69,7 +69,8 @@ export function memo__process(prevV, nextV) {
   }
 
   // perWord comprobation
-  if (PERWORD_NEXT != PERWORD_PREV) conditions.push(false);
+  if (PERWORD_NEXT != undefined || PERWORD_PREV != undefined)
+    if (PERWORD_NEXT != PERWORD_PREV) conditions.push(false);
 
   // Here the code will comprobate if structure has been changed
   const prevStruc = prevV.structure;
