@@ -3,13 +3,16 @@ import { whatItIs } from "../common/whatIsIt";
 export function memo__process(prevV, nextV) {
   const TEXT_OPTIONS_PREV = prevV.textOptions;
   const TEXT_OPTIONS_NEXT = nextV.textOptions;
-  const PERWORD_PREV = TEXT_OPTIONS_PREV.PerWord;
-  const PERWORD_NEXT = TEXT_OPTIONS_NEXT.PerWord;
 
   let conditions = [
     prevV.text === nextV.text,
     TEXT_OPTIONS_PREV.ClassToAdd === TEXT_OPTIONS_NEXT.ClassToAdd,
   ];
+
+  if (TEXT_OPTIONS_PREV === TEXT_OPTIONS_NEXT) return true;
+
+  const PERWORD_PREV = TEXT_OPTIONS_PREV.PerWord;
+  const PERWORD_NEXT = TEXT_OPTIONS_NEXT.PerWord;
 
   function __basic_comprobation__(prevValue, nextValue) {
     if (whatItIs(prevValue) != whatItIs(nextValue)) {
@@ -69,8 +72,7 @@ export function memo__process(prevV, nextV) {
   }
 
   // perWord comprobation
-  if (PERWORD_NEXT != undefined || PERWORD_PREV != undefined)
-    if (PERWORD_NEXT != PERWORD_PREV) conditions.push(false);
+  if (PERWORD_NEXT != PERWORD_PREV) conditions.push(false);
 
   // Here the code will comprobate if structure has been changed
   const prevStruc = prevV.structure;
