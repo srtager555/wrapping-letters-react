@@ -35,7 +35,6 @@ export function memo__process(prevV, nextV) {
     }
   }
 
-
   // here the code will check ClassToAdd
   if (TEXT_OPTIONS_PREV.ClassToAdd != TEXT_OPTIONS_NEXT.ClassToAdd)
     conditions.push(false);
