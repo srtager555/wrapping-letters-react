@@ -45,7 +45,13 @@ export function __specialWorld_PerLetters__({
   // the code need the word separate per letter
   newCrumbledText = [...newCrumbledText[0]];
 
-  if (searchWordValue.includes(word)) {
+  if (
+    searchWordValue.some((el) => {
+      if (Array.isArray(el)) return el.includes(word);
+
+      return el === word;
+    })
+  ) {
     // here search the word in the array
     // and add the class
     const INDEX_SPECIAL_CLASS = searchWordValue.indexOf(word);
