@@ -28,6 +28,7 @@ Issue about the re-render in the component when parent element changes, fixed, n
 
 - Problem about incompatibilities with other packages react 1.18.2 solved
 
+
 ## How to use
 
 Go to the home page!!!
