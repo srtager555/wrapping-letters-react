@@ -3,13 +3,15 @@ import { whatItIs } from "../common/whatIsIt";
 export function memo__process(prevV, nextV) {
   const TEXT_OPTIONS_PREV = prevV.textOptions;
   const TEXT_OPTIONS_NEXT = nextV.textOptions;
+
+  let conditions = [prevV.text === nextV.text];
+
+  // here the code will check if textOptiosn is undefiend in prev and next
+  // if both is undefiend the code will only will return the result of text
+  if (TEXT_OPTIONS_PREV === TEXT_OPTIONS_NEXT) return conditions[0];
+
   const PERWORD_PREV = TEXT_OPTIONS_PREV.PerWord;
   const PERWORD_NEXT = TEXT_OPTIONS_NEXT.PerWord;
-
-  let conditions = [
-    prevV.text === nextV.text,
-    TEXT_OPTIONS_PREV.ClassToAdd === TEXT_OPTIONS_NEXT.ClassToAdd,
-  ];
 
   function __basic_comprobation__(prevValue, nextValue) {
     if (whatItIs(prevValue) != whatItIs(nextValue)) {
@@ -32,6 +34,11 @@ export function memo__process(prevV, nextV) {
       !conditions.push(prevValue != nextValue);
     }
   }
+
+
+  // here the code will check ClassToAdd
+  if (TEXT_OPTIONS_PREV.ClassToAdd != TEXT_OPTIONS_NEXT.ClassToAdd)
+    conditions.push(false);
 
   // here the code will check if SpecialWrapp changed
   // firts check is wordToSearch
