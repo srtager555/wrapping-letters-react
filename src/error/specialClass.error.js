@@ -46,7 +46,9 @@ export function error__Filter_SpecialClass__(SelectClass, PerWord) {
   const searchSBW = SelectClassKeys.some((key) => key === "spaceBetweenWord");
 
   if (PerWord && searchSBW) {
-    throw new Error('"spaceBetweenWord" is not allowed when "PerWord" is true');
+    throw new Error(
+      'SelectClass - "spaceBetweenWord" is not allowed when "PerWord" is true'
+    );
   }
 
   // 'SelectClass' contains the following properties:
@@ -54,11 +56,44 @@ export function error__Filter_SpecialClass__(SelectClass, PerWord) {
   const { wordToSearch, classToAdd, spaceBetweenWord } = SelectClass;
 
   if (typeof wordToSearch != "string" && !Array.isArray(wordToSearch)) {
-    throw new Error('"wordToSearch" must be a string or an array');
+    throw new Error(
+      'SelectClass - "wordToSearch" must be a string or an array'
+    );
   }
+
+  // here the code check if the Array inside an Array only has strings
+  if (Array.isArray(wordToSearch)) {
+    wordToSearch.forEach((el) => {
+      if (whatItIs(el) != "[object String]" && !Array.isArray(el)) {
+        throw new Error(
+          "SelectClass - An Array only can receive strings and another Arrays of strings"
+        );
+      }
+
+      if (Array.isArray(el)) {
+        el.forEach((element) => {
+          if (!Array.isArray(element))
+            throw new Error(
+              "SelectClass - An Array inside another Array only can receive strings"
+            );
+        });
+      }
+    });
+  }
+
   if (typeof classToAdd != "string" && !Array.isArray(classToAdd)) {
     throw new Error('"classToAdd" must be a string or an array');
   }
+
+  // An Array in a provider only can receive its correct value, in they case are strings
+  if (Array.isArray(classToAdd)) {
+    classToAdd.forEach((el) => {
+      if (whatItIs(el) != "[object String]") {
+        throw new Error("SelectClass - An Array only can receive strings");
+      }
+    });
+  }
+
   if (!PerWord && searchSBW && typeof spaceBetweenWord !== "boolean") {
     throw new Error('"spaceBetweenWord" must be a boolean');
   }
