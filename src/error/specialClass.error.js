@@ -72,7 +72,7 @@ export function error__Filter_SpecialClass__(SelectClass, PerWord) {
 
       if (Array.isArray(el)) {
         el.forEach((element) => {
-          if (!Array.isArray(element))
+          if (whatItIs(element) != "[object String]")
             throw new Error(
               "SelectClass - An Array inside another Array only can receive strings"
             );
