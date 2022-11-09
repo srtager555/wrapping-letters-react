@@ -54,8 +54,26 @@ export function __specialWorld_PerLetters__({
   ) {
     // here search the word in the array
     // and add the class
-    const INDEX_SPECIAL_CLASS = searchWordValue.indexOf(word);
+    const iterate = (array, w) => {
+      return array
+        .map((element, index) => {
+          if (Array.isArray(element)) {
+            if (element.some((el) => el === w)) {
+              return index;
+            }
+          }
+
+          if (element === w) return index;
+
+          return -1;
+        })
+        .find((el) => el != -1);
+    };
+
+    const INDEX_SPECIAL_CLASS = iterate(searchWordValue, word);
+    console.log(INDEX_SPECIAL_CLASS, "index");
     newClass = __specialArray__(specialClass, INDEX_SPECIAL_CLASS);
+    console.log(newClass);
 
     cssClass = !specialStructure ? [ClassToAdd, newClass].join(" ") : newClass;
   }
