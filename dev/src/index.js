@@ -40,7 +40,7 @@ function App() {
                 classToAdd: ["aloh", "a", "xd"],
               },
               SpecialWrapp: {
-                wordToSearch: [["Hello", "pan"], "<3"],
+                wordToSearch: [["Hello", "pan"], "<3", ["uwu", "con"], "XD"],
                 structureToAdd: specialTag,
               },
               PerWord: true,
