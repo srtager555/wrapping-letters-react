@@ -7,7 +7,7 @@ import "./index.css";
 import { whatItIs } from "../../src/common/whatIsIt";
 
 function specialTag({ letter, cssClass }) {
-  return <span className={cssClass}>{letter}</span>;
+  return <span className={cssClass}>{letter}.</span>;
 }
 
 function structure({ letter, cssClass }) {
@@ -39,21 +39,13 @@ function App() {
                 wordToSearch: [["Hello", "uwu"], "<3", ["pan", "con"]],
                 classToAdd: ["aloh", "a", "xd"],
               },
-              // SpecialWrapp: {
-              //   wordToSearch: ["Hello", "<3"],
-              //   structureToAdd: [
-              //     {
-              //       structureToAdd: specialTag,
-              //       props: { color: "." },
-              //     },
-              //     {
-              //       structureToAdd: specialTag,
-              //       props: { color: "2" },
-              //     },
-              //   ],
-              // },
+              SpecialWrapp: {
+                wordToSearch: [["Hello", "pan"], "<3"],
+                structureToAdd: specialTag,
+              },
+              PerWord: true,
             }}
-            structure={structure}
+            // structure={structure}
             // structure={{
             //   structure: structure,
             //   props: { owo: "owo", awita: { a: "a " }, sex: "uwu" },
