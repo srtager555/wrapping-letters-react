@@ -1,5 +1,5 @@
 import { whatItIs } from "../../common/whatIsIt";
-import { __specialArray__ } from "./specialArray.process";
+import { IterateOnAnArray, __specialArray__ } from "./specialArray.process";
 
 export function __specialWorld_PerLetters__({
   index,
@@ -49,37 +49,17 @@ export function __specialWorld_PerLetters__({
     // here search the word in the array
     // and add the class
 
-    const iterate = (array, w) => {
-      return array
-        .map((element, index) => {
-          if (Array.isArray(element)) {
-            if (
-              element.some((el) => {
-                return el === w;
-              })
-            ) {
-              return index;
-            }
-          }
-
-          if (element === w) return index;
-
-          return -1;
-        })
-        .find((el) => el != -1);
-    };
-
-    const INDEX_SPECIAL_CLASS = iterate(searchWordValue, word);
+    const INDEX_SPECIAL_CLASS = IterateOnAnArray(searchWordValue, word);
     newClass = __specialArray__(specialClass, INDEX_SPECIAL_CLASS);
 
     cssClass = !specialStructure ? [ClassToAdd, newClass].join(" ") : newClass;
   }
 
-  if (wordToWrapp.some((element) => element === word)) {
+  if (wordToWrapp.flat().some((element) => element === word)) {
     // here search the word in the array for
     // add the customWrapp
     hasCustomWrapp = true;
-    const WORD_INDEX = arrayOfWords.indexOf(word);
+    const WORD_INDEX = IterateOnAnArray(arrayOfWords, word);
 
     customWrapp = __specialArray__(wrappToAdd, WORD_INDEX);
 
