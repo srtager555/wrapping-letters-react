@@ -21,7 +21,7 @@ export function __specialWorld_PerLetters__({
 
   // here the code will filter the correct special "word"
   // after the "word" will return within an Array
-  let newCrumbledText = arrayOfWords.filter((element) => {
+  let newCrumbledText = arrayOfWords.flat().filter((element) => {
     // here the code will cut the "word" from the array
 
     let choppedWord = crumbledText
@@ -45,20 +45,19 @@ export function __specialWorld_PerLetters__({
   // the code need the word separate per letter
   newCrumbledText = [...newCrumbledText[0]];
 
-  if (
-    searchWordValue.some((el) => {
-      if (Array.isArray(el)) return el.includes(word);
-
-      return el === word;
-    })
-  ) {
+  if (searchWordValue.flat().some((el) => el === word)) {
     // here search the word in the array
     // and add the class
+
     const iterate = (array, w) => {
       return array
         .map((element, index) => {
           if (Array.isArray(element)) {
-            if (element.some((el) => el === w)) {
+            if (
+              element.some((el) => {
+                return el === w;
+              })
+            ) {
               return index;
             }
           }
@@ -71,9 +70,7 @@ export function __specialWorld_PerLetters__({
     };
 
     const INDEX_SPECIAL_CLASS = iterate(searchWordValue, word);
-    console.log(INDEX_SPECIAL_CLASS, "index");
     newClass = __specialArray__(specialClass, INDEX_SPECIAL_CLASS);
-    console.log(newClass);
 
     cssClass = !specialStructure ? [ClassToAdd, newClass].join(" ") : newClass;
   }
