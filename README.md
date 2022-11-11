@@ -37,6 +37,11 @@ You can find more information about the feature in its documentation page <a hre
 
 Issue about the re-render in the component when parent element changes, fixed, now the component can't re-render if the primaries props don't change
 
+2.5.1
+
+- Problem about incompatibilities with other packages react 1.18.2 solved
+
+
 ## How to use
 
 Go to the home page!!!
