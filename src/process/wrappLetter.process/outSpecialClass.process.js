@@ -1,5 +1,5 @@
 import { whatItIs } from "../../common/whatIsIt";
-import { __specialArray__ } from "./specialArray.process";
+import { IterateOnAnArray, __specialArray__ } from "./specialArray.process";
 import { __specialWorld_PerLetters__ } from "./specialWordPerLetters.process.js";
 
 export function outSpecialClass({
@@ -23,10 +23,13 @@ export function outSpecialClass({
 
   //here is wrapped per word.
   if (PerWord) {
-    if (searchWordValue.includes(wrappElement)) {
+    if (searchWordValue.flat().includes(wrappElement)) {
       // here search the word in the array
       // and add the class
-      const INDEX_SPECIAL_CLASS = searchWordValue.indexOf(wrappElement);
+      const INDEX_SPECIAL_CLASS = IterateOnAnArray(
+        searchWordValue,
+        wrappElement
+      );
       newClass = __specialArray__(specialClass, INDEX_SPECIAL_CLASS);
 
       cssClass = !specialStructure
@@ -34,9 +37,9 @@ export function outSpecialClass({
         : newClass;
     }
 
-    if (wordToWrapp.some((element) => element === word)) {
+    if (wordToWrapp.flat().some((element) => element === word)) {
       hasCustomWrapp = true;
-      const WORD_INDEX = wordToWrapp.indexOf(word);
+      const WORD_INDEX = IterateOnAnArray(wordToWrapp, word);
 
       customWrapp = __specialArray__(wrappToAdd, WORD_INDEX);
 

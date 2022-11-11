@@ -25,6 +25,9 @@ export function memo__process(prevV, nextV) {
         ) {
           if (element.structureToAdd != nextValue[index].structureToAdd)
             conditions.push(false);
+        } else if (Array.isArray(element) && Array.isArray(nextValue[index])) {
+          if (element.some((el, i) => el != nextValue[index][i]))
+            conditions.push(false);
         } else if (element != nextValue[index]) conditions.push(false);
       });
     } else if (
@@ -34,7 +37,6 @@ export function memo__process(prevV, nextV) {
       !conditions.push(prevValue != nextValue);
     }
   }
-
 
   // here the code will check ClassToAdd
   if (TEXT_OPTIONS_PREV.ClassToAdd != TEXT_OPTIONS_NEXT.ClassToAdd)
@@ -53,7 +55,6 @@ export function memo__process(prevV, nextV) {
       TEXT_OPTIONS_PREV.SelectClass.classToAdd,
       TEXT_OPTIONS_NEXT.SelectClass.classToAdd
     );
-
     // SPW comprobation
     if (
       TEXT_OPTIONS_PREV.SelectClass.spaceBetweenWord !=

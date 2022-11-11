@@ -16,6 +16,7 @@ export function WrappLetter({
   let { searchWordValue, specialClass, spaceBetweenWord } = SelectClass;
   const CustomComponent = Structure.structure;
   const CustomProps = Structure.props;
+  const searchWordValueWithoutArrays = searchWordValue.flat();
 
   var arrElements = crumbledText
     .map(function (wrappElement, index) {
@@ -48,16 +49,18 @@ export function WrappLetter({
       const arrComprobations = [
         !PerWord,
         // if the array is empty, return the false
-        searchWordValue.length > 0,
+        searchWordValueWithoutArrays.length > 0,
         // the wrappElement has to have same first letter of an Element
-        searchWordValue.some((element) => wrappElement === element[0]),
+        searchWordValueWithoutArrays.some(
+          (element) => wrappElement === element[0]
+        ),
         // the element can't be longer than crumbledText
-        searchWordValue.some(
+        searchWordValueWithoutArrays.some(
           (element) => index + element.length <= crumbledText.length
         ),
         // Here the code will check if an element is same with a slice
         // of its length
-        searchWordValue.some(
+        searchWordValueWithoutArrays.some(
           (element) =>
             crumbledText.slice(index, index + element.length).join("") ===
             element
