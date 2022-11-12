@@ -13,12 +13,6 @@ import { process__structure__ } from "./process/structure.process";
 
 import { memo__process } from "./process/memo.process";
 
-/**
- * @param  {string} text - what do you need wrap? here put your text.
- * @param  {Object} textOptions - Here you'll put the options to wrap
- * @param  {JSX.Element} structure - Here put the component with the JSX syntax that you want out each wrap
- * @returns {JSX.Element} returns multiple React components on JSX
- */
 function WL(
   props = {
     text: new String(),
@@ -126,6 +120,13 @@ function WL(
 
   return WrappLetter(wrappProps);
 }
+
+/**
+ * @param  {string} text - what do you need wrap? here put your text.
+ * @param  {Object} textOptions - Here you'll put the options to wrap
+ * @param  {JSX.Element} structure - Here put the component with the JSX syntax that you want out each wrap
+ * @returns {JSX.Element} returns multiple React components on JSX
+ */
 
 const WrappingLetters = React.memo(WL, memo__process);
 
