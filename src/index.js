@@ -12,6 +12,7 @@ import { whatItIs } from "./common/whatIsIt";
 import { process__structure__ } from "./process/structure.process";
 
 import { memo__process } from "./process/memo.process";
+import { __Text__process__ } from "./process/text.class";
 
 function WL(
   props = {
@@ -52,19 +53,14 @@ function WL(
 
   // Here the code'll verify if the props are correct.
   error__props_filter__(props);
+
   let { text = "Hello world!!! <3", textOptions = {}, structure } = props;
 
   // if the user has a custom structure here it will be changed by it
   const Structure = structure || baseStructure;
   let specialStructure = Structure !== baseStructure ? true : false;
 
-  // checks to avoid errors
-  if (whatItIs(text) !== "[object String]") {
-    throw new Error("text must be a string");
-  }
-  if (text === "") {
-    throw new Error("text cannot be empty");
-  }
+  text = new __Text__process__(text).text;
 
   if (
     !["[object Object]", "[object Function]"].some(
