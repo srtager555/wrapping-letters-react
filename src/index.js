@@ -13,6 +13,7 @@ import { process__structure__ } from "./process/structure.process";
 
 import { memo__process } from "./process/memo.process";
 import { __Text__process__ } from "./process/text.class";
+import { __Structure__process__ } from "./process/structure.class";
 
 function WL(
   props = {
@@ -21,64 +22,21 @@ function WL(
     structure: new Function(),
   }
 ) {
-  // first need declare the component to return
-  function baseStructure({ letter, cssClass, specialWrapp }) {
-    // eslint-disable-next-line react/prop-types
-    function DEFAULT_COMPONENT({ letter, cssClass }) {
-      return <span className={cssClass}>{letter}</span>;
-    }
-
-    const { hasCustomWrapp, hasCustomProps, NewWrappStructure } = specialWrapp;
-
-    let props = {
-      letter,
-      cssClass,
-    };
-
-    // if the variable has a default value, the "hasCustomWrapp" not is required
-    let Component =
-      specialWrapp.NewWrappStructure ||
-      function () {
-        return <DEFAULT_COMPONENT {...props} />;
-      };
-
-    if (hasCustomProps) {
-      Component = NewWrappStructure.structureToAdd;
-
-      return <Component {...props} {...NewWrappStructure.props} />;
-    }
-
-    return <Component {...props} />;
-  }
-
   // Here the code'll verify if the props are correct.
   error__props_filter__(props);
 
   let { text = "Hello world!!! <3", textOptions = {}, structure } = props;
 
-  // if the user has a custom structure here it will be changed by it
-  const Structure = structure || baseStructure;
-  let specialStructure = Structure !== baseStructure ? true : false;
-
   text = new __Text__process__(text).text;
-
-  if (
-    !["[object Object]", "[object Function]"].some(
-      (el) => el === whatItIs(Structure)
-    )
-  ) {
-    throw new Error(
-      "Structure must be a function(React Component) or an Object"
-    );
-  }
+  structure = new __Structure__process__(structure);
 
   // textOptions must be an Object
   if (whatItIs(textOptions) !== "[object Object]")
     throw new Error('"textOptions" must be an Object --- wrapping-letters');
 
   let wrappProps = {
-    Structure,
-    specialStructure,
+    Structure: structure.structure,
+    specialStructure: structure.hasSpecialStructure,
   };
 
   // delfaut value layout and value comprobations
@@ -105,7 +63,7 @@ function WL(
     structureToAdd: SpecialWrapp.structureToAdd,
   });
 
-  const STRUCTURE__INFO_PROCESS = process__structure__(Structure);
+  const STRUCTURE__INFO_PROCESS = process__structure__(structure.structure);
 
   wrappProps.SelectClass = SPECIAL_CLASS__INFO_PROCESSED;
   wrappProps.SpecialWrapp = SPECIAL_WRAPP__INFO_PROCESSED;
