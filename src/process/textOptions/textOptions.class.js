@@ -1,9 +1,9 @@
-import { whatItIs } from "../common/whatIsIt";
+import { whatItIs } from "../../common/whatIsIt";
 
 import {
   checkCorrectKeys,
   error__Filter_SelectClass__,
-} from "../error/specialClass.error";
+} from "../../error/specialClass.error";
 
 import { process__SelectClass__ } from "./specialClass.process";
 
@@ -42,6 +42,8 @@ export class __TextOptions__process__ {
   }
 
   get SelectClass() {
+    class SelectClass extends baseFeature {}
+
     const ATTRIBUTES = this.getAttributes({});
 
     error__Filter_SelectClass__(ATTRIBUTES.SelectClass, ATTRIBUTES.PerWord);
