@@ -44,16 +44,8 @@ function WL(
   error__main_filter__(wrappProps);
 
   // ClassToAdd, SelectClass,
-  const { SpecialWrapp, PerWord } = wrappProps;
-
-  // here the code will declare the crumble text per word or letters
-
+  const { SpecialWrapp } = wrappProps;
   // Process of the specialClass object
-  const SPECIAL_CLASS__INFO_PROCESSED = process__SelectClass__({
-    SelectClass: wrappProps.SelectClass,
-    crumbledText: TEXT_OPTIONS.crumbledText,
-    PerWord,
-  });
 
   const SPECIAL_WRAPP__INFO_PROCESSED = process__select_specialWrapp__({
     wordToSearch: SpecialWrapp.wordToSearch,
@@ -62,7 +54,7 @@ function WL(
 
   const STRUCTURE__INFO_PROCESS = process__structure__(structure.structure);
 
-  wrappProps.SelectClass = SPECIAL_CLASS__INFO_PROCESSED;
+  wrappProps.SelectClass = TEXT_OPTIONS.SelectClass;
   wrappProps.SpecialWrapp = SPECIAL_WRAPP__INFO_PROCESSED;
   wrappProps.Structure = STRUCTURE__INFO_PROCESS;
 
