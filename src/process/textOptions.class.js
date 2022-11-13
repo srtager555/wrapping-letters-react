@@ -1,8 +1,11 @@
 import { whatItIs } from "../common/whatIsIt";
+import { error__Filter_SelectClass__ } from "../error/specialClass.error";
+import { process__SelectClass__ } from "./specialClass.process";
 
 export class __TextOptions__process__ {
-  constructor(textOptions) {
+  constructor(textOptions, text) {
     this.textOptions = textOptions;
+    this.text = text;
 
     this.#ERRORS_FILTER();
   }
@@ -13,6 +16,8 @@ export class __TextOptions__process__ {
     ["SpecialWrapp", {}],
     ["PerWord", false],
   ];
+
+  #DEFAULT_ATTRIBUTES_OBJECT = Object.fromEntries(this.#DEFAULT_ATTRIBUTES);
 
   #ERRORS_FILTER() {
     if (whatItIs(this.textOptions) !== "[object Object]")
@@ -27,6 +32,29 @@ export class __TextOptions__process__ {
     });
 
     return object;
+  }
+
+  get crumbledText() {
+    return this.PerWord ? text.split(" ") : [...text];
+  }
+
+  get SelectClass() {
+    const SELECTCLASS =
+      this.textOptions.SelectClass ||
+      this.#DEFAULT_ATTRIBUTES_OBJECT.SelectClass;
+
+    const PERWORD =
+      this.textOptions.PerWord || this.#DEFAULT_ATTRIBUTES_OBJECT.PerWord;
+
+    error__Filter_SelectClass__(SELECTCLASS, PERWORD);
+
+    const processe__data = process__SelectClass__({
+      SelectClass: SELECTCLASS,
+      PerWord: PERWORD,
+      crumbledText,
+    });
+
+    return processe__data;
   }
 }
 
