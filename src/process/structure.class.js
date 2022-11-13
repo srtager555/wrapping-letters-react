@@ -1,27 +1,43 @@
 import React from "react";
 
 import { whatItIs } from "../common/whatIsIt";
+import { error__Filter_structure__ } from "../error/structure.error";
+import { process__structure__ } from "./structure.process";
 
 // here the code will check if has an custom structure anf
 
 class __Structure__process__ {
-  constructor(structure) {
-    this.structure = structure || baseStructure;
-    this.hasSpecialStructure = !Object.is(this.structure, baseStructure);
+  constructor(structure = baseStructure, ClassToAdd) {
+    this.current = {
+      structure: structure,
+      hasSpecialStructure: !Object.is(structure, baseStructure),
+    };
 
-    if (this.hasSpecialStructure) this.error(this.structure);
+    this.getStructure = this.#STRUCTURE(structure);
+
+    if (this.hasSpecialStructure) this.#ERROR(this.current, ClassToAdd);
   }
 
-  error(structure) {
+  #ERROR(current, ClassToAdd) {
     if (
       !["[object Object]", "[object Function]"].some(
-        (el) => el === whatItIs(structure)
+        (el) => el === whatItIs(current.structure)
       )
     ) {
       throw new Error(
         "Structure must be a function(React Component) or an Object"
       );
     }
+
+    error__Filter_structure__(
+      ClassToAdd,
+      current.hasSpecialStructure,
+      current.structure
+    );
+  }
+
+  #STRUCTURE(structure) {
+    return process__structure__(structure);
   }
 }
 
