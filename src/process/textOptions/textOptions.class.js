@@ -1,3 +1,4 @@
+import { Base } from "./base.class";
 import { whatItIs } from "../../common/whatIsIt";
 
 import {
