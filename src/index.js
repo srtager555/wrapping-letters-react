@@ -5,7 +5,7 @@ import { textOptions__process_layout__ } from "./layout";
 import { error__main_filter__ } from "./error";
 import { error__props_filter__ } from "./error/props-filter.error";
 
-import { process__select_specialClass__ } from "./process/specialClass.process";
+import { process__SelectClass__ } from "./process/specialClass.process";
 import { process__select_specialWrapp__ } from "./process/specialWrapp.process";
 
 import { whatItIs } from "./common/whatIsIt";
@@ -14,6 +14,7 @@ import { process__structure__ } from "./process/structure.process";
 import { memo__process } from "./process/memo.process";
 import { __Text__process__ } from "./process/text.class";
 import { __Structure__process__ } from "./process/structure.class";
+import { __TextOptions__process__ } from "./process/textOptions.class";
 
 function WL(
   props = {
@@ -30,17 +31,12 @@ function WL(
   text = new __Text__process__(text).text;
   structure = new __Structure__process__(structure);
 
-  // textOptions must be an Object
-  if (whatItIs(textOptions) !== "[object Object]")
-    throw new Error('"textOptions" must be an Object --- wrapping-letters');
-
   let wrappProps = {
     Structure: structure.structure,
     specialStructure: structure.hasSpecialStructure,
   };
 
-  // delfaut value layout and value comprobations
-  textOptions__process_layout__(textOptions, wrappProps);
+  new __TextOptions__process__(textOptions).getAttributes(wrappProps);
 
   // here the code will cath the errors in the user's code
   error__main_filter__(wrappProps);
@@ -49,10 +45,9 @@ function WL(
   const { SpecialWrapp, PerWord } = wrappProps;
 
   // here the code will declare the crumble text per word or letters
-  const crumbledText = PerWord ? text.split(" ") : [...text];
 
   // Process of the specialClass object
-  const SPECIAL_CLASS__INFO_PROCESSED = process__select_specialClass__({
+  const SPECIAL_CLASS__INFO_PROCESSED = process__SelectClass__({
     SelectClass: wrappProps.SelectClass,
     crumbledText,
     PerWord,
