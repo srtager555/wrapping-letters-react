@@ -32,7 +32,18 @@ export class __TextOptions__process__ {
     checkCorrectKeys(this.textOptions, this.#DEFAULT_ATTRIBUTES);
   }
 
-  getAttributes(object) {
+  // Each attribute of TextOption will returned here
+  getProcessAttributes(obj) {
+    Object.entries(this.#GET_ATTRIBUTES).forEach((element) => {
+      obj[element[0]] = this[element[0]];
+    });
+
+    return obj;
+  }
+
+  get #GET_ATTRIBUTES() {
+    let object = {};
+
     this.#DEFAULT_ATTRIBUTES.forEach((element) => {
       object[element[0]] = this.textOptions[element[0]] || element[1];
     });
@@ -44,8 +55,19 @@ export class __TextOptions__process__ {
     return this.PerWord ? this.text.split(" ") : [...this.text];
   }
 
+  // here I did put the methods to will process the Attributes from textOptions
+  //
+  get ClassToAdd() {
+    const CLASSTOADD = this.#GET_ATTRIBUTES.ClassToAdd;
+
+    if (whatItIs(CLASSTOADD) !== "[object String]")
+      throw new Error("ClassToAdd must be a string");
+
+    return CLASSTOADD;
+  }
+
   get SelectClass() {
-    const ATTRIBUTES = this.getAttributes({});
+    const ATTRIBUTES = this.#GET_ATTRIBUTES;
 
     error__Filter_SelectClass__(ATTRIBUTES.SelectClass, ATTRIBUTES.PerWord);
 
@@ -59,7 +81,7 @@ export class __TextOptions__process__ {
   }
 
   get SpecialWrapp() {
-    const SPECIALWRAPPP = this.getAttributes({}).SpecialWrapp;
+    const SPECIALWRAPPP = this.#GET_ATTRIBUTES.SpecialWrapp;
 
     error__Filter_SpecialWrapp__(SPECIALWRAPPP);
 
@@ -72,7 +94,7 @@ export class __TextOptions__process__ {
   }
 
   get PerWord() {
-    const PERWORD = this.getAttributes({}).PerWord;
+    const PERWORD = this.#GET_ATTRIBUTES.PerWord;
 
     if (whatItIs(PERWORD) !== "[object Boolean]")
       throw new Error("PerWord must be a boolean");
