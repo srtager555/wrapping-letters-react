@@ -98,3 +98,26 @@ export function error__Filter_SelectClass__(SelectClass, PerWord) {
     throw new Error('"spaceBetweenWord" must be a boolean');
   }
 }
+
+// delfaut value layout and value comprobations
+export function checkCorrectKeys(textOptions, Default_Attributes) {
+  let textOptionsKeys = Object.keys(textOptions);
+
+  // here the code will declare the default valou for each key in textOptions
+
+  // A simple comprobation of correct properties
+  const containThisProps = (value) =>
+    Default_Attributes.map((element) => element[0] === value);
+
+  const container = textOptionsKeys.every(containThisProps);
+
+  if (!container) {
+    const correctProperties = Default_Attributes.map((element) => element[0]);
+
+    throw new Error(
+      `textOptions must contain the following properties: ${correctProperties.join(
+        ", "
+      )}`
+    );
+  }
+}

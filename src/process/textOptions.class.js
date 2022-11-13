@@ -1,5 +1,10 @@
 import { whatItIs } from "../common/whatIsIt";
-import { error__Filter_SelectClass__ } from "../error/specialClass.error";
+
+import {
+  checkCorrectKeys,
+  error__Filter_SelectClass__,
+} from "../error/specialClass.error";
+
 import { process__SelectClass__ } from "./specialClass.process";
 
 export class __TextOptions__process__ {
@@ -57,28 +62,5 @@ export class __TextOptions__process__ {
       throw new Error("PerWord must be a boolean");
 
     return PERWORD;
-  }
-}
-
-// delfaut value layout and value comprobations
-function checkCorrectKeys(textOptions, Default_Attributes) {
-  let textOptionsKeys = Object.keys(textOptions);
-
-  // here the code will declare the default valou for each key in textOptions
-
-  // A simple comprobation of correct properties
-  const containThisProps = (value) =>
-    Default_Attributes.map((element) => element[0] === value);
-
-  const container = textOptionsKeys.every(containThisProps);
-
-  if (!container) {
-    const correctProperties = Default_Attributes.map((element) => element[0]);
-
-    throw new Error(
-      `textOptions must contain the following properties: ${correctProperties.join(
-        ", "
-      )}`
-    );
   }
 }
