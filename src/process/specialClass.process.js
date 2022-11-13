@@ -1,8 +1,4 @@
-export function process__select_specialClass__({
-  SelectClass,
-  crumbledText,
-  PerWord,
-}) {
+export function process__SelectClass__({ SelectClass, crumbledText, PerWord }) {
   // Here the code will transform the user's code
   // to useful information to the code Xd
 
