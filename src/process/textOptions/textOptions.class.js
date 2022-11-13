@@ -42,8 +42,6 @@ export class __TextOptions__process__ {
   }
 
   get SelectClass() {
-    class SelectClass extends baseFeature {}
-
     const ATTRIBUTES = this.getAttributes({});
 
     error__Filter_SelectClass__(ATTRIBUTES.SelectClass, ATTRIBUTES.PerWord);
