@@ -25,7 +25,10 @@ function WL(
 
   text = new __Text__process__(text).text;
   const TEXT_OPTIONS = new __TextOptions__process__(textOptions, text);
-  const STRUCTURE = new __Structure__process__(structure);
+  const STRUCTURE = new __Structure__process__(
+    structure,
+    TEXT_OPTIONS.ClassToAdd
+  );
 
   let wrappProps = {
     Structure: STRUCTURE.current.structure,
@@ -36,14 +39,9 @@ function WL(
   // here the code will cath the errors in the user's code
   error__main_filter__(wrappProps);
 
-  const STRUCTURE__INFO_PROCESS = process__structure__(
-    STRUCTURE.current.structure
-  );
-
-  wrappProps.Structure = STRUCTURE__INFO_PROCESS;
-
   // The code will add the last values in the obj.
   wrappProps.crumbledText = TEXT_OPTIONS.crumbledText;
+  wrappProps.Structure = STRUCTURE.getStructure;
 
   return WrappLetter(wrappProps);
 }
