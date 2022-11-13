@@ -17,8 +17,6 @@ export class __TextOptions__process__ {
     ["PerWord", false],
   ];
 
-  #DEFAULT_ATTRIBUTES_OBJECT = Object.fromEntries(this.#DEFAULT_ATTRIBUTES);
-
   #ERRORS_FILTER() {
     if (whatItIs(this.textOptions) !== "[object Object]")
       throw new Error('"textOptions" must be an Object --- wrapping-letters');
@@ -35,26 +33,30 @@ export class __TextOptions__process__ {
   }
 
   get crumbledText() {
-    return this.PerWord ? text.split(" ") : [...text];
+    return this.PerWord ? this.text.split(" ") : [...this.text];
   }
 
   get SelectClass() {
-    const SELECTCLASS =
-      this.textOptions.SelectClass ||
-      this.#DEFAULT_ATTRIBUTES_OBJECT.SelectClass;
+    const ATTRIBUTES = this.getAttributes({});
 
-    const PERWORD =
-      this.textOptions.PerWord || this.#DEFAULT_ATTRIBUTES_OBJECT.PerWord;
-
-    error__Filter_SelectClass__(SELECTCLASS, PERWORD);
+    error__Filter_SelectClass__(ATTRIBUTES.SelectClass, ATTRIBUTES.PerWord);
 
     const processe__data = process__SelectClass__({
-      SelectClass: SELECTCLASS,
-      PerWord: PERWORD,
-      crumbledText,
+      SelectClass: ATTRIBUTES.SelectClass,
+      PerWord: ATTRIBUTES.PerWord,
+      crumbledText: this.crumbledText,
     });
 
     return processe__data;
+  }
+
+  get PerWord() {
+    const PERWORD = this.getAttributes({}).PerWord;
+
+    if (whatItIs(PERWORD) !== "[object Boolean]")
+      throw new Error("PerWord must be a boolean");
+
+    return PERWORD;
   }
 }
 
