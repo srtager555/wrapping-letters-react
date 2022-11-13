@@ -5,8 +5,10 @@ import {
   checkCorrectKeys,
   error__Filter_SelectClass__,
 } from "../../error/specialClass.error";
+import { error__Filter_SpecialWrapp__ } from "../../error/specialWrapp.error";
 
 import { process__SelectClass__ } from "./specialClass.process";
+import { process__select_specialWrapp__ } from "./specialWrapp.process";
 
 export class __TextOptions__process__ {
   constructor(textOptions, text) {
@@ -54,6 +56,19 @@ export class __TextOptions__process__ {
     });
 
     return processe__data;
+  }
+
+  get SpecialWrapp() {
+    const SPECIALWRAPPP = this.getAttributes({}).SpecialWrapp;
+
+    error__Filter_SpecialWrapp__(SPECIALWRAPPP);
+
+    const process__data = process__select_specialWrapp__({
+      wordToSearch: SPECIALWRAPPP.wordToSearch,
+      structureToAdd: SPECIALWRAPPP.structureToAdd,
+    });
+
+    return process__data;
   }
 
   get PerWord() {
