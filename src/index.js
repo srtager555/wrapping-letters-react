@@ -36,7 +36,9 @@ function WL(
     specialStructure: structure.hasSpecialStructure,
   };
 
-  new __TextOptions__process__(textOptions).getAttributes(wrappProps);
+  const TEXT_OPTIONS = new __TextOptions__process__(textOptions, text);
+
+  TEXT_OPTIONS.getAttributes(wrappProps);
 
   // here the code will cath the errors in the user's code
   error__main_filter__(wrappProps);
@@ -49,7 +51,7 @@ function WL(
   // Process of the specialClass object
   const SPECIAL_CLASS__INFO_PROCESSED = process__SelectClass__({
     SelectClass: wrappProps.SelectClass,
-    crumbledText,
+    crumbledText: TEXT_OPTIONS.crumbledText,
     PerWord,
   });
 
@@ -65,7 +67,7 @@ function WL(
   wrappProps.Structure = STRUCTURE__INFO_PROCESS;
 
   // The code will add the last values in the obj.
-  wrappProps.crumbledText = crumbledText;
+  wrappProps.crumbledText = TEXT_OPTIONS.crumbledText;
 
   return WrappLetter(wrappProps);
 }
