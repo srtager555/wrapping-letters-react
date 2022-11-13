@@ -24,24 +24,22 @@ function WL(
   let { text = "Hello world!!! <3", textOptions = {}, structure } = props;
 
   text = new __Text__process__(text).text;
-  structure = new __Structure__process__(structure);
+  const TEXT_OPTIONS = new __TextOptions__process__(textOptions, text);
+  const STRUCTURE = new __Structure__process__(structure);
 
   let wrappProps = {
-    Structure: structure.structure,
-    specialStructure: structure.hasSpecialStructure,
+    Structure: STRUCTURE.current.structure,
+    specialStructure: STRUCTURE.current.hasSpecialStructure,
   };
-
-  const TEXT_OPTIONS = new __TextOptions__process__(textOptions, text);
-
-  TEXT_OPTIONS.getAttributes(wrappProps);
+  TEXT_OPTIONS.getProcessAttributes(wrappProps);
 
   // here the code will cath the errors in the user's code
   error__main_filter__(wrappProps);
 
-  const STRUCTURE__INFO_PROCESS = process__structure__(structure.structure);
+  const STRUCTURE__INFO_PROCESS = process__structure__(
+    STRUCTURE.current.structure
+  );
 
-  wrappProps.SelectClass = TEXT_OPTIONS.SelectClass;
-  wrappProps.SpecialWrapp = TEXT_OPTIONS.SpecialWrapp;
   wrappProps.Structure = STRUCTURE__INFO_PROCESS;
 
   // The code will add the last values in the obj.
