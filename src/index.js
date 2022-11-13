@@ -6,7 +6,7 @@ import { error__main_filter__ } from "./error";
 import { error__props_filter__ } from "./error/props-filter.error";
 
 import { process__SelectClass__ } from "./process/textOptions/specialClass.process";
-import { process__select_specialWrapp__ } from "./process/specialWrapp.process";
+import { process__select_specialWrapp__ } from "./process/textOptions/specialWrapp.process";
 
 import { whatItIs } from "./common/whatIsIt";
 import { process__structure__ } from "./process/structure.process";
