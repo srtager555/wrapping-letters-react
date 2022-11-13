@@ -1,14 +1,9 @@
 import React from "react";
 
 import { WrappLetter } from "./process/wrappLetter.process";
-import { textOptions__process_layout__ } from "./layout";
 import { error__main_filter__ } from "./error";
 import { error__props_filter__ } from "./error/props-filter.error";
 
-import { process__SelectClass__ } from "./process/textOptions/specialClass.process";
-import { process__select_specialWrapp__ } from "./process/textOptions/specialWrapp.process";
-
-import { whatItIs } from "./common/whatIsIt";
 import { process__structure__ } from "./process/structure.process";
 
 import { memo__process } from "./process/memo.process";
@@ -43,19 +38,10 @@ function WL(
   // here the code will cath the errors in the user's code
   error__main_filter__(wrappProps);
 
-  // ClassToAdd, SelectClass,
-  const { SpecialWrapp } = wrappProps;
-  // Process of the specialClass object
-
-  const SPECIAL_WRAPP__INFO_PROCESSED = process__select_specialWrapp__({
-    wordToSearch: SpecialWrapp.wordToSearch,
-    structureToAdd: SpecialWrapp.structureToAdd,
-  });
-
   const STRUCTURE__INFO_PROCESS = process__structure__(structure.structure);
 
   wrappProps.SelectClass = TEXT_OPTIONS.SelectClass;
-  wrappProps.SpecialWrapp = SPECIAL_WRAPP__INFO_PROCESSED;
+  wrappProps.SpecialWrapp = TEXT_OPTIONS.SpecialWrapp;
   wrappProps.Structure = STRUCTURE__INFO_PROCESS;
 
   // The code will add the last values in the obj.
