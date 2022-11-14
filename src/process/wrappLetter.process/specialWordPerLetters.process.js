@@ -1,5 +1,8 @@
 import { whatItIs } from "../../common/whatIsIt";
-import { IterateOnAnArray, __specialArray__ } from "./specialArray.process";
+import {
+  IterateOnAnArray,
+  __specialArray__,
+} from "../textOptions/specialArray.process";
 
 export function __specialWorld_PerLetters__({
   index,
