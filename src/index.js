@@ -4,8 +4,6 @@ import { WrappLetter } from "./process/wrappLetter.process";
 import { error__main_filter__ } from "./error";
 import { error__props_filter__ } from "./error/props-filter.error";
 
-import { process__structure__ } from "./process/structure.process";
-
 import { memo__process } from "./process/memo.process";
 import { __Text__process__ } from "./process/text.class";
 import { __Structure__process__ } from "./process/structure.class";
