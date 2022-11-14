@@ -15,9 +15,18 @@ export class Base {
   }
 
   #FIND_TARGET(target) {
-    if (!this.SpecialArray.targets.flat().includes(target)) return undefined;
+    const SA = this.SpecialArray;
 
-    const TARGET_INDEX = IterateOnAnArray(this.SpecialArray.targets, target);
+    if (!SA.targets.flat().includes(target)) return undefined;
+
+    const TARGET_INDEX = IterateOnAnArray(SA.targets, target);
+    const TARGET_RESULT = __specialArray__(SA.elementsToGive, TARGET_INDEX);
+
     // custom process if the target is true
+
+    return {
+      result: TARGET_RESULT,
+      process: SA.process,
+    };
   }
 }
