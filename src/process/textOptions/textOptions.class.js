@@ -1,13 +1,8 @@
-import { Base } from "./base.class";
 import { whatItIs } from "../../common/whatIsIt";
 
-import {
-  checkCorrectKeys,
-  error__Filter_SelectClass__,
-} from "../../error/specialClass.error";
-import { error__Filter_SpecialWrapp__ } from "../../error/specialWrapp.error";
+import { SelectClass } from "./method/SelectClass/SelectClass.class";
 
-import { process__SelectClass__ } from "./specialClass.process";
+import { error__Filter_SpecialWrapp__ } from "../../error/specialWrapp.error";
 import { process__select_specialWrapp__ } from "./specialWrapp.process";
 
 export class __TextOptions__process__ {
@@ -68,16 +63,10 @@ export class __TextOptions__process__ {
 
   get SelectClass() {
     const ATTRIBUTES = this.#GET_ATTRIBUTES;
+    const SELECT_CLASS = ATTRIBUTES.SelectClass;
+    const crumbledText = this.crumbledText;
 
-    error__Filter_SelectClass__(ATTRIBUTES.SelectClass, ATTRIBUTES.PerWord);
-
-    const processe__data = process__SelectClass__({
-      SelectClass: ATTRIBUTES.SelectClass,
-      PerWord: ATTRIBUTES.PerWord,
-      crumbledText: this.crumbledText,
-    });
-
-    return processe__data;
+    return new SelectClass(SELECT_CLASS, ATTRIBUTES, crumbledText);
   }
 
   get SpecialWrapp() {
@@ -100,5 +89,28 @@ export class __TextOptions__process__ {
       throw new Error("PerWord must be a boolean");
 
     return PERWORD;
+  }
+}
+
+// delfaut value layout and value comprobations
+function checkCorrectKeys(textOptions, Default_Attributes) {
+  let textOptionsKeys = Object.keys(textOptions);
+
+  // here the code will declare the default valou for each key in textOptions
+
+  // A simple comprobation of correct properties
+  const containThisProps = (value) =>
+    Default_Attributes.map((element) => element[0] === value);
+
+  const container = textOptionsKeys.every(containThisProps);
+
+  if (!container) {
+    const correctProperties = Default_Attributes.map((element) => element[0]);
+
+    throw new Error(
+      `textOptions must contain the following properties: ${correctProperties.join(
+        ", "
+      )}`
+    );
   }
 }
