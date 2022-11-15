@@ -72,10 +72,6 @@ export function __specialWorld_PerLetters__({
   // here the code will create magic
   // with the before information the code can wrapp the elements
   var wl = newCrumbledText.map((wrappElement) => {
-    const INDEX_SPECIAL_CLASS = arrayOfWords.indexOf(newCrumbledText.join(""));
-
-    newClass = __specialArray__(specialClass, INDEX_SPECIAL_CLASS);
-
     return {
       letter: wrappElement,
       cssClass: cssClass,
