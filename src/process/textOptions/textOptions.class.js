@@ -28,7 +28,7 @@ export class __TextOptions__process__ {
   // Each attribute of TextOption will returned here
   getProcessAttributes(obj) {
     Object.entries(this.#GET_ATTRIBUTES).forEach((element) => {
-      obj[element[0]] = this[element[0]];
+      obj[element[0]] = this[element[0]].process;
     });
 
     return obj;
@@ -56,7 +56,7 @@ export class __TextOptions__process__ {
     if (whatItIs(CLASSTOADD) !== "[object String]")
       throw new Error("ClassToAdd must be a string");
 
-    return CLASSTOADD;
+    return { process: CLASSTOADD };
   }
 
   get SelectClass() {
@@ -79,7 +79,7 @@ export class __TextOptions__process__ {
     if (whatItIs(PERWORD) !== "[object Boolean]")
       throw new Error("PerWord must be a boolean");
 
-    return PERWORD;
+    return { process: PERWORD };
   }
 }
 
