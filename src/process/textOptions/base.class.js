@@ -1,9 +1,16 @@
 import { __specialArray__, IterateOnAnArray } from "./specialArray.process";
 export class Base {
   constructor({ SpecialArray = false, Props = false, __error, __process }) {
-    this.__error = __error;
-    this.__process = __process;
+    // SpecialArray = {
+    //   targets: [],
+    //   elementsToGive: [],
+    //   process: {},
+    // }
+
+    this.process = this.#PROCESS(__process);
     this.SpecialArray = SpecialArray;
+
+    this.#ERROR(__error);
 
     if (this.SpecialArray) {
       this.findTarget = (target) => this.#FIND_TARGET(target);
@@ -22,11 +29,17 @@ export class Base {
     const TARGET_INDEX = IterateOnAnArray(SA.targets, target);
     const TARGET_RESULT = __specialArray__(SA.elementsToGive, TARGET_INDEX);
 
-    // custom process if the target is true
-
     return {
       result: TARGET_RESULT,
-      process: SA.process,
+      process: (props) => SA.process(props),
     };
+  }
+
+  #PROCESS(customProcess) {
+    return customProcess();
+  }
+
+  #ERROR(custom) {
+    custom();
   }
 }
