@@ -1,72 +1,36 @@
 import React from "react";
 
 import { LettersWrapping } from "./WrappingLetters.class";
-import { SelectClass } from "../textOptions/method/SelectClass/SelectClass.class";
-import { SpecialWrapp } from "../textOptions/method/SpecialWrapp/SpecialWrapp.class";
 
 import { outSpecialClass } from "./outSpecialClass.process";
 import { __specialWorld_PerLetters__ } from "./specialWordPerLetters.process";
 
-export function WrappLetter(props) {
-  const {
-    crumbledText,
-    SelectClass: { searchWordValue, specialClass, spaceBetweenWord },
-    ClassToAdd,
-    SpecialWrapp,
-    Structure,
-    specialStructure = false,
-    PerWord = false,
-    test = false,
-  } = props;
+export function WrappLetter(TEXT_OPTIONS, STRUCTURE) {
+  const test = false;
+  const { crumbledText, ClassToAdd, SelectClass, SpecialWrapp, PerWord } =
+    TEXT_OPTIONS;
 
-  const CustomComponent = Structure.structure;
-  const CustomProps = Structure.props;
+  const CustomComponent = STRUCTURE.currrent.structure.structure;
+  const CustomProps = STRUCTURE.current.props;
   const searchWordValueWithoutArrays = searchWordValue.flat();
 
   var arrElements = crumbledText
     .map((wrappElement, index) => {
-      const WrappingLetters = new LettersWrapping(wrappElement, index, props);
-
-      // ********* !IMPORTANT *********
-      // the code wil use this var for the function "__specialArray__"
+      const WL = new LettersWrapping(wrappElement, index, TEXT_OPTIONS);
       let newClass = specialClass;
-
-      let outSpecialClassProps = {
-        ...props,
-        wrappElement,
-        newClass,
-        index,
-        searchWordValue,
-        specialClass,
-        spaceBetweenWord,
-      };
-
-      delete outSpecialClassProps.SelectClass;
+      let word;
 
       // This function has the work find the specialClass with the index; Here the code will start the comprobations
-      const COMPROBATIONS = WrappingLetters.Comprobation(
+      const COMPROBATIONS = WL.Comprobation(
         PerWord,
         searchWordValueWithoutArrays
       );
 
-      if (!COMPROBATIONS) return outSpecialClass(outSpecialClassProps);
-
-      if (WrappingLetters.SPW(spaceBetweenWord))
-        return outSpecialClass(outSpecialClassProps);
-      // if this "word" is false, it means it is a false positive the code will return a simple wrapp
-
-      return __specialWorld_PerLetters__({
-        index,
-        arrayOfWords: searchWordValue,
-        crumbledText,
-        SpecialWrapp,
-        searchWordValue,
-        spaceBetweenWord,
-        specialStructure,
-        newClass,
-        ClassToAdd,
-        specialClass,
-      });
+      if (COMPROBATIONS && WL.SPW(SelectClass.process.spaceBetweenWord)) {
+        word; // = neCrumbletText
+      } else {
+        word = wrappElement;
+      }
     })
     .flat();
 
