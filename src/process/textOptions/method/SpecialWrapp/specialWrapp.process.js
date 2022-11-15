@@ -1,4 +1,4 @@
-import { whatItIs } from "../../common/whatIsIt";
+import { whatItIs } from "../../../../common/whatIsIt";
 
 export function process__select_specialWrapp__({
   wordToSearch,
