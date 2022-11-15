@@ -89,6 +89,7 @@ export function outSpecialClass({
       cssClass: cssClass,
       specialWrapp: {
         hasCustomWrapp,
+        hasCustomProps,
         NewWrappStructure: customWrapp,
       },
     },
