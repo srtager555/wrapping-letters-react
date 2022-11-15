@@ -1,9 +1,7 @@
 import { whatItIs } from "../../common/whatIsIt";
 
 import { SelectClass } from "./method/SelectClass/SelectClass.class";
-
-import { error__Filter_SpecialWrapp__ } from "../../error/specialWrapp.error";
-import { process__select_specialWrapp__ } from "./specialWrapp.process";
+import { SpecialWrapp } from "./method/SpecialWrapp/SpecialWrapp.class";
 
 export class __TextOptions__process__ {
   constructor(textOptions, text) {
@@ -72,14 +70,7 @@ export class __TextOptions__process__ {
   get SpecialWrapp() {
     const SPECIALWRAPPP = this.#GET_ATTRIBUTES.SpecialWrapp;
 
-    error__Filter_SpecialWrapp__(SPECIALWRAPPP);
-
-    const process__data = process__select_specialWrapp__({
-      wordToSearch: SPECIALWRAPPP.wordToSearch,
-      structureToAdd: SPECIALWRAPPP.structureToAdd,
-    });
-
-    return process__data;
+    return new SpecialWrapp(SPECIALWRAPPP);
   }
 
   get PerWord() {
