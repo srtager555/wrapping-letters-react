@@ -28,20 +28,7 @@ function WL(
     TEXT_OPTIONS.ClassToAdd
   );
 
-  let wrappProps = {
-    Structure: STRUCTURE.current.structure,
-    specialStructure: STRUCTURE.current.hasSpecialStructure,
-  };
-  TEXT_OPTIONS.getProcessAttributes(wrappProps);
-
-  // here the code will cath the errors in the user's code
-  error__main_filter__(wrappProps);
-
-  // The code will add the last values in the obj.
-  wrappProps.crumbledText = TEXT_OPTIONS.crumbledText;
-  wrappProps.Structure = STRUCTURE.getStructure;
-
-  return WrappLetter(wrappProps);
+  return WrappLetter(TEXT_OPTIONS, STRUCTURE);
 }
 
 /**
