@@ -1,25 +1,31 @@
 import React from "react";
 
+import { SelectClass } from "../textOptions/method/SelectClass/SelectClass.class";
+import { SpecialWrapp } from "../textOptions/method/SpecialWrapp/SpecialWrapp.class";
+
 import { outSpecialClass } from "./outSpecialClass.process";
 import { __specialWorld_PerLetters__ } from "./specialWordPerLetters.process";
 
-export function WrappLetter({
-  crumbledText,
-  SelectClass,
-  ClassToAdd,
-  SpecialWrapp,
-  Structure,
-  specialStructure = false,
-  PerWord = false,
-  test = false,
-}) {
-  let { searchWordValue, specialClass, spaceBetweenWord } = SelectClass;
+export function WrappLetter(props) {
+  const {
+    crumbledText,
+    SelectClass: { searchWordValue, specialClass, spaceBetweenWord },
+    ClassToAdd,
+    SpecialWrapp,
+    Structure,
+    specialStructure = false,
+    PerWord = false,
+    test = false,
+  } = props;
+
   const CustomComponent = Structure.structure;
   const CustomProps = Structure.props;
   const searchWordValueWithoutArrays = searchWordValue.flat();
 
   var arrElements = crumbledText
-    .map(function (wrappElement, index) {
+    .map((wrappElement, index) => {
+      const WrappingLetters = new LettersWrapping(wrappElement, index, props);
+
       // ********* !IMPORTANT *********
       // the code wil use this var for the function "__specialArray__"
       let newClass = specialClass;
@@ -46,29 +52,13 @@ export function WrappLetter({
       //.
       // Here the code will start the comprobations
       //.
-      const arrComprobations = [
-        !PerWord,
-        // if the array is empty, return the false
-        searchWordValueWithoutArrays.length > 0,
-        // the wrappElement has to have same first letter of an Element
-        searchWordValueWithoutArrays.some(
-          (element) => wrappElement === element[0]
-        ),
-        // the element can't be longer than crumbledText
-        searchWordValueWithoutArrays.some(
-          (element) => index + element.length <= crumbledText.length
-        ),
-        // Here the code will check if an element is same with a slice
-        // of its length
-        searchWordValueWithoutArrays.some(
-          (element) =>
-            crumbledText.slice(index, index + element.length).join("") ===
-            element
-        ),
-      ];
 
-      if (!arrComprobations.every((currentValue) => currentValue === true))
-        return outSpecialClass(outSpecialClassProps);
+      const COMPROBATIONS = WrappingLetters.Comprobation(
+        PerWord,
+        searchWordValueWithoutArrays
+      );
+
+      if (!COMPROBATIONS) return outSpecialClass(outSpecialClassProps);
 
       //.
       //.
@@ -139,4 +129,36 @@ export function WrappLetter({
   });
 
   return wrappedLetters;
+}
+
+class LettersWrapping {
+  constructor(wrappingElement, index, props) {
+    this.wrappingElement = wrappingElement;
+    this.index = index;
+    this.props = props;
+  }
+
+  Comprobation(PerWord, arrayToComprobate) {
+    const arrComprobations = [
+      !PerWord,
+      // if the array is empty, return the false
+      arrayToComprobate.length > 0,
+      // the wrappElement has to have same first letter of an Element
+      arrayToComprobate.some((element) => this.wrappingElement === element[0]),
+      // the element can't be longer than crumbledText
+      arrayToComprobate.some(
+        (element) =>
+          this.index + element.length <= this.props.crumbledText.length
+      ),
+      // Here the code will check if an element is same with a slice of its length
+      arrayToComprobate.some(
+        (element) =>
+          this.props.crumbledText
+            .slice(this.index, this.index + element.length)
+            .join("") === element
+      ),
+    ];
+
+    return arrComprobations.every((currentValue) => currentValue === true);
+  }
 }
