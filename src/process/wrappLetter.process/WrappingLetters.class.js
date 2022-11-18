@@ -1,20 +1,21 @@
 export class LettersWrapping {
   constructor(wrappingElement, index, props) {
     this.wrappingElement = wrappingElement;
+    console.log(wrappingElement);
     this.index = index;
     this.props = props;
   }
 
-  getSpecialArrayResults(SpecialArray) {
-    if (!SpecialArray) throw new Error("specialArray not support");
+  getSpecialArrayResults(el) {
+    if (!el.SpecialArray) throw new Error("specialArray not support");
 
-    const ARR = SpecialArray.targets.flat();
+    const ARR = el.SpecialArray.targets.flat();
     let word;
 
     if (!this.props.PerWord.process) {
       if (this.#COMPROBATION(ARR)) {
-        word = this.#FIND_WORD_PER_LEETTERS(ARR);
-      }
+        word = this.#FIND_WORD_PER_LEETTERS(ARR, el);
+      } else word;
     } else word = ARR.find((el) => el === this.wrappingElement);
 
     return word;
@@ -36,6 +37,7 @@ export class LettersWrapping {
             .join("") === el
       ),
     ];
+    console.log(arrComprobations);
 
     return arrComprobations.every((currentValue) => currentValue === true);
   }
@@ -68,6 +70,8 @@ export class LettersWrapping {
       let choppedWord = this.props.crumbledText
         .slice(this.index, this.index + element.length)
         .join("");
+
+      console.log(el);
 
       if (el.process.spaceBetweenWord) {
         // here the code will checks if the "word" has whitespace
