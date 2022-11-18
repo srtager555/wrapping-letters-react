@@ -5,6 +5,7 @@ import { error__Filter_SpecialWrapp__ } from "./specialWrapp.error";
 export class SpecialWrapp extends Base {
   constructor(SpecialWrapp) {
     super({
+      name: "SpecialWrapp",
       SpecialArray: {
         targets: SpecialWrapp.wordToSearch,
         elementsToGive: SpecialWrapp.structureToAdd,

@@ -10,6 +10,7 @@ export class SelectClass extends Base {
     }
 
     super({
+      name: "SelectClass",
       SpecialArray: {
         targets: SELECT_CLASS.wordToSearch,
         elementsToGive: SELECT_CLASS.classToAdd,
