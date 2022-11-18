@@ -5,9 +5,21 @@ export class LettersWrapping {
     this.props = props;
   }
 
-  Comprobation(PerWord, arrayToComprobate) {
+  getSpecialArrayResult(element) {
+    if (!element.SpecialArray) throw new Error("specialArray not support");
+
+    const ARR = element.SpecialArray.targets;
+    let word;
+
+    if (!this.PerWord) {
+      if (this.#COMPROBATION(ARR)) {
+        word = this.#FIND_WORD_PER_LEETTERS(ARR);
+      }
+    } else word = ARR.find((el) => el === this.wrappingElement);
+  }
+
+  #COMPROBATION(arrayToComprobate) {
     const arrComprobations = [
-      !PerWord,
       arrayToComprobate.length > 0,
       arrayToComprobate.some((element) => this.wrappingElement === element[0]),
       arrayToComprobate.some(
@@ -45,5 +57,28 @@ export class LettersWrapping {
         );
       });
     }
+  }
+
+  #FIND_WORD_PER_LEETTERS(arrayOfWords, el) {
+    let newCrumbledWord = arrayOfWords.flat().filter((element) => {
+      // here the code will cut the "word" from the array
+
+      let choppedWord = this.props.crumbledText
+        .slice(this.index, this.index + element.length)
+        .join("");
+
+      if (el.process.spaceBetweenWord) {
+        // here the code will checks if the "word" has whitespace
+        // before and after
+        if (this.crumbledText[this.index - 1] !== " ") return false;
+
+        if (this.crumbledText[this.index + element.length] !== " ")
+          return false;
+      }
+
+      return choppedWord === element;
+    });
+
+    return newCrumbledWord;
   }
 }
