@@ -1,8 +1,9 @@
 export class LettersWrapping {
-  constructor(wrappingElement, index, props) {
+  constructor(wrappingElement, crumbledText, index, props) {
     this.wrappingElement = wrappingElement;
     this.index = index;
     this.props = props;
+    this.crumbledText = crumbledText;
   }
 
   getSpecialArrayResults(el) {
@@ -25,16 +26,16 @@ export class LettersWrapping {
       arrayToComprobate.length > 0,
       arrayToComprobate.some((element) => this.wrappingElement === element[0]),
       arrayToComprobate.some(
-        (element) =>
-          this.index + element.length <= this.props.crumbledText.length
+        (element) => this.index + element.length <= this.crumbledText.length
       ),
       // Here the code will check if an element is same with a slice of its length
-      arrayToComprobate.some(
-        (el) =>
-          this.props.crumbledText
+      arrayToComprobate.some((el) => {
+        return (
+          this.crumbledText
             .slice(this.index, this.index + el.length)
             .join("") === el
-      ),
+        );
+      }),
     ];
 
     return arrComprobations.every((currentValue) => currentValue === true);
@@ -43,9 +44,9 @@ export class LettersWrapping {
   // check if the element has white space before and after it when spw is true
   SPW(spw) {
     if (spw) {
-      let firstWhiteSpace = this.props.crumbledText[this.index - 1] === " ";
-      let lastWhiteSpace = this.props.crumbledText.indexOf(" ", this.index);
-      let choppedWord = this.props.crumbledText
+      let firstWhiteSpace = this.crumbledText[this.index - 1] === " ";
+      let lastWhiteSpace = this.crumbledText.indexOf(" ", this.index);
+      let choppedWord = this.crumbledText
         .slice(this.index, lastWhiteSpace)
         .join("");
 
@@ -55,7 +56,7 @@ export class LettersWrapping {
         return (
           choppedWordCoditional &&
           firstWhiteSpace &&
-          this.props.crumbledText[lastWhiteSpace] === " "
+          this.crumbledText[lastWhiteSpace] === " "
         );
       });
     }
@@ -65,7 +66,7 @@ export class LettersWrapping {
     let newCrumbledWord = arrayOfWords.flat().filter((element) => {
       // here the code will cut the "word" from the array
 
-      let choppedWord = this.props.crumbledText
+      let choppedWord = this.crumbledText
         .slice(this.index, this.index + element.length)
         .join("");
 
