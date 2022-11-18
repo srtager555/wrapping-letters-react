@@ -5,17 +5,19 @@ export class LettersWrapping {
     this.props = props;
   }
 
-  getSpecialArrayResult(element) {
-    if (!element.SpecialArray) throw new Error("specialArray not support");
+  getSpecialArrayResults(SpecialArray) {
+    if (!SpecialArray) throw new Error("specialArray not support");
 
-    const ARR = element.SpecialArray.targets;
+    const ARR = SpecialArray.targets.flat();
     let word;
 
-    if (!this.PerWord) {
+    if (!this.props.PerWord.process) {
       if (this.#COMPROBATION(ARR)) {
         word = this.#FIND_WORD_PER_LEETTERS(ARR);
       }
     } else word = ARR.find((el) => el === this.wrappingElement);
+
+    return word;
   }
 
   #COMPROBATION(arrayToComprobate) {
