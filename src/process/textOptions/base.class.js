@@ -1,12 +1,18 @@
 import { __specialArray__, IterateOnAnArray } from "./specialArray.process";
 export class Base {
-  constructor({ SpecialArray = false, Props = false, __error, __process }) {
+  constructor({
+    name = "",
+    SpecialArray = false,
+    Props = false,
+    __error,
+    __process,
+  }) {
     // SpecialArray = {
     //   targets: [],
     //   elementsToGive: [],
     //   process: {},
     // }
-
+    this.name = name;
     this.process = this.#PROCESS(__process);
     this.SpecialArray = SpecialArray;
 
