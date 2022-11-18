@@ -12,19 +12,22 @@ export function WrappLetter(TEXT_OPTIONS, STRUCTURE) {
   var arrElements = crumbledText
     .map((wrappElement, index) => {
       const WL = new LettersWrapping(wrappElement, index, TEXT_OPTIONS);
-      let word;
+      let newCrumbledText;
 
       // This block code has the work find the Special Data with the index
       const VALUES_TO_ADD = Object.fromEntries(
         TEXT_OPTIONS.takeAttributesTheySeek.map((el) => {
           const VALUE = WL.getSpecialArrayResults(el);
 
-          if (PerWord) word = VALUE;
-          else word = [...VALUE[0]];
+          if (PerWord.process) newCrumbledText = VALUE;
+          else newCrumbledText = VALUE ? [...VALUE[0]] : "";
 
-          return [el.name, el.findTarget(VALUE)];
+          return [el.name, el.findTarget(VALUE ? VALUE[0] : "")];
         })
       );
+      console.log(VALUES_TO_ADD);
+
+      if (!newCrumbledText) newCrumbledText = [wrappElement];
 
       const SelectClassProps = {
         specialStructure: STRUCTURE.current.hasSpecialStructure,
@@ -34,9 +37,7 @@ export function WrappLetter(TEXT_OPTIONS, STRUCTURE) {
           : "",
       };
 
-      console.log(word);
-
-      const ELEMENTS = word.map((el) => {
+      const wl = newCrumbledText.map((el) => {
         return {
           letter: el,
           cssClass: VALUES_TO_ADD.SelectClass
@@ -49,9 +50,11 @@ export function WrappLetter(TEXT_OPTIONS, STRUCTURE) {
         };
       });
 
-      if (!PerWord) crumbledText.splice(index, word.length - 1);
+      if (!PerWord.process) {
+        crumbledText.splice(index, newCrumbledText.length - 1);
+      }
 
-      return ELEMENTS;
+      return wl;
     })
     .flat();
 
