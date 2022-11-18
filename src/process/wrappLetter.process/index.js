@@ -11,23 +11,30 @@ export function WrappLetter(TEXT_OPTIONS, STRUCTURE) {
 
   var arrElements = crumbledText
     .map((wrappElement, index) => {
-      const WL = new LettersWrapping(wrappElement, index, TEXT_OPTIONS);
+      const WL = new LettersWrapping(
+        wrappElement,
+        crumbledText,
+        index,
+        TEXT_OPTIONS
+      );
       let newCrumbledText;
 
       // This block code has the work find the Special Data with the index
       const VALUES_TO_ADD = Object.fromEntries(
         TEXT_OPTIONS.takeAttributesTheySeek.map((el) => {
-          const VALUE = WL.getSpecialArrayResults(el);
+          let value = WL.getSpecialArrayResults(el);
 
-          if (PerWord.process) newCrumbledText = VALUE;
-          else newCrumbledText = VALUE ? [...VALUE[0]] : "";
+          if (PerWord.process) newCrumbledText = [value];
+          else {
+            newCrumbledText = value ? [...value[0]] : "";
+            value = value ? value[0] : "";
+          }
 
-          return [el.name, el.findTarget(VALUE ? VALUE[0] : "")];
+          return [el.name, el.findTarget(value ? value : "")];
         })
       );
-      console.log(VALUES_TO_ADD);
 
-      if (!newCrumbledText) newCrumbledText = [wrappElement];
+      if (!newCrumbledText[0]) newCrumbledText = [wrappElement];
 
       const SelectClassProps = {
         specialStructure: STRUCTURE.current.hasSpecialStructure,
