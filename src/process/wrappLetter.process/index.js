@@ -2,36 +2,60 @@ import React from "react";
 
 import { LettersWrapping } from "./WrappingLetters.class";
 
-import { outSpecialClass } from "./outSpecialClass.process";
-import { __specialWorld_PerLetters__ } from "./specialWordPerLetters.process";
-
 export function WrappLetter(TEXT_OPTIONS, STRUCTURE) {
   const test = false;
-  const { crumbledText, ClassToAdd, SelectClass, SpecialWrapp, PerWord } =
-    TEXT_OPTIONS;
+  const { crumbledText, ClassToAdd, SelectClass, PerWord } = TEXT_OPTIONS;
 
   const CustomComponent = STRUCTURE.getStructure.structure;
   const CustomProps = STRUCTURE.getStructure.props;
 
-  console.log(crumbledText, TEXT_OPTIONS);
-
   var arrElements = crumbledText
     .map((wrappElement, index) => {
       const WL = new LettersWrapping(wrappElement, index, TEXT_OPTIONS);
+      let word;
 
-      // This function has the work find the specialClass with the index; Here the code will start the comprobations
-
+      // This block code has the work find the Special Data with the index
       const VALUES_TO_ADD = Object.fromEntries(
         TEXT_OPTIONS.takeAttributesTheySeek.map((el) => {
-          const VALUE = WL.getSpecialArrayResults(el.SpecialArray);
+          const VALUE = WL.getSpecialArrayResults(el);
+
+          if (PerWord) word = VALUE;
+          else word = [...VALUE[0]];
 
           return [el.name, el.findTarget(VALUE)];
         })
       );
 
-      console.log(VALUES_TO_ADD);
+      const SelectClassProps = {
+        specialStructure: STRUCTURE.current.hasSpecialStructure,
+        ClassToAdd: ClassToAdd.process,
+        newClass: VALUES_TO_ADD.SelectClass
+          ? VALUES_TO_ADD.SelectClass.result
+          : "",
+      };
+
+      console.log(word);
+
+      const ELEMENTS = word.map((el) => {
+        return {
+          letter: el,
+          cssClass: VALUES_TO_ADD.SelectClass
+            ? VALUES_TO_ADD.SelectClass.process(SelectClassProps)
+            : SelectClass.SpecialArray.process(SelectClassProps),
+          specialWrapp: {
+            hasCustomWrapp: VALUES_TO_ADD.SpecialWrapp?.result && true,
+            NewWrappStructure: VALUES_TO_ADD.SpecialWrapp?.result,
+          },
+        };
+      });
+
+      if (!PerWord) crumbledText.splice(index, word.length - 1);
+
+      return ELEMENTS;
     })
     .flat();
+
+  // console.log(arrElements);
 
   if (
     arrElements[0][0] === " " &&
