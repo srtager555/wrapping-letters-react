@@ -35,6 +35,7 @@ function App() {
           <WrappingLetters
             text="Hello <3 uwu pan con queso XD"
             textOptions={{
+              ClassToAdd: "AwA",
               SelectClass: {
                 wordToSearch: [["Hello", "uwu"], "<3", ["pan", "con"]],
                 classToAdd: ["aloh", "a", "xd"],
