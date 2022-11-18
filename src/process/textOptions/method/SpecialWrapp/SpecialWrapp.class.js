@@ -9,7 +9,6 @@ export class SpecialWrapp extends Base {
       SpecialArray: {
         targets: SpecialWrapp.wordToSearch,
         elementsToGive: SpecialWrapp.structureToAdd,
-        process: {},
       },
       __process: () =>
         process__select_specialWrapp__({
