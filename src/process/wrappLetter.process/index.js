@@ -11,9 +11,9 @@ export function WrappLetter(TEXT_OPTIONS, STRUCTURE) {
     TEXT_OPTIONS;
 
   const CustomComponent = STRUCTURE.getStructure.structure;
-  const CustomProps = STRUCTURE.current.props;
+  const CustomProps = STRUCTURE.getStructure.props;
 
-  console.log(crumbledText);
+  console.log(crumbledText, TEXT_OPTIONS);
 
   var arrElements = crumbledText
     .map((wrappElement, index) => {
@@ -21,11 +21,13 @@ export function WrappLetter(TEXT_OPTIONS, STRUCTURE) {
 
       // This function has the work find the specialClass with the index; Here the code will start the comprobations
 
-      const VALUES_TO_ADD = TEXT_OPTIONS.takeAttributesTheySeek.map((el) => {
-        const VALUE = WL.getSpecialArrayResults(el.SpecialArray);
+      const VALUES_TO_ADD = Object.fromEntries(
+        TEXT_OPTIONS.takeAttributesTheySeek.map((el) => {
+          const VALUE = WL.getSpecialArrayResults(el.SpecialArray);
 
-        return el.findTarget(VALUE);
-      });
+          return [el.name, el.findTarget(VALUE)];
+        })
+      );
 
       console.log(VALUES_TO_ADD);
     })
