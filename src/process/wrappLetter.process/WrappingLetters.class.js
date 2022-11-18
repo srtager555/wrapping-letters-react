@@ -1,7 +1,6 @@
 export class LettersWrapping {
   constructor(wrappingElement, index, props) {
     this.wrappingElement = wrappingElement;
-    console.log(wrappingElement);
     this.index = index;
     this.props = props;
   }
@@ -37,7 +36,6 @@ export class LettersWrapping {
             .join("") === el
       ),
     ];
-    console.log(arrComprobations);
 
     return arrComprobations.every((currentValue) => currentValue === true);
   }
@@ -70,8 +68,6 @@ export class LettersWrapping {
       let choppedWord = this.props.crumbledText
         .slice(this.index, this.index + element.length)
         .join("");
-
-      console.log(el);
 
       if (el.process.spaceBetweenWord) {
         // here the code will checks if the "word" has whitespace
