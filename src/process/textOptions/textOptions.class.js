@@ -17,6 +17,7 @@ export class __TextOptions__process__ {
     ["SpecialWrapp", {}],
     ["PerWord", false],
   ];
+  #DEFAULT_SEEKERS_ATTRIBUTES = ["SelectClass", "SpecialWrapp"];
 
   #ERRORS_FILTER() {
     if (whatItIs(this.textOptions) !== "[object Object]")
@@ -32,6 +33,10 @@ export class __TextOptions__process__ {
     });
 
     return obj;
+  }
+
+  get takeAttributesTheySeek() {
+    return this.#DEFAULT_SEEKERS_ATTRIBUTES.map((el) => this[el]);
   }
 
   get #GET_ATTRIBUTES() {
