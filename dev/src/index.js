@@ -44,7 +44,7 @@ function App() {
                 wordToSearch: [["Hello", "pan"], "<3", ["uwu", "con"], "XD"],
                 structureToAdd: specialTag,
               },
-              PerWord: true,
+              PerWord: false,
             }}
             // structure={structure}
             // structure={{
