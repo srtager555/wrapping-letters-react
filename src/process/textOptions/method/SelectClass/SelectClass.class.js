@@ -14,7 +14,7 @@ export class SelectClass extends Base {
       SpecialArray: {
         targets: SELECT_CLASS.wordToSearch,
         elementsToGive: SELECT_CLASS.classToAdd,
-        process: Process,
+        process: (props) => Process(props),
       },
       __process: () =>
         process__SelectClass__({
