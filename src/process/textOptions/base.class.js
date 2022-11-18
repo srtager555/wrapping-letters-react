@@ -35,9 +35,11 @@ export class Base {
     const TARGET_INDEX = IterateOnAnArray(SA.targets, target);
     const TARGET_RESULT = __specialArray__(SA.elementsToGive, TARGET_INDEX);
 
+    const processFun = SA.process && ((props) => SA.process(props));
+
     return {
       result: TARGET_RESULT,
-      process: (props) => SA.process(props),
+      process: processFun,
     };
   }
 
