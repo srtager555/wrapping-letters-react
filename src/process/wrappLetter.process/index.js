@@ -24,8 +24,10 @@ export function WrappLetter(TEXT_OPTIONS, STRUCTURE) {
         TEXT_OPTIONS.takeAttributesTheySeek.map((el) => {
           let value = WL.getSpecialArrayResults(el);
 
-          if (PerWord.process) newCrumbledText = [value];
-          else {
+          if (PerWord.process) {
+            if (!value) newCrumbledText = [wrappElement];
+            else newCrumbledText = [value + " "];
+          } else {
             newCrumbledText = value ? [...value[0]] : "";
             value = value ? value[0] : "";
           }
@@ -33,8 +35,6 @@ export function WrappLetter(TEXT_OPTIONS, STRUCTURE) {
           return [el.name, el.findTarget(value ? value : "")];
         })
       );
-
-      if (!newCrumbledText[0]) newCrumbledText = [wrappElement];
 
       const SelectClassProps = {
         specialStructure: STRUCTURE.current.hasSpecialStructure,
