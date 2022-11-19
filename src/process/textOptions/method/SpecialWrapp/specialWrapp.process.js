@@ -3,12 +3,14 @@ import { whatItIs } from "../../../../common/whatIsIt";
 export function process__select_specialWrapp__({
   wordToSearch,
   structureToAdd,
+  spaceBetweenWord,
 }) {
   let props = {
     hasCustomWrapp: false,
     hasCustomProps: false,
     wordToWrapp: wordToSearch || new String(),
     wrappToAdd: structureToAdd,
+    spaceBetweenWord: spaceBetweenWord || false,
   };
 
   // here the code need a check if the attribute... wait a moment

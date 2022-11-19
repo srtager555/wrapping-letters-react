@@ -14,6 +14,7 @@ export class SpecialWrapp extends Base {
         process__select_specialWrapp__({
           wordToSearch: SpecialWrapp.wordToSearch,
           structureToAdd: SpecialWrapp.structureToAdd,
+          spaceBetweenWord: SpecialWrapp.spaceBetweenWord,
         }),
       __error: () => error__Filter_SpecialWrapp__(SpecialWrapp),
     });
