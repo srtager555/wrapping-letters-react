@@ -24,9 +24,9 @@ export function WrappLetter(TEXT_OPTIONS, STRUCTURE) {
         TEXT_OPTIONS.takeAttributesTheySeek.map((el) => {
           let value = WL.getSpecialArrayResults(el);
 
-          if (PerWord.process) {
-            if (!value) newCrumbledText = [wrappElement];
-            else newCrumbledText = [value + " "];
+          if (!value) newCrumbledText = [wrappElement];
+          else if (PerWord.process) {
+            newCrumbledText = [value + " "];
           } else {
             newCrumbledText = value ? [...value[0]] : "";
             value = value ? value[0] : "";

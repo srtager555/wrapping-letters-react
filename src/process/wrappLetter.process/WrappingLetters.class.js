@@ -15,7 +15,7 @@ export class LettersWrapping {
     if (!this.props.PerWord.process) {
       if (this.#COMPROBATION(ARR)) {
         word = this.#FIND_WORD_PER_LEETTERS(ARR, el);
-      } else word;
+      }
     } else word = ARR.find((el) => el === this.wrappingElement);
 
     return word;
