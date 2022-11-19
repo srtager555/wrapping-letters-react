@@ -50,7 +50,11 @@ export class __TextOptions__process__ {
   }
 
   get crumbledText() {
-    return this.PerWord.process ? this.text.split(" ") : [...this.text];
+    let text;
+    if (!this.PerWord.process) text = [" ", ...this.text, " "];
+    else text = this.text.split(" ");
+
+    return text;
   }
 
   // here I did put the methods to will process the Attributes from textOptions

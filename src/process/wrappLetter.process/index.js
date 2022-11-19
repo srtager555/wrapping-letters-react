@@ -65,11 +65,9 @@ export function WrappLetter(TEXT_OPTIONS, STRUCTURE) {
     })
     .flat();
 
-  // console.log(arrElements);
-
   if (
-    arrElements[0][0] === " " &&
-    arrElements[arrElements.length - 1][0] === " "
+    arrElements[0].letter === " " &&
+    arrElements[arrElements.length - 1].letter === " "
   ) {
     arrElements.pop();
     arrElements.shift();
