@@ -10,8 +10,12 @@ function specialTag({ letter, cssClass }) {
   return <span className={cssClass}>{letter}.</span>;
 }
 
-function structure({ letter, cssClass }) {
-  const Default = <span className={cssClass}>{letter}</span>;
+function structure({ letter, cssClass, awita }) {
+  const Default = (
+    <span className={cssClass}>
+      {letter} {awita.a}
+    </span>
+  );
   return Default;
 }
 
@@ -33,18 +37,26 @@ function App() {
         <span>letter </span>
         <span>
           <WrappingLetters
-            text="Hello <3 uwu pan con queso XD"
+            text="Hello <3 uwu pan con quesocon XD"
             textOptions={{
               ClassToAdd: "AwA",
               SelectClass: {
                 wordToSearch: [["Hello", "uwu"], "<3", ["pan", "con"]],
                 classToAdd: ["aloh", "a", "xd"],
+                spaceBetweenWord: false,
               },
               SpecialWrapp: {
-                wordToSearch: [["Hello", "pan"], "<3", ["uwu", "con"], "XD"],
+                wordToSearch: [
+                  ["Hello", "pan"],
+                  "<3",
+                  ["uwu", "con"],
+                  "XD",
+                  "queso",
+                ],
                 structureToAdd: specialTag,
+                spaceBetweenWord: true,
               },
-              PerWord: false,
+              // PerWord: true,
             }}
             // structure={structure}
             // structure={{
