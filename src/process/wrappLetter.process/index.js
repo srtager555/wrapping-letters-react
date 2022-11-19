@@ -28,8 +28,8 @@ export function WrappLetter(TEXT_OPTIONS, STRUCTURE) {
           else if (PerWord.process) {
             newCrumbledText = [value + " "];
           } else {
-            newCrumbledText = value ? [...value[0]] : "";
-            value = value ? value[0] : "";
+            newCrumbledText = value ? [...value] : "";
+            value = value ? value : "";
           }
 
           return [el.name, el.findTarget(value ? value : "")];

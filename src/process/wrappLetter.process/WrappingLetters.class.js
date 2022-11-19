@@ -63,7 +63,7 @@ export class LettersWrapping {
   }
 
   #FIND_WORD_PER_LEETTERS(arrayOfWords, el) {
-    let newCrumbledWord = arrayOfWords.flat().filter((element) => {
+    let newCrumbledWord = arrayOfWords.flat().find((element) => {
       // here the code will cut the "word" from the array
 
       let choppedWord = this.crumbledText
