@@ -1,4 +1,4 @@
-import { whatItIs } from "../common/whatIsIt";
+import { whatItIs } from "../../common/whatIsIt";
 
 export function process__structure__(Structure) {
   if (whatItIs(Structure) === "[object Object]") return Structure;

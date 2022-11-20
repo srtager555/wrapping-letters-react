@@ -1,7 +1,7 @@
 import React from "react";
 
-import { whatItIs } from "../common/whatIsIt";
-import { error__Filter_structure__ } from "../error/structure.error";
+import { whatItIs } from "../../common/whatIsIt";
+import { error__Filter_structure__ } from "../../error/structure.error";
 import { process__structure__ } from "./structure.process";
 
 // here the code will check if has an custom structure anf
