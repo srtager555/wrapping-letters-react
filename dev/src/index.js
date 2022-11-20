@@ -7,7 +7,10 @@ import "./index.css";
 import { whatItIs } from "../../src/common/whatIsIt";
 
 function specialTag({ letter, cssClass }) {
-  return <span className={cssClass}>{letter}.</span>;
+  return <span className={cssClass}>{letter}1</span>;
+}
+function specialTag1({ letter, cssClass }) {
+  return <span className={cssClass}>{letter}2</span>;
 }
 
 function structure({ letter, cssClass, awita }) {
@@ -48,12 +51,12 @@ function App() {
               SpecialWrapp: {
                 wordToSearch: [
                   ["Hello", "pan"],
-                  "<3",
                   ["uwu", "con"],
+                  "<3",
                   "XD",
                   "queso",
                 ],
-                structureToAdd: specialTag,
+                structureToAdd: [specialTag, specialTag1],
                 spaceBetweenWord: true,
               },
               // PerWord: true,
