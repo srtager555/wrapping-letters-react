@@ -19,6 +19,7 @@ function structure({ letter, cssClass, awita }) {
       {letter} {awita.a}
     </span>
   );
+
   return Default;
 }
 
