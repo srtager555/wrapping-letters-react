@@ -1,6 +1,6 @@
 lib/
 package-lock.json
-
+.oldFiles/
 
 ### macOS ###
 # General

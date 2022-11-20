@@ -1,7 +1,7 @@
 {
   "ignorePatterns": ["lib/", "dist/"],
   "parserOptions": {
-    "ecmaVersion": 6,
+    "ecmaVersion": 13,
     "sourceType": "module"
   },
   "env": {

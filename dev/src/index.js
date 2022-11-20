@@ -7,11 +7,19 @@ import "./index.css";
 import { whatItIs } from "../../src/common/whatIsIt";
 
 function specialTag({ letter, cssClass }) {
-  return <span className={cssClass}>{letter}.</span>;
+  return <span className={cssClass}>{letter}1</span>;
+}
+function specialTag1({ letter, cssClass }) {
+  return <span className={cssClass}>{letter}2</span>;
 }
 
-function structure({ letter, cssClass }) {
-  const Default = <span className={cssClass}>{letter}</span>;
+function structure({ letter, cssClass, awita }) {
+  const Default = (
+    <span className={cssClass}>
+      {letter} {awita.a}
+    </span>
+  );
+
   return Default;
 }
 
@@ -33,17 +41,26 @@ function App() {
         <span>letter </span>
         <span>
           <WrappingLetters
-            text="Hello <3 uwu pan con queso XD"
+            text="Hello <3 uwu pan con quesocon XD"
             textOptions={{
+              ClassToAdd: "AwA",
               SelectClass: {
                 wordToSearch: [["Hello", "uwu"], "<3", ["pan", "con"]],
                 classToAdd: ["aloh", "a", "xd"],
+                spaceBetweenWord: false,
               },
               SpecialWrapp: {
-                wordToSearch: [["Hello", "pan"], "<3", ["uwu", "con"], "XD"],
-                structureToAdd: specialTag,
+                wordToSearch: [
+                  ["Hello", "pan"],
+                  ["uwu", "con"],
+                  "<3",
+                  "XD",
+                  "queso",
+                ],
+                structureToAdd: [specialTag, specialTag1],
+                spaceBetweenWord: true,
               },
-              PerWord: true,
+              // PerWord: true,
             }}
             // structure={structure}
             // structure={{

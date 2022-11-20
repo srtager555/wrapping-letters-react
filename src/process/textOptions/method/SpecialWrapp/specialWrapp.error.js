@@ -1,4 +1,4 @@
-import { whatItIs } from "../common/whatIsIt";
+import { whatItIs } from "../../../../common/whatIsIt";
 
 export function error__Filter_SpecialWrapp__(SpecialWrapp) {
   if (whatItIs(SpecialWrapp) != "[object Object]")

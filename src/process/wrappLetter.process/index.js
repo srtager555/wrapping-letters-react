@@ -1,122 +1,73 @@
 import React from "react";
 
-import { outSpecialClass } from "./outSpecialClass.process";
-import { __specialWorld_PerLetters__ } from "./specialWordPerLetters.process";
+import { LettersWrapping } from "./WrappingLetters.class";
 
-export function WrappLetter({
-  crumbledText,
-  SelectClass,
-  ClassToAdd,
-  SpecialWrapp,
-  Structure,
-  specialStructure = false,
-  PerWord = false,
-  test = false,
-}) {
-  let { searchWordValue, specialClass, spaceBetweenWord } = SelectClass;
-  const CustomComponent = Structure.structure;
-  const CustomProps = Structure.props;
-  const searchWordValueWithoutArrays = searchWordValue.flat();
+export function WrappLetter(TEXT_OPTIONS, STRUCTURE) {
+  const test = false;
+  const { crumbledText, ClassToAdd, SelectClass, PerWord } = TEXT_OPTIONS;
+
+  const CustomComponent = STRUCTURE.getStructure.structure;
+  const CustomProps = STRUCTURE.getStructure.props;
 
   var arrElements = crumbledText
-    .map(function (wrappElement, index) {
-      // ********* !IMPORTANT *********
-      // the code wil use this var for the function "__specialArray__"
-      let newClass = specialClass;
-
-      //.
-      //.
-      //.
-
-      const outSpecialClassProps = {
+    .map((wrappElement, index) => {
+      const WL = new LettersWrapping(
         wrappElement,
-        newClass,
-        ClassToAdd,
-        SpecialWrapp,
-        specialStructure,
-        specialClass,
-        searchWordValue,
-        index,
         crumbledText,
-        PerWord,
+        index,
+        TEXT_OPTIONS
+      );
+      let newCrumbledText;
+
+      // This block code has the work find the Special Data with the index
+      const VALUES_TO_ADD = Object.fromEntries(
+        TEXT_OPTIONS.takeAttributesTheySeek.map((el) => {
+          let value = WL.getSpecialArrayResults(el);
+
+          if (!value) newCrumbledText = [wrappElement];
+          else if (PerWord.process) {
+            newCrumbledText = [value + " "];
+          } else {
+            newCrumbledText = value ? [...value] : "";
+            value = value ? value : "";
+          }
+
+          return [el.name, el.findTarget(value ? value : "")];
+        })
+      );
+
+      const SelectClassProps = {
+        specialStructure: STRUCTURE.current.hasSpecialStructure,
+        ClassToAdd: ClassToAdd.process,
+        newClass: VALUES_TO_ADD.SelectClass
+          ? VALUES_TO_ADD.SelectClass.result
+          : "",
       };
 
-      // This function has the work find the specialClass with the index
+      const wl = newCrumbledText.map((el) => {
+        return {
+          letter: el,
+          cssClass: VALUES_TO_ADD.SelectClass
+            ? VALUES_TO_ADD.SelectClass.process(SelectClassProps)
+            : SelectClass.SpecialArray.process(SelectClassProps),
+          specialWrapp: {
+            hasCustomWrapp: VALUES_TO_ADD.SpecialWrapp?.result && true,
+            NewWrappStructure: VALUES_TO_ADD.SpecialWrapp?.result,
+          },
+        };
+      });
 
-      //.
-      // Here the code will start the comprobations
-      //.
-      const arrComprobations = [
-        !PerWord,
-        // if the array is empty, return the false
-        searchWordValueWithoutArrays.length > 0,
-        // the wrappElement has to have same first letter of an Element
-        searchWordValueWithoutArrays.some(
-          (element) => wrappElement === element[0]
-        ),
-        // the element can't be longer than crumbledText
-        searchWordValueWithoutArrays.some(
-          (element) => index + element.length <= crumbledText.length
-        ),
-        // Here the code will check if an element is same with a slice
-        // of its length
-        searchWordValueWithoutArrays.some(
-          (element) =>
-            crumbledText.slice(index, index + element.length).join("") ===
-            element
-        ),
-      ];
-
-      if (!arrComprobations.every((currentValue) => currentValue === true))
-        return outSpecialClass(outSpecialClassProps);
-
-      //.
-      //.
-
-      // here the code will comprobate if the first letter is the start
-      // of a special word
-      if (spaceBetweenWord) {
-        // if SBW (spaceBetweenWord) is true, the code need see the before and after
-        // element beacause these element need be whitespace
-        if (
-          !searchWordValue.some((element) => {
-            let firstWhiteSpace = crumbledText[index - 1];
-            let lastWhiteSpace = crumbledText.indexOf(" ", index);
-            let choppedWordCoditional =
-              crumbledText.slice(index, lastWhiteSpace).join("") === element;
-
-            return (
-              choppedWordCoditional &&
-              firstWhiteSpace === " " &&
-              crumbledText[lastWhiteSpace] === " "
-            );
-          })
-        )
-          // if this "word" is false, it means it is a false positive
-          // the code will return a simple wrapp
-          return outSpecialClass(outSpecialClassProps);
+      if (!PerWord.process) {
+        crumbledText.splice(index, newCrumbledText.length - 1);
       }
 
-      return __specialWorld_PerLetters__({
-        index,
-        arrayOfWords: searchWordValue,
-        crumbledText,
-        SpecialWrapp,
-        searchWordValue,
-        spaceBetweenWord,
-        specialStructure,
-        newClass,
-        ClassToAdd,
-        specialClass,
-      });
+      return wl;
     })
-    // [[[]], [[]], ...]
     .flat();
-  // [[], [] ...]
 
   if (
-    arrElements[0][0] === " " &&
-    arrElements[arrElements.length - 1][0] === " "
+    arrElements[0].letter === " " &&
+    arrElements[arrElements.length - 1].letter === " "
   ) {
     arrElements.pop();
     arrElements.shift();
@@ -128,11 +79,9 @@ export function WrappLetter({
   var wrappedLetters = arrElements.map(function (wrappElement, index) {
     return (
       <CustomComponent
-        letter={wrappElement.letter}
-        cssClass={wrappElement.cssClass}
-        specialWrapp={wrappElement.specialWrapp}
         index={index}
         key={`'${wrappElement.letter}'-${index}`}
+        {...wrappElement}
         {...CustomProps}
       />
     );

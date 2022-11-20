@@ -1,6 +1,6 @@
-import { whatItIs } from "../common/whatIsIt";
+import { whatItIs } from "../../../../common/whatIsIt";
 
-export function error__Filter_SpecialClass__(SelectClass, PerWord) {
+export function error__Filter_SelectClass__(SelectClass, PerWord) {
   // first the code need know if SelectClass is an Object
   if (whatItIs(SelectClass) != "[object Object]")
     throw new Error("SelectClass must be an Object!!! :s");
