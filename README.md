@@ -13,34 +13,17 @@ The website is a beta but make a great work in the docs
 
 ## New upgrades
 
-2.6.0
+2.7.0
 
-`[Special Array]` has a new feature, now you can stack the words (phrases, letters, numbers, whatever...) in an array to search for their match in the corresponding array, here's a simple example:
+Hello! The new 2.7.0 upgraded has a new syntax in the source code and a new feature for every feature that can find matches in the `text` =D
 
-```
-  wordToSearch: [["this", "is"], "the", ["new", "feature"]],
-  classToAdd: ["hahahah", "cool", "right?"],
-```
+Now `SelectClass` and `SpecialWrapp` has the attribute `spaceBetweenWord` to optimize your matches, the attribute is independent of the other!
 
-More information about the new feature on the <a href="https://wrapping-letters.vercel.app/docs/specialArray">documentation page of `[Special Array]`</a>
+It also I fixed small issue in the errors
 
-2.5.0
+This update has focused on the source code to simplify package development.
 
-The attribute from the prop `textOptions`, `SpecialWrapp` and `structure` are been upgraded with an new attribute `props`, take a look the docs to learn more about the feature
-
-<p>
-  <a href="https://wrapping-letters.vercel.app/docs/SpecialWrapp">`SpecialWrapp`</a>
-  <a href="https://wrapping-letters.vercel.app/docs/structure">`structure`</a>
-</p>
-
-You can find more information about the feature in its documentation page <a href="https://wrapping-letters.vercel.app/docs/props">`props`</a>
-
-Issue about the re-render in the component when parent element changes, fixed, now the component can't re-render if the primaries props don't change
-
-2.5.1
-
-- Problem about incompatibilities with other packages react 1.18.2 solved
-
+Thanks you for use my project!!! 💙
 
 ## How to use
 
