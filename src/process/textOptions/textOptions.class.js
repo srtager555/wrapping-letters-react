@@ -96,7 +96,7 @@ export class __TextOptions__process__ {
 function checkCorrectKeys(textOptions, Default_Attributes) {
   let textOptionsKeys = Object.keys(textOptions);
 
-  // here the code will declare the default valou for each key in textOptions
+  // here the code will declare the default value for each key in textOptions
 
   // A simple comprobation of correct properties
   const containThisProps = (value) =>
