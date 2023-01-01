@@ -32,7 +32,10 @@ export function WrappLetter(TEXT_OPTIONS, STRUCTURE) {
             value = value ? value : "";
           }
 
-          return [el.name, el.findTarget(value ? value : "")];
+          let a = [el.name, el.findTarget(value ? value : "")];
+          console.log(a);
+
+          return a;
         })
       );
 
