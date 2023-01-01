@@ -52,13 +52,13 @@ function App() {
               ],
               structureToAdd: [specialTag, specialTag1],
             },
-            PerWord: true,
+            // PerWord: true,
           }}
           // structure={structure}
-          structure={{
-            structure: structure,
-            props: { owo: "owo", awita: { a: "a " }, sex: "uwu" },
-          }}
+          // structure={{
+          //   structure: structure,
+          //   props: { owo: "owo", awita: { a: "a " }, sex: "uwu" },
+          // }}
         />
       </div>
     </>
