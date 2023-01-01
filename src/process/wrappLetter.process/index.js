@@ -22,20 +22,13 @@ export function WrappLetter(TEXT_OPTIONS, STRUCTURE) {
       // This block code has the work find the Special Data with the index
       const VALUES_TO_ADD = Object.fromEntries(
         TEXT_OPTIONS.takeAttributesTheySeek.map((el) => {
-          let value = WL.getSpecialArrayResults(el);
+          let SAResults = WL.getSpecialArrayResults(el);
+          let value = SAResults ? SAResults : "";
 
-          if (!value) newCrumbledText = [wrappElement];
-          else if (PerWord.process) {
-            newCrumbledText = [value + " "];
-          } else {
-            newCrumbledText = value ? [...value] : "";
-            value = value ? value : "";
-          }
+          if (PerWord.process) newCrumbledText = [wrappElement + " "];
+          else newCrumbledText = value === "" ? "" : [...value];
 
-          let a = [el.name, el.findTarget(value ? value : "")];
-          console.log(a);
-
-          return a;
+          return [el.name, el.findTarget(value ? value : "")];
         })
       );
 
