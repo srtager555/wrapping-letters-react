@@ -30,6 +30,10 @@ body {
     /* white-space: pre; */
 }
 
+.gray {
+    color: #eeeeee;
+}
+
 .special-class-1 {
     color: blue;
     font-size: 20px;
