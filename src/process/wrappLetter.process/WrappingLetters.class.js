@@ -7,7 +7,14 @@ export class LettersWrapping {
   }
 
   getSpecialArrayResults(el) {
-    if (!el.SpecialArray) throw new Error("specialArray not support");
+    if (!el.SpecialArray) throw new Error("[specialArray] not support");
+
+    // if the options empty, the function will stopped
+    if (
+      !(el.SpecialArray.target != undefined) &&
+      !(el.SpecialArray.elementsToGive != undefined)
+    )
+      return;
 
     const ARR = el.SpecialArray.targets.flat();
     let word;

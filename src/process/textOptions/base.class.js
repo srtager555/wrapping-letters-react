@@ -30,6 +30,9 @@ export class Base {
   #FIND_TARGET(target) {
     const SA = this.SpecialArray;
 
+    // if the options empty, the function will stopped
+    if (!(SA.target != undefined) && !(SA.elementsToGive != undefined)) return;
+
     if (!SA.targets.flat().includes(target)) return undefined;
 
     const TARGET_INDEX = IterateOnAnArray(SA.targets, target);
