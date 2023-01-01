@@ -26,7 +26,7 @@ export function WrappLetter(TEXT_OPTIONS, STRUCTURE) {
           let value = SAResults ? SAResults : "";
 
           if (PerWord.process) newCrumbledText = [wrappElement + " "];
-          else newCrumbledText = value === "" ? "" : [...value];
+          else newCrumbledText = value ? [...value] : "";
 
           return [el.name, el.findTarget(value ? value : "")];
         })
