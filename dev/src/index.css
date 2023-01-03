@@ -33,6 +33,13 @@ body {
 .gray {
     color: #ca9e9e;
 }
+.blue {
+    color: #2a55ce;
+}
+
+span.xd {
+    color: green;
+}
 
 .special-class-1 {
     color: blue;
