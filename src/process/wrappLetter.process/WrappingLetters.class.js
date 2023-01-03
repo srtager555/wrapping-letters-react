@@ -6,7 +6,11 @@ export class LettersWrapping {
     this.crumbledText = crumbledText;
   }
 
-  getSpecialArrayResults(el) {
+  /**
+   * @param  {} el this function is to get the special word.
+   * @returns The word target if it's in the specialArray, else if will return the current element to wrapp.
+   */
+  getSpecialArrayTarget(el) {
     if (!el.SpecialArray) throw new Error("[specialArray] not support");
 
     // if the options empty, the function will stopped
@@ -25,7 +29,7 @@ export class LettersWrapping {
       }
     } else word = ARR.find((el) => el === this.wrappingElement);
 
-    return word;
+    return (word ??= this.wrappingElement);
   }
 
   #COMPROBATION(arrayToComprobate) {

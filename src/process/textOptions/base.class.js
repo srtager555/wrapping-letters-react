@@ -27,6 +27,9 @@ export class Base {
     }
   }
 
+  /**
+   * @param {} target This methode is to search the result of specail array from the target
+   */
   #FIND_TARGET(target) {
     const SA = this.SpecialArray;
 
