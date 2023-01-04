@@ -173,7 +173,7 @@ describe("Running a lot situation", () => {
 
     const Results = ENTRIES.map((el) => {
       const STRUCTURE = new __Structure__process__(
-        new Function(),
+        undefined,
         el.ClassToAdd.process
       );
 
