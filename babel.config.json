@@ -1,5 +1,5 @@
 {
-  "ignore": ["test/*", "**/*.test.js"],
+  // "ignore": ["test/*", "**/*.test.js"],
   "presets": [
     [
       "@babel/preset-env",
@@ -8,7 +8,8 @@
           "edge": "85",
           "firefox": "85",
           "chrome": "85",
-          "safari": "15"
+          "safari": "15",
+          "node": "current"
         },
         "useBuiltIns": "usage",
         "corejs": "3.6.5"

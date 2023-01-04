@@ -9,6 +9,14 @@
   },
   "extends": ["eslint:recommended", "prettier", "plugin:react/recommended"],
   "plugins": ["prettier", "react"],
+  "overrides": [
+    {
+      "files": ["src/test/**"],
+      "plugins": ["jest"],
+      "extends": ["plugin:jest/recommended"],
+      "rules": { "jest/prefer-expect-assertions": "off" }
+    }
+  ],
   "rules": {
     "no-unused-vars": "warn",
     "no-console": "warn",
