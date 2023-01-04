@@ -1,91 +1,69 @@
-import React from "react";
 import { WrappLetter } from "../process/wrappLetter.process";
+import { __TextOptions__process__ as textOptionsP, __TextOptions__process__ } from "../process/textOptions/textOptions.class";
 
-function structure({ letter, cssClass }) {
-  const Default = (
-    <div className="container">
-      <span className={cssClass}>{`LETTER: "${letter}", `}</span>
-      <span className={cssClass}>{`CLASS: "${cssClass}"`}</span>
-    </div>
-  );
-  return Default;
+import {
+  sentenceToTest,
+  CustomStructure,
+  CustomStructure1,
+} from "./textArrays";
+
+function entriesCreator({ spwSC, spwSW, PerWord = false }) {
+  const CHANGES = [
+    { SC: false, SW: false },
+    { SC: true, SW: false },
+    { SC: false, SW: true },
+    { SC: true, SW: true },
+  ];
+
+  return CHANGES.map((el) => {
+    return new __TextOptions__process__({
+      ClassToAdd: "class",
+      SelectClass: el.SC
+        ? {
+            wordToSearch: ["This", ["is", "en"]],
+            classToAdd: ["class-1", "class-2"],
+            spaceBetweenWord: spwSC,
+          }
+        : {},
+      SpecialWrapp: el.SW
+        ? {
+            wordToSearch: ["a", ["ce", "ce", "!!!"]],
+            structureToAdd: [CustomStructure, CustomStructure1],
+            spaceBetweenWord: spwSW,
+          }
+        : {},
+      PerWord: PerWord,
+    }, sentenceToTest);
+  });
 }
-function baseStructure({ letter, cssClass, specialStructure = {} }) {
-  // eslint-disable-next-line react/prop-types
-  function DEFAULT_COMPONENT({ letter, cssClass }) {
-    return <span className={cssClass}>{letter}</span>;
-  }
 
-  const {
-    hasModification = false,
-    NewTagStructure = () => (
-      <DEFAULT_COMPONENT letter={letter} cssClass={cssClass} />
-    ),
-  } = specialStructure;
+describe("Running a lot situation", () => {
+  // selectClass y specialWrapp SPW false PW false
+  // 1. selectClass SPW false
+  // 2. specialWrapp SPW false
+  // 3. selectClass y specialWrapp SPW false
+  // 4. over writting;
+  // selectClass y specialWrapp SPW false true PW false
+  // selectClass y specialWrapp SPW true false PW false
+  // selectClass y specialWrapp SPW true true PW false
+  // selectClass y specialWrapp PW true
 
-  return hasModification ? (
-    <NewTagStructure />
-  ) : (
-    <DEFAULT_COMPONENT letter={letter} cssClass={cssClass} />
-  );
-}
+  /*
+  entry: Here is the change
+  output: [[result1],[result2],[result3]]
+  */
+ test("SelectClass and SpecialWrapp with SPW false and PW false", () => {
+   // A function to iterate to create custom entries xd
+   const ENTRIES = entriesCreator();
+
+   const 
+  });
+});
 
 // if the user has a custom structure here it will be changed by it
 
 test("Should be return the same array (SBW: true)", () => {
   const Structure = structure || baseStructure;
-
-  const crumbledText = [
-    " ",
-    "T",
-    "h",
-    "i",
-    "s",
-    " ",
-    "i",
-    "s",
-    " ",
-    "a",
-    " ",
-    "s",
-    "h",
-    "o",
-    "r",
-    "t",
-    " ",
-    "s",
-    "e",
-    "n",
-    "t",
-    "e",
-    "c",
-    "e",
-    " ",
-    "f",
-    "o",
-    "r",
-    " ",
-    "a",
-    "n",
-    " ",
-    "e",
-    "x",
-    "a",
-    "m",
-    "p",
-    "l",
-    "e",
-    " ",
-    "t",
-    "e",
-    "s",
-    "t",
-    " ",
-    "O",
-    "w",
-    "O",
-    " ",
-  ];
 
   const arrWrapp = [
     ["T", "class special-class-1"],
