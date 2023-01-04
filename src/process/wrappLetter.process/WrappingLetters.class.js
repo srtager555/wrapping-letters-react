@@ -17,8 +17,9 @@ export class LettersWrapping {
     if (
       !(el.SpecialArray.target != undefined) &&
       !(el.SpecialArray.elementsToGive != undefined)
-    )
-      return;
+    ) {
+      return this.wrappingElement;
+    }
 
     const ARR = el.SpecialArray.targets.flat();
     let word;
