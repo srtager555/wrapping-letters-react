@@ -39,24 +39,23 @@ function App() {
         <WrappingLetters
           text="Hello <3 uwu pan con quesocon XD"
           textOptions={{
-            ClassToAdd: "AwA",
             SelectClass: {
               wordToSearch: [["Hello", "uwu"], "<3", ["pan", "con"]],
               classToAdd: ["aloh", "a", "xd"],
-              spaceBetweenWord: true,
+              // spaceBetweenWord: false,
             },
             SpecialWrapp: {
-              wordToSearch: [
-                ["Hello", "pan"],
-                ["uwu", "con"],
-                "<3",
-                "XD",
-                "queso",
-              ],
-              structureToAdd: [specialTag, specialTag1],
-              spaceBetweenWord: false,
+              // wordToSearch: [
+              //   ["Hello", "pan"],
+              //   ["uwu", "con"],
+              //   "<3",
+              //   "XD",
+              //   "queso",
+              // ],
+              // structureToAdd: [specialTag, specialTag1],
+              // spaceBetweenWord: true,
             },
-            // PerWord: true,
+            PerWord: true,
           }}
           // structure={structure}
           // structure={{
