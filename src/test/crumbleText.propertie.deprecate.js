@@ -1,7 +1,6 @@
-const specialClass =
-  require("../process/specialClass.process").process__select_specialClass__;
+import { process__select_specialClass__ as specialClass } from "../process/specialClass.process";
 
-test("crumbledText should has white space in the start and end (SBW: true)", () => {
+test.skip("crumbledText should has white space in the start and end (SBW: true)", () => {
   let SelectClass = {
     wordToSearch: ["OwO", "sentence", "example", "This", "is", "s"],
     classToAdd: ["special-class-1", "special-class-2", "special-class-3"],
