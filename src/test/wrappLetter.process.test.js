@@ -1,4 +1,5 @@
-const wrappLetter = require("../process/wrappLetter.process");
+import React from "react";
+import { WrappLetter } from "../process/wrappLetter.process";
 
 function structure({ letter, cssClass }) {
   const Default = (
@@ -10,6 +11,7 @@ function structure({ letter, cssClass }) {
   return Default;
 }
 function baseStructure({ letter, cssClass, specialStructure = {} }) {
+  // eslint-disable-next-line react/prop-types
   function DEFAULT_COMPONENT({ letter, cssClass }) {
     return <span className={cssClass}>{letter}</span>;
   }
@@ -135,7 +137,7 @@ test("Should be return the same array (SBW: true)", () => {
     ["O", "class special-class-2"],
   ];
 
-  const wrappResponse = wrappLetter.WrappLetter({
+  const wrappResponse = WrappLetter({
     SelectClass: {
       searchWordValue: [
         "a",
@@ -190,7 +192,7 @@ test("Should be return the same array (PerWord: true)", () => {
     ["OwO", "class special-class-2"],
   ];
 
-  const wrappResponse = wrappLetter.WrappLetter({
+  const wrappResponse = WrappLetter({
     SelectClass: {
       searchWordValue: [
         "a",
