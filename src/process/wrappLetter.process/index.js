@@ -25,7 +25,17 @@ export function WrappLetter(TEXT_OPTIONS, STRUCTURE) {
           let SATarget = WL.getSpecialArrayTarget(el);
 
           if (PerWord.process) newCrumbledText = [wrappElement + " "];
-          else newCrumbledText = [...SATarget];
+          else {
+            if (!newCrumbledText) {
+              newCrumbledText = [...SATarget];
+            }
+
+            // here the code will comprobate if find a specil result from specialWrapp
+            if (newCrumbledText.length < SATarget.length) {
+              // if the `newCrumbledText.length` is 1, that's because SelectClass didn't find a target
+              if (newCrumbledText.length === 1) newCrumbledText = [...SATarget];
+            }
+          }
 
           return [el.name, el.findTarget(SATarget)];
         })
