@@ -13,7 +13,9 @@ function specialTag1({ letter, cssClass }) {
   return <span className={`blue ${cssClass}`}>{letter}2</span>;
 }
 
-function structure({ letter, cssClass, awita }) {
+function structure(props) {
+  const { letter, cssClass, awita } = props;
+  // console.log(props);
   const Default = <span className={cssClass}>{letter}</span>;
 
   return Default;
@@ -41,7 +43,7 @@ function App() {
             SelectClass: {
               wordToSearch: [["Hello", "uwu"], "<3", ["pan", "con"]],
               classToAdd: ["aloh", "a", "xd"],
-              spaceBetweenWord: false,
+              spaceBetweenWord: true,
             },
             SpecialWrapp: {
               wordToSearch: [
@@ -52,7 +54,7 @@ function App() {
                 "queso",
               ],
               structureToAdd: [specialTag, specialTag1],
-              spaceBetweenWord: true,
+              spaceBetweenWord: false,
             },
             // PerWord: true,
           }}
