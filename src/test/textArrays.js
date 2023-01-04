@@ -10,6 +10,7 @@ const sentencePerLetter = [...sentenceToTest];
 function CustomStructure({ letter, cssClass }) {
   return <span className={cssClass}>{`LETTER: "${letter}", `}</span>;
 }
+// eslint-disable-next-line react/prop-types
 function CustomStructure1({ letter, cssClass }) {
   return <span className={cssClass}>{`LETTER: "${letter}", `}</span>;
 }
