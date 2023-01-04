@@ -2,8 +2,7 @@ import React from "react";
 
 import { LettersWrapping } from "./WrappingLetters.class";
 
-export function WrappLetter(TEXT_OPTIONS, STRUCTURE) {
-  const test = false;
+export function WrappLetter(TEXT_OPTIONS, STRUCTURE, test = false) {
   const { crumbledText, ClassToAdd, SelectClass, PerWord } = TEXT_OPTIONS;
 
   const CustomComponent = STRUCTURE.getStructure.structure;
