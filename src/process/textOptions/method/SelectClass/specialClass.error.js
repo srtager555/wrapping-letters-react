@@ -45,7 +45,7 @@ export function error__Filter_SelectClass__(SelectClass, PerWord) {
   // comprobation of the optional prop 'spaceBetweenWord'
   const searchSBW = SelectClassKeys.some((key) => key === "spaceBetweenWord");
 
-  if (PerWord && searchSBW) {
+  if (PerWord && SelectClassKeys["spaceBetweenWord"]) {
     throw new Error(
       'SelectClass - "spaceBetweenWord" is not allowed when "PerWord" is true'
     );
