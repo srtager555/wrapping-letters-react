@@ -1,7 +1,10 @@
 import stringSimilarity from "string-similarity";
 
-export function error__props_filter__(props) {
-  const oficialProperties = ["text", "textOptions", "structure"];
+export function error__props_filter__(props, defaultProperties) {
+  const MAIN_PROPS = ["text", "textOptions", "structure"];
+
+  const oficialProperties = (defaultProperties.attributes ??= MAIN_PROPS);
+
   const propsKeys = Object.keys(props);
 
   propsKeys.forEach((el) => {
@@ -10,9 +13,24 @@ export function error__props_filter__(props) {
     if (!oficialProperty) {
       const SS = stringSimilarity.findBestMatch(el, oficialProperties);
 
-      throw new Error(
-        `"${el}" isn't a registered property. Did you mean "${SS.bestMatch.target}"?`
-      );
+      const VALUES = oficialProperties != MAIN_PROPS;
+
+      if (SS.bestMatch.rating > 0.5) {
+        throw new Error(
+          `${
+            VALUES ? `${defaultProperties.name} - ` : ""
+          }"${el}" isn't a registered property. Did you mean "${
+            SS.bestMatch.target
+          }"?`
+        );
+      } else
+        throw new Error(
+          `${
+            VALUES ? `${defaultProperties.name} - ` : "Wrapping Letters"
+          } must contain the following properties: ${oficialProperties.join(
+            ", "
+          )}`
+        );
     }
   });
 }
