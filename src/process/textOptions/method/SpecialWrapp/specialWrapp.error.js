@@ -80,7 +80,7 @@ function __comprobation_correct_attributes__(element) {
   // if the object doesn't contain the required props
   if (!contain) {
     throw new Error(
-      '"SelectClass" must contain the following properties: structureToAdd, props'
+      '"SpecialWrapp" must contain the following properties: structureToAdd, props'
     );
   }
 
@@ -92,7 +92,7 @@ function __comprobation_correct_attributes__(element) {
 
   if (!wordToSearchSearch || !classToAddSearch) {
     throw new Error(
-      '"SelectClass" must be required the following properties: structureToAdd, props'
+      '"SpecialWrapp" must be required the following properties: structureToAdd, props'
     );
   }
 
