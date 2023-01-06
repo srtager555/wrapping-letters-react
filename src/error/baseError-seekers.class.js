@@ -2,11 +2,6 @@ import { whatItIs } from "../common/whatIsIt";
 import { error__props_filter__ } from "./props-filter.error";
 
 export class BaseErrorSeekers {
-  /**
-   * @param  {} entry
-   * @param  {} Attributes
-   * @param  {} customError
-   */
   constructor({ entry, Attributes, PerWord, customError }) {
     BaseErrorFilter(entry, Attributes, PerWord);
 
@@ -25,7 +20,7 @@ function BaseErrorFilter(entry, Attributes, PerWord) {
   if (KEYS_VALUES.length === 0) return;
 
   // Adding default and optional value
-  Attributes.push("spaceBetweenWord");
+  Attributes.push("spaceBetweenWord", "wordToSearch");
 
   // here the code will if contains the correct props
   error__props_filter__(entry.values, Attributes);
@@ -64,7 +59,14 @@ function BaseErrorFilter(entry, Attributes, PerWord) {
 
     //  ****** WTS comprobations - END ******
 
-    if (PerWord && entry.values.spaceBetweenWord) {
+    const SBW = entry.values.spaceBetweenWord;
+
+    if (whatItIs(SBW) != "[object Boolean]" && typeof SBW != "undefined")
+      throw new Error(
+        `${entry.name} - spaceBetweenWord must be a boolean or an undefiend`
+      );
+
+    if (PerWord && SBW) {
       // eslint-disable-next-line no-console
       console.warn(
         `${entry.name} - "spaceBetweenWord" is disable when "PerWord" is true, turn SBW to false to resolve this warn`
