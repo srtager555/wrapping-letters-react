@@ -431,7 +431,7 @@ describe("Running a lot situation about the output inside an Array", () => {
       // Both features
       [
         new Letter("This ", "class-1"),
-        new Letter("is ", "class-1"),
+        new Letter("is ", "class-2"),
         new Letter("a ", "", CustomStructure),
         new Letter("sentence!!!"),
       ],
