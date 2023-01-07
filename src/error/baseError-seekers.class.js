@@ -3,9 +3,9 @@ import { error__props_filter__ } from "./props-filter.error";
 
 export class BaseErrorSeekers {
   constructor({ entry, Attributes, PerWord, customError }) {
-    BaseErrorFilter(entry, Attributes, PerWord);
+    const NEXT_FILTER = BaseErrorFilter(entry, Attributes, PerWord);
 
-    if (customError) customError();
+    if (NEXT_FILTER && customError) customError();
   }
 }
 
@@ -17,7 +17,7 @@ function BaseErrorFilter(entry, Attributes, PerWord) {
   const WORD_TO_SEARCH = entry.values["wordToSearch"];
 
   // If SelectClass an empty Object the filter ends here
-  if (KEYS_VALUES.length === 0) return;
+  if (KEYS_VALUES.length === 0) return false;
 
   // Adding default and optional value
   Attributes.push("spaceBetweenWord", "wordToSearch");
@@ -72,5 +72,7 @@ function BaseErrorFilter(entry, Attributes, PerWord) {
         `${entry.name} - "spaceBetweenWord" is disable when "PerWord" is true, turn SBW to false to resolve this warn`
       );
     }
+
+    return true;
   }
 }
