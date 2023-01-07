@@ -77,6 +77,17 @@ export function WrappLetter(TEXT_OPTIONS, STRUCTURE, test = false) {
     arrElements.shift();
   }
 
+  if (PerWord.process) {
+    const LAST_EL = arrElements[arrElements.length - 1].letter;
+
+    let newArr = LAST_EL.split("");
+
+    newArr.pop();
+    newArr = newArr.join("");
+
+    arrElements[arrElements.length - 1].letter = newArr;
+  }
+
   // Switch for test files
   if (test) return arrElements;
 
