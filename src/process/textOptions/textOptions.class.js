@@ -79,7 +79,7 @@ export class __TextOptions__process__ {
   get SpecialWrapp() {
     const SPECIALWRAPPP = this.#GET_ATTRIBUTES.SpecialWrapp;
 
-    return new SpecialWrapp(SPECIALWRAPPP);
+    return new SpecialWrapp(SPECIALWRAPPP, this.#GET_ATTRIBUTES.PerWord);
   }
 
   get PerWord() {

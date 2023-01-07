@@ -3,7 +3,7 @@ import { process__select_specialWrapp__ } from "./specialWrapp.process";
 import { error__Filter_SpecialWrapp__ } from "./specialWrapp.error";
 
 export class SpecialWrapp extends Base {
-  constructor(SpecialWrapp) {
+  constructor(SpecialWrapp, PerWord) {
     super({
       name: "SpecialWrapp",
       SpecialArray: {
@@ -16,7 +16,7 @@ export class SpecialWrapp extends Base {
           structureToAdd: SpecialWrapp.structureToAdd,
           spaceBetweenWord: SpecialWrapp.spaceBetweenWord,
         }),
-      __error: () => error__Filter_SpecialWrapp__(SpecialWrapp),
+      __error: () => error__Filter_SpecialWrapp__(SpecialWrapp, PerWord),
     });
   }
 }
