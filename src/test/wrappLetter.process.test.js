@@ -6,8 +6,8 @@ import {
   sentenceToTest,
   CustomStructure,
   CustomStructure1,
-} from "./textArrays";
-import { Letter } from "./letters";
+} from "./common/textArrays";
+import { Letter } from "./common/letters";
 
 /**
  * @param  {boolean} spwSC
