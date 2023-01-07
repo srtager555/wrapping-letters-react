@@ -3,7 +3,7 @@ import stringSimilarity from "string-similarity";
 export function error__props_filter__(props, defaultProperties) {
   const MAIN_PROPS = ["text", "textOptions", "structure"];
 
-  const oficialProperties = (defaultProperties.attributes ??= MAIN_PROPS);
+  const oficialProperties = (defaultProperties ??= MAIN_PROPS);
 
   const propsKeys = Object.keys(props);
 
