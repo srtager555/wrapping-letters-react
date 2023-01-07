@@ -3,8 +3,8 @@ import { BaseErrorSeekers } from "../../../../error/baseError-seekers.class";
 
 export function error__Filter_SelectClass__(SelectClass, PerWord) {
   new BaseErrorSeekers({
-    entry: SelectClass,
-    Attributes: ["classToAddd"],
+    entry: { name: "SelectClass", values: SelectClass },
+    Attributes: ["classToAdd"],
     PerWord,
     customError: () => custom(),
   });

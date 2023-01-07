@@ -3,8 +3,8 @@ import { BaseErrorSeekers } from "../../../../error/baseError-seekers.class";
 
 export function error__Filter_SpecialWrapp__(SpecialWrapp, PerWord) {
   new BaseErrorSeekers({
-    entry: SpecialWrapp,
-    Attributes: null,
+    entry: { name: "SpecialWrapp", values: SpecialWrapp },
+    Attributes: ["structureToAdd"],
     PerWord,
     customError: () => custom(),
   });
