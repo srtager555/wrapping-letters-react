@@ -1,8 +1,8 @@
 import { whatItIs } from "../../../../common/whatIsIt";
-import { BaseErrorSeekers } from "../../../../error/baseError-seekers.class";
+import { BaseErrorSeekers } from "../../../../error/baseError-seekers.error";
 
 export function error__Filter_SelectClass__(SelectClass, PerWord) {
-  new BaseErrorSeekers({
+  BaseErrorSeekers({
     entry: { name: "SelectClass", values: SelectClass },
     Attributes: ["classToAdd"],
     PerWord,

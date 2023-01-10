@@ -1,8 +1,8 @@
 import { whatItIs } from "../../../../common/whatIsIt";
-import { BaseErrorSeekers } from "../../../../error/baseError-seekers.class";
+import { BaseErrorSeekers } from "../../../../error/baseError-seekers.error";
 
 export function error__Filter_SpecialWrapp__(SpecialWrapp, PerWord) {
-  new BaseErrorSeekers({
+  BaseErrorSeekers({
     entry: { name: "SpecialWrapp", values: SpecialWrapp },
     Attributes: ["structureToAdd"],
     PerWord,

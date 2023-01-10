@@ -1,12 +1,10 @@
 import { whatItIs } from "../common/whatIsIt";
 import { error__props_filter__ } from "./props-filter.error";
 
-export class BaseErrorSeekers {
-  constructor({ entry, Attributes, PerWord, customError }) {
-    const NEXT_FILTER = BaseErrorFilter(entry, Attributes, PerWord);
+export function BaseErrorSeekers({ entry, Attributes, PerWord, customError }) {
+  const NEXT_FILTER = BaseErrorFilter(entry, Attributes, PerWord);
 
-    if (NEXT_FILTER && customError) customError();
-  }
+  if (NEXT_FILTER && customError) customError();
 }
 
 function BaseErrorFilter(entry, Attributes, PerWord) {
