@@ -13,6 +13,10 @@ The website is a beta but make a great work in the docs
 
 ## New upgrades
 
+2.7.1
+
+Hello again! I solved a lot of issue xd and I started to prepare the version 3.0 to create the version to JS then create version to differents frameworks/libreries
+
 2.7.0
 
 Hello! The new 2.7.0 upgraded has a new syntax in the source code and a new feature for every feature that can find matches in the `text` =D
