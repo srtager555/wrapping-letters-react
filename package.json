@@ -1,6 +1,6 @@
 {
   "name": "wrapping-letters-react",
-  "version": "2.7.1",
+  "version": "2.7.3",
   "description": "SIMPLIFY THE JOB OF WRAPPING LETTERS IN HTML TAGS WITH WRAPPING-LETTERS",
   "main": "./lib/index.js",
   "files": [
@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Carlos-And-Ponce/wrapping-letters.git"
+    "url": "git+https://github.com/srtager555/wrapping-letters.git"
   },
   "keywords": [
     "wrapping-letters",

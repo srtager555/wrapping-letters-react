@@ -1,5 +1,5 @@
 {
-  // "ignore": ["test/*", "**/*.test.js"],
+  "ignore": ["src/test/*", "**/*.test.js"],
   "presets": [
     [
       "@babel/preset-env",
