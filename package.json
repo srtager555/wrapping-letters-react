@@ -1,6 +1,6 @@
 {
   "name": "wrapping-letters-react",
-  "version": "2.7.3",
+  "version": "2.7.4",
   "description": "SIMPLIFY THE JOB OF WRAPPING LETTERS IN HTML TAGS WITH WRAPPING-LETTERS",
   "main": "./lib/index.js",
   "files": [
@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/srtager555/wrapping-letters.git"
+    "url": "git+https://github.com/srtager555/wrapping-letters-react.git"
   },
   "keywords": [
     "wrapping-letters",
@@ -40,7 +40,7 @@
   "author": "Carlos Ponce",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Carlos-And-Ponce/wrapping-letters/issues"
+    "url": "https://github.com/Carlos-And-Ponce/wrapping-letters-react/issues"
   },
   "homepage": "https://wrapping-letters.vercel.app/",
   "dependencies": {
