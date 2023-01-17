@@ -60,7 +60,7 @@ function __comprobation_correct_attributes__(element) {
       'SpecialWrapp - The Wrapper can process empty objects on strutureToAdd from SpecialWrapp "{}"'
     );
 
-  if (!ELEMENT_KEYS["structureoAdd"]) {
+  if (!ELEMENT_KEYS["structureToAdd"]) {
     throw new Error(
       '"SpecialWrapp" - if you want send props to you wrap, the object need the Attribute `structureToAdd<Component>`'
     );
