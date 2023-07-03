@@ -52,21 +52,19 @@ export function error__Filter_SpecialWrapp__(SpecialWrapp, PerWord) {
 }
 
 function __comprobation_correct_attributes__(element) {
-  const ELEMENT_KEYS = Object.keys(element);
-
   // If SelectClass an empty Object the filter ends here
-  if (ELEMENT_KEYS.length === 0)
+  if (element.length === 0)
     throw new Error(
       'SpecialWrapp - The Wrapper can process empty objects on strutureToAdd from SpecialWrapp "{}"'
     );
 
-  if (!ELEMENT_KEYS["structureToAdd"]) {
+  if (!element["structureToAdd"]) {
     throw new Error(
       '"SpecialWrapp" - if you want send props to you wrap, the object need the Attribute `structureToAdd<Component>`'
     );
   }
 
-  if (!ELEMENT_KEYS["props"]) {
+  if (!element["props"]) {
     throw new Error(
       '"SpecialWrapp" - if you want send props to you wrap, the object need the Attribute `props<Object>`'
     );

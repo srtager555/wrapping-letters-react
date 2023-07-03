@@ -55,11 +55,13 @@ function baseStructure({ letter, cssClass, specialWrapp }) {
   };
 
   // if the variable has a default value, the "hasCustomWrapp" not is required
-  let Component =
-    specialWrapp.NewWrappStructure ||
-    function () {
-      return <DEFAULT_COMPONENT {...props} />;
-    };
+  let Component = hasCustomWrapp
+    ? typeof NewWrappStructure === "function"
+      ? NewWrappStructure
+      : NewWrappStructure.structureToAdd
+    : function () {
+        return <DEFAULT_COMPONENT {...props} />;
+      };
 
   if (hasCustomProps) {
     Component = NewWrappStructure.structureToAdd;

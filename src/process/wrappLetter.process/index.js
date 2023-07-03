@@ -55,6 +55,7 @@ export function WrappLetter(TEXT_OPTIONS, STRUCTURE, test = false) {
             ? VALUES_TO_ADD.SelectClass.process(SelectClassProps)
             : SelectClass.SpecialArray.process(SelectClassProps),
           specialWrapp: {
+            hasCustomProps: VALUES_TO_ADD.SpecialWrapp?.result.props && true,
             hasCustomWrapp: VALUES_TO_ADD.SpecialWrapp?.result && true,
             NewWrappStructure: VALUES_TO_ADD.SpecialWrapp?.result,
           },

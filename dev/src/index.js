@@ -6,8 +6,12 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import { whatItIs } from "../../src/common/whatIsIt";
 
-function specialTag({ letter, cssClass }) {
-  return <span className={`gray ${cssClass}`}>{letter}1</span>;
+function specialTag({ letter, cssClass, a }) {
+  return (
+    <span className={`gray ${cssClass}`}>
+      {letter}1{a}
+    </span>
+  );
 }
 function specialTag1({ letter, cssClass }) {
   return <span className={`blue ${cssClass}`}>{letter}2</span>;
@@ -45,13 +49,14 @@ function App() {
               // spaceBetweenWord: false,
             },
             SpecialWrapp: {
-              // wordToSearch: [
-              //   ["Hello", "pan"],
-              //   ["uwu", "con"],
-              //   "<3",
-              //   "XD",
-              //   "queso",
-              // ],
+              wordToSearch: [
+                ["Hello", "pan"],
+                ["uwu", "con"],
+                "<3",
+                "XD",
+                "queso",
+              ],
+              structureToAdd: { structureToAdd: specialTag, props: { a: "a" } },
               // structureToAdd: [specialTag, specialTag1],
               // spaceBetweenWord: true,
             },
